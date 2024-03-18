@@ -4,3 +4,10 @@ export enum AbsenceType {
   UNPAID_LEAVE, // Congé sans solde
   TOIL_DAY, // RTT
 }
+
+export class Absence {
+  id!: number;
+  type!: AbsenceType;
+  startedAt!: Date;
+  endedAt!: Date;
+}
