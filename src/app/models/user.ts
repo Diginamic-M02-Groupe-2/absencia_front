@@ -1,5 +1,5 @@
-import { Role } from './user-roles';
-import { Service } from './user-services';
+import { Role } from './user-role';
+import { Service } from './user-service';
 
 export class User {
   id!: number;
