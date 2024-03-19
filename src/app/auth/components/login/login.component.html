@@ -1,1 +1,30 @@
-<p>login works!</p>
+<div class="login-main-body">
+  <div class="login-container">
+    <h1>Connexion</h1>
+
+    <div class="login-input">
+      <input
+        pInputText
+        id="email"
+        placeholder="email"
+        type="text"
+        [(ngModel)]="mailAdress"
+        (keyup.enter)="onLogin()"
+      />
+      <input
+        pInputText
+        id="password"
+        placeholder="mot de passe"
+        type="password"
+        [(ngModel)]="password"
+        (keyup.enter)="onLogin()"
+      />
+    </div>
+
+    <div class="login-buttons">
+      <button pButton class="p-button-secondary" (click)="onLogin()">
+        Se connecter
+      </button>
+    </div>
+  </div>
+</div>
