@@ -3,15 +3,22 @@ import { ROUTE_LOGIN } from '../app.routes';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AUTH_API } from './api.service';
-import { Observable } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
+import { TokenService } from './token.service';
+import { Token } from '../models/token';
 
 const CURRENT_USER = 'currentUser';
+const TOKEN = 'token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthentificationService {
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private tokenService: TokenService
+  ) {}
 
   async logIn(email: string, password: string): Promise<boolean> {
     if (typeof localStorage !== 'undefined') {
@@ -19,15 +26,20 @@ export class AuthentificationService {
         email: email,
         password: password,
       };
-      const user = await this.http.post(AUTH_API, data);
-      localStorage.setItem(CURRENT_USER, 'prenom nom');
+      const token = await firstValueFrom(this.http.post<Token>(AUTH_API, data));
+      console.log('user: ', token);
+      localStorage.setItem(TOKEN, token.token);
+      //recup user
+      localStorage.setItem(CURRENT_USER, `prenom nom`);
+      return true;
     }
-    return true;
+    return false;
   }
 
   logOut(): void {
     if (typeof localStorage !== 'undefined') {
       localStorage.removeItem(CURRENT_USER);
+      localStorage.removeItem(TOKEN);
       this.router.navigateByUrl(ROUTE_LOGIN);
     }
   }

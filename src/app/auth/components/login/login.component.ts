@@ -29,7 +29,7 @@ export class LoginComponent {
       return false;
     }
 
-    this.authentificationService
+    await this.authentificationService
       .logIn(this.mailAdress, this.password)
       .then((isUserConnected) => {
         if (!isUserConnected) {
