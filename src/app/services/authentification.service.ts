@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { ROUTE_LOGIN } from '../app.routes';
+import { Router } from '@angular/router';
 
 const CURRENT_USER = 'currentUser';
 
@@ -6,7 +8,7 @@ const CURRENT_USER = 'currentUser';
   providedIn: 'root',
 })
 export class AuthentificationService {
-  constructor() {}
+  constructor(private router: Router) {}
 
   async logIn(email: string, password: string): Promise<boolean> {
     if (typeof localStorage !== 'undefined') {
@@ -18,6 +20,7 @@ export class AuthentificationService {
   logOut(): void {
     if (typeof localStorage !== 'undefined') {
       localStorage.removeItem(CURRENT_USER);
+      this.router.navigateByUrl(ROUTE_LOGIN);
     }
   }
 

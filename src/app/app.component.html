@@ -18,13 +18,9 @@
 
   <!--Navbar-->
   <div id="main-content">
-    <div
-      *ngIf="isLogged"
-      class="align-items-center justify-content-between"
-      style="display: flex"
-    >
+    <div *ngIf="isLogged" class="navbar">
       <!--Gauche-->
-      <div class="align-items-center" style="display: flex">
+      <div style="display: flex; align-items: center">
         <div class="visible-mobile">
           <button
             pButton
@@ -46,8 +42,8 @@
       </div>
 
       <!--Droite-->
-      <div class="align-items-center" style="display: flex">
-        <label>Bonjour, {{ firstName }}</label>
+      <div style="display: flex; align-items: center">
+        <label class="mr-2">Bonjour, {{ firstName }}</label>
         <button
           pButton
           type="button"
@@ -59,7 +55,11 @@
     </div>
 
     <!--Body-->
-    <div [ngClass]="{ 'navbar-shadow': isLogged }" class="body">
+    <div
+      [ngClass]="{ 'navbar-shadow': isLogged }"
+      class="body"
+      [class.login-body]="isActive(routeToLogin)"
+    >
       <router-outlet></router-outlet>
     </div>
   </div>
