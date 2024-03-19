@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ROUTE_LOGIN } from '../app.routes';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AUTH_API } from './api.service';
 import { firstValueFrom } from 'rxjs';
 import { Token } from '../models/token';
+import { RoutesPath } from '../models/route';
 
 const CURRENT_USER = 'currentUser';
 const TOKEN = 'token';
@@ -34,7 +34,7 @@ export class AuthentificationService {
     if (typeof localStorage !== 'undefined') {
       localStorage.removeItem(CURRENT_USER);
       localStorage.removeItem(TOKEN);
-      this.router.navigateByUrl(ROUTE_LOGIN);
+      this.router.navigateByUrl(RoutesPath.ROUTE_LOGIN);
     }
   }
 

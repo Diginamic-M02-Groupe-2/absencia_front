@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthentificationService } from '../../services/authentification.service';
 import { Router } from '@angular/router';
-import { ROUTE_LOGIN } from '../../app.routes';
+import { RoutesPath } from 'src/app/models/route';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class AuthGuard {
       this.authentificationService.isUserConnected;
 
     if (!storedUserConnectedStatus) {
-      this.router.navigateByUrl(ROUTE_LOGIN);
+      this.router.navigateByUrl(RoutesPath.ROUTE_LOGIN);
       return false;
     }
 

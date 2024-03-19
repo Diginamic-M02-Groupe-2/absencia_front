@@ -1,6 +1,6 @@
 .menu-item-selected {
-  color: rgb(30, 144, 255) !important;
-  background: rgba(30, 144, 255, 0.25) !important;
+  color: rgb(30, 144, 255);
+  background: rgba(30, 144, 255, 0.25);
 }
 
 .menu-item {
@@ -10,24 +10,23 @@
   border-radius: 10px;
   background: white;
   color: #26292780;
-}
 
-.menu-item:hover {
-  color: rgb(30, 144, 255) !important;
-  background: rgba(30, 144, 255, 0.25) !important;
+  &:hover {
+    color: rgb(30, 144, 255);
+    background: rgba(30, 144, 255, 0.25);
+  }
 }
 
 .menu-item-list {
   background: none;
   list-style-type: none;
+
   li {
     height: 2em;
-  }
-}
 
-.menu-item-list:hover {
-  li {
-    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -36,7 +35,7 @@
 }
 
 .login-body {
-  background-image: url("../assets/login/backgroundBody.svg");
+  background-image: url("/assets/login/backgroundBody.svg");
   background-size: cover;
   background-position: center;
 }
@@ -61,19 +60,19 @@ a {
 }
 
 .visible-mobile {
-  display: none !important;
+  display: none;
 }
 
 .hidden-mobile {
-  display: block !important;
-}
+  display: block;
 
-@media only screen and (max-width: 1440px) {
-  .visible-mobile {
-    display: block !important;
-  }
+  @media only screen and (max-width: 1440px) {
+    .visible-mobile {
+      display: block;
+    }
 
-  .hidden-mobile {
-    display: none !important;
+    .hidden-mobile {
+      display: none;
+    }
   }
 }

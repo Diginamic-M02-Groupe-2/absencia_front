@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
-import { ROUTE_DASHBOARD, ROUTE_LOGIN } from './app.routes';
 import { AuthentificationService } from './services/authentification.service';
 import { CommonModule } from '@angular/common';
 import { Sidebar, SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { RoutesPath } from './models/route';
 
 @Component({
   selector: 'app-root',
@@ -22,8 +22,8 @@ import { InputTextModule } from 'primeng/inputtext';
   standalone: true,
 })
 export class AppComponent implements OnInit {
-  routeToDashboard = `/${ROUTE_DASHBOARD}`;
-  routeToLogin = `/${ROUTE_LOGIN}`;
+  routeToDashboard = `/${RoutesPath.ROUTE_DASHBOARD}`;
+  routeToLogin = `/${RoutesPath.ROUTE_LOGIN}`;
 
   firstName: string = '';
 
