@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ROUTE_LOGIN } from '../app.routes';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { AUTH_API } from './api.service';
+import { Observable } from 'rxjs';
 
 const CURRENT_USER = 'currentUser';
 
@@ -8,10 +11,15 @@ const CURRENT_USER = 'currentUser';
   providedIn: 'root',
 })
 export class AuthentificationService {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   async logIn(email: string, password: string): Promise<boolean> {
     if (typeof localStorage !== 'undefined') {
+      const data = {
+        email: email,
+        password: password,
+      };
+      const user = await this.http.post(AUTH_API, data);
       localStorage.setItem(CURRENT_USER, 'prenom nom');
     }
     return true;
