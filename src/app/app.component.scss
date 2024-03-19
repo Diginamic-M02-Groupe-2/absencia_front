@@ -1,0 +1,18 @@
+.menu-item-selected {
+  color: rgb(70, 209, 106) !important;
+  background: rgba(70, 209, 106, 0.25) !important;
+}
+
+.menu-item {
+  font-weight: 700;
+  font-size: 12px;
+  margin-top: 20px;
+  border-radius: 10px;
+  background: white;
+  color: #26292780;
+}
+
+.menu-item:hover {
+  color: rgb(70, 209, 106) !important;
+  background: rgba(70, 209, 106, 0.25) !important;
+}

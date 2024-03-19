@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AuthModule } from './auth/auth.module';
 
+import { SidebarModule } from 'primeng/sidebar';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -16,6 +18,7 @@ import { AuthModule } from './auth/auth.module';
     AppRoutingModule,
     DashboardModule,
     AuthModule,
+    SidebarModule,
     RouterModule.forRoot([]),
   ],
   providers: [config.providers],
