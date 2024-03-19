@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthentificationService } from '../../services/authentification.service';
 import { Router } from '@angular/router';
-import { RoutesPath } from 'src/app/models/route';
+import { RoutesPath } from '../../models/route';
 
 @Injectable({
   providedIn: 'root',

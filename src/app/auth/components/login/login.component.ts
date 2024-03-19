@@ -1,18 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AuthentificationService } from '../../../services/authentification.service';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { RoutesPath } from 'src/app/models/route';
+import { RoutesPath } from '../../../models/route';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [CommonModule, FormsModule, ButtonModule, InputTextModule],
-  standalone: true,
 })
 export class LoginComponent {
   mailAdress: string = '';

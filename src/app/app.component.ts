@@ -1,25 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthentificationService } from './services/authentification.service';
-import { CommonModule } from '@angular/common';
-import { Sidebar, SidebarModule } from 'primeng/sidebar';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
+import { Sidebar } from 'primeng/sidebar';
 import { RoutesPath } from './models/route';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    SidebarModule,
-    RouterModule,
-    ButtonModule,
-    InputTextModule,
-  ],
-  standalone: true,
 })
 export class AppComponent implements OnInit {
   routeToDashboard = `/${RoutesPath.ROUTE_DASHBOARD}`;

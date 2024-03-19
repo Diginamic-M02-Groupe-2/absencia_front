@@ -65,14 +65,14 @@ a {
 
 .hidden-mobile {
   display: block;
+}
 
-  @media only screen and (max-width: 1440px) {
-    .visible-mobile {
-      display: block;
-    }
+@media only screen and (max-width: 1440px) {
+  .visible-mobile {
+    display: block;
+  }
 
-    .hidden-mobile {
-      display: none;
-    }
+  .hidden-mobile {
+    display: none;
   }
 }
