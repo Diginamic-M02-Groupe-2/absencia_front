@@ -4,7 +4,7 @@ import { User } from './user';
 
 export class AbsenceRequest {
   id!: number;
-  user!: User;
+  user?: User;
   absence!: Absence;
   status!: AbsenceRequestStatus;
   reason?: string | null;
