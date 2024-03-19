@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AUTH_API } from './api.service';
 import { firstValueFrom } from 'rxjs';
-import { TokenService } from './token.service';
 import { Token } from '../models/token';
 
 const CURRENT_USER = 'currentUser';
@@ -14,11 +13,7 @@ const TOKEN = 'token';
   providedIn: 'root',
 })
 export class AuthentificationService {
-  constructor(
-    private router: Router,
-    private http: HttpClient,
-    private tokenService: TokenService
-  ) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   async logIn(email: string, password: string): Promise<boolean> {
     if (typeof localStorage !== 'undefined') {
@@ -27,7 +22,6 @@ export class AuthentificationService {
         password: password,
       };
       const token = await firstValueFrom(this.http.post<Token>(AUTH_API, data));
-      console.log('user: ', token);
       localStorage.setItem(TOKEN, token.token);
       //recup user
       localStorage.setItem(CURRENT_USER, `prenom nom`);
