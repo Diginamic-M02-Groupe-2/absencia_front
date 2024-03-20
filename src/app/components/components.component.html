@@ -1,1 +1,29 @@
-Components
+<form class="form">
+  <label class="field">
+    <span class="field__label">
+      Text input
+    </span>
+
+    <input pInputText type="text" placeholder="Placeholder">
+  </label>
+
+  <label class="field">
+    <span class="field__label">
+      Select
+    </span>
+
+    <p-dropdown placeholder="Placeholder" class="select">
+      <ng-template pTemplate="dropdownicon">
+        <i class="pi pi-caret-down"></i>
+      </ng-template>
+    </p-dropdown>
+  </label>
+
+  <label class="field">
+    <span class="field__label">
+      Datepicker
+    </span>
+
+    <p-calendar dateFormat="dd/mm/yy" placeholder="Placeholder"></p-calendar>
+  </label>
+</form>

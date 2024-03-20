@@ -130,7 +130,7 @@
 }
 
 .main {
-  padding: 16px;
+  padding: 16px 0;
 
   &Login {
     padding: 0;
@@ -138,4 +138,10 @@
     background-size: cover;
     background-position: center;
   }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
 }

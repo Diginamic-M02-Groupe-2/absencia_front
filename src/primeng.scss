@@ -1,0 +1,66 @@
+@import "./variables.scss";
+
+p-calendar {
+  .p-calendar {
+    width: 100%;
+
+    .p-inputtext {
+      padding: 8px;
+      border: 2px solid $tertiary;
+      border-radius: 4px;
+      box-shadow: none;
+      color: inherit;
+
+      &::placeholder {
+        opacity: .5;
+        color: inherit;
+      }
+
+      &:focus {
+        border-color: $primary;
+      }
+    }
+  }
+}
+
+p-dropdown {
+  .p-dropdown {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid $tertiary;
+    border-radius: 4px;
+
+    .p-placeholder {
+      opacity: .5;
+      color: inherit;
+    }
+  }
+
+  .p-focus {
+    border-color: $primary;
+    box-shadow: none;
+  }
+
+  .p-dropdown-trigger .pi {
+    display: block;
+  }
+}
+
+input[pinputtext] {
+  padding: 8px;
+  border: 2px solid $tertiary;
+  border-radius: 4px;
+  background-color: $white;
+  color: inherit;
+  font-size: 1rem;
+
+  &::placeholder {
+    opacity: .5;
+    color: inherit;
+  }
+
+  &:focus {
+    border-color: $primary;
+    box-shadow: none;
+  }
+}
