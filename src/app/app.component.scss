@@ -63,6 +63,7 @@
     border-radius: 4px;
     background-color: scale-color($error, $alpha: -50%);
     color: $light;
+    font-size: .75rem;
     transition: background-color .2s;
 
     &:hover {
@@ -116,6 +117,7 @@
       border-radius: 4px;
       background-color: $error;
       color: $light;
+      font-size: .75rem;
       transition: background-color .2s;
 
       &:hover {
