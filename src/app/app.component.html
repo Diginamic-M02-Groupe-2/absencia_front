@@ -1,66 +1,69 @@
-<div>
-  <!--Sidebar-->
-  <p-sidebar #sidebarRef [(visible)]="sidebarVisible" class="my-side-menu">
-    <ul class="menu-item-list">
-      <h1>Général</h1>
-      <li>
-        <a
-          [href]="routeToDashboard"
-          [class.menu-item-selected]="isActive(routeToDashboard)"
-          class="menu-item p-ripple"
-        >
-          <i class="pi pi-home"></i>
-          <span class="menu-label">Accueil</span>
+<!-- TODO: Link URLs -->
+<!-- TODO: Active link depending on current page -->
+<p-sidebar #sidebarRef [(visible)]="sidebarVisible" class="drawer">
+  <ul class="drawer__list">
+    <li class="drawer__list__item">
+      <a [href]="routeToDashboard" class="drawer__list__item__link">
+        Accueil
+      </a>
+    </li>
+
+    <li class="drawer__list__item">
+      <a [href]="routeToDashboard" class="drawer__list__item__link">
+        Congés
+      </a>
+    </li>
+
+    <li class="drawer__list__item">
+      <a [href]="routeToDashboard" class="drawer__list__item__link">
+        Créer une demande d'absence
+      </a>
+    </li>
+  </ul>
+
+  <a href="#" class="drawer__logOutLink" (click)="onLogOut()">
+    Se déconnecter
+  </a>
+</p-sidebar>
+
+<!-- TODO: Link URLs -->
+<!-- TODO: Active link depending on current page -->
+<header *ngIf="isLogged" class="header">
+  <button class="header__toggleMenuButton" (click)="toggleSidebar(true)">
+    <i class="pi pi-bars"></i>
+
+    Absencia
+  </button>
+
+  <nav class="header__navBar">
+    <ul class="header__navBar__list">
+      <li class="header__navBar__list__item">
+        <a [href]="routeToDashboard" class="header__navBar__list__item__link header__navBar__list__item__linkActive">
+          Accueil
+        </a>
+      </li>
+
+      <li class="header__navBar__list__item">
+        <a [href]="routeToDashboard" class="header__navBar__list__item__link">
+          Congés
+        </a>
+      </li>
+
+      <li class="header__navBar__list__item">
+        <a [href]="routeToDashboard" class="header__navBar__list__item__link">
+          Créer une demande d'absence
         </a>
       </li>
     </ul>
-  </p-sidebar>
+  </nav>
 
-  <!--Navbar-->
-  <div id="main-content">
-    <div *ngIf="isLogged" class="navbar">
-      <!--Gauche-->
-      <div style="display: flex; align-items: center">
-        <div class="visible-mobile">
-          <button
-            pButton
-            type="button"
-            icon="pi pi-bars"
-            class="p-button-rounded p-button-outlined ml-2"
-            (click)="toggleSidebar(true)"
-          ></button>
-        </div>
+  <a href="#" class="header__logOutLink" (click)="onLogOut()">
+    Se déconnecter
+  </a>
+</header>
 
-        <a
-          pButton
-          type="button"
-          label="Accueil"
-          [routerLink]="routeToDashboard"
-          class="p-button-outlined no-border hidden-mobile"
-          [class.menu-item-desktop-selected]="isActive(routeToDashboard)"
-        ></a>
-      </div>
+<main class="main" [class.mainLogin]="isActive(routeToLogin)">
+  <router-outlet></router-outlet>
+</main>
 
-      <!--Droite-->
-      <div style="display: flex; align-items: center">
-        <label style="margin-right: 1em">Bonjour, {{ firstName }}</label>
-        <button
-          pButton
-          type="button"
-          icon="pi pi-power-off"
-          class="p-button-outlined p-button-secondary p-button-rounded m-2"
-          (click)="onLogOut()"
-        ></button>
-      </div>
-    </div>
-
-    <!--Body-->
-    <div
-      [ngClass]="{ 'navbar-shadow': isLogged }"
-      class="body"
-      [class.login-body]="isActive(routeToLogin)"
-    >
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>
+<!-- TODO: Footer -->
