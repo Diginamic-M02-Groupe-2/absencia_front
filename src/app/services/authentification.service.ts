@@ -7,7 +7,7 @@ import { Token } from '../models/token';
 import { RoutesPath } from '../models/route';
 
 const CURRENT_USER = 'currentUser';
-const TOKEN = 'token';
+export const TOKEN = 'token';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,7 @@ export class AuthentificationService {
         password: password,
       };
       const token = await firstValueFrom(this.http.post<Token>(AUTH_API, data));
-      localStorage.setItem(TOKEN, token.token);
+      sessionStorage.setItem(TOKEN, token.token);
       //recup user
       localStorage.setItem(CURRENT_USER, `prenom nom`);
       return true;
@@ -32,10 +32,9 @@ export class AuthentificationService {
 
   logOut(): void {
     if (typeof localStorage !== 'undefined') {
-      const tokenToDelete = localStorage.getItem(TOKEN) as string;
-      this.http.post(LOGOUT_API, { tokenToDelete });
+      this.http.post(LOGOUT_API, {});
       localStorage.removeItem(CURRENT_USER);
-      localStorage.removeItem(TOKEN);
+      sessionStorage.removeItem(TOKEN);
       this.router.navigateByUrl(RoutesPath.ROUTE_LOGIN);
     }
   }
