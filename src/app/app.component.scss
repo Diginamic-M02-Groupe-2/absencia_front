@@ -30,11 +30,15 @@
   &__navBar {
     &__list {
       display: flex;
-      column-gap: 8px;
+      column-gap: 24px;
       list-style: none;
 
       &__item {
         &__link {
+          display: flex;
+          align-items: center;
+          column-gap: 8px;
+
           color: $tertiary;
           font-weight: 700;
           transition: color .2s;
@@ -52,6 +56,9 @@
   }
 
   &__logOutLink {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
     padding: 4px 8px;
     border-radius: 4px;
     background-color: scale-color($error, $alpha: -50%);
@@ -60,6 +67,10 @@
 
     &:hover {
       background-color: $error;
+    }
+
+    &__icon {
+      font-size: .75rem;
     }
 
     @media (max-width: 768px) {
@@ -82,7 +93,9 @@
 
       &__item {
         &__link {
-          display: block;
+          display: flex;
+          align-items: center;
+          column-gap: 8px;
           padding: 8px 16px;
           color: $tertiary;
           transition: color .2s;
@@ -95,7 +108,9 @@
     }
 
     &__logOutLink {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      column-gap: 8px;
       margin: 8px 16px;
       padding: 4px 8px;
       border-radius: 4px;
@@ -105,6 +120,10 @@
 
       &:hover {
         background-color: scale-color($error, $alpha: -50%);
+      }
+
+      &__icon {
+        font-size: .75rem;
       }
     }
   }

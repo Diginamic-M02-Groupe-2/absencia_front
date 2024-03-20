@@ -4,24 +4,32 @@
   <ul class="drawer__list">
     <li class="drawer__list__item">
       <a [href]="routeToDashboard" class="drawer__list__item__link">
+        <i class="pi pi-home"></i>
+
         Accueil
       </a>
     </li>
 
     <li class="drawer__list__item">
       <a [href]="routeToDashboard" class="drawer__list__item__link">
+        <i class="pi pi-briefcase"></i>
+
         Congés
       </a>
     </li>
 
     <li class="drawer__list__item">
       <a [href]="routeToDashboard" class="drawer__list__item__link">
+        <i class="pi pi-file-edit"></i>
+
         Créer une demande d'absence
       </a>
     </li>
   </ul>
 
   <a href="#" class="drawer__logOutLink" (click)="onLogOut()">
+    <i class="pi pi-sign-out drawer__logOutLink__icon"></i>
+
     Se déconnecter
   </a>
 </p-sidebar>
@@ -39,18 +47,24 @@
     <ul class="header__navBar__list">
       <li class="header__navBar__list__item">
         <a [href]="routeToDashboard" class="header__navBar__list__item__link header__navBar__list__item__linkActive">
+          <i class="pi pi-home"></i>
+
           Accueil
         </a>
       </li>
 
       <li class="header__navBar__list__item">
         <a [href]="routeToDashboard" class="header__navBar__list__item__link">
+          <i class="pi pi-briefcase"></i>
+
           Congés
         </a>
       </li>
 
       <li class="header__navBar__list__item">
         <a [href]="routeToDashboard" class="header__navBar__list__item__link">
+          <i class="pi pi-file-edit"></i>
+
           Créer une demande d'absence
         </a>
       </li>
@@ -58,6 +72,8 @@
   </nav>
 
   <a href="#" class="header__logOutLink" (click)="onLogOut()">
+    <i class="pi pi-sign-out header__logOutLink__icon"></i>
+
     Se déconnecter
   </a>
 </header>
