@@ -1,5 +1,29 @@
 @import "../../variables.scss";
 
+.alert {
+  display: flex;
+  align-items: flex-start;
+  column-gap: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: $secondary;
+  color: scale-color($secondary, $lightness: -50%);
+
+  &__message {
+    flex-grow: 1;
+  }
+
+  &__closeButton {
+    border: none;
+    background: none;
+    color: inherit;
+
+    .pi {
+      display: block;
+    }
+  }
+}
+
 .form {
   display: flex;
   flex-direction: column;
