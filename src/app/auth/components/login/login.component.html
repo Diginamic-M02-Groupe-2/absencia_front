@@ -1,0 +1,39 @@
+<div class="login-main-body">
+  <img
+    class="logo-login"
+    src="/assets/login/leftSideLogin.svg"
+    alt="logo absencia"
+  />
+  <div class="login-container">
+    <h1>Connexion</h1>
+
+    <form (submit)="onLogin($event)">
+      <div class="login-input">
+        <input
+          pInputText
+          id="email"
+          placeholder="email"
+          type="text"
+          [(ngModel)]="mailAdress"
+          name="email"
+          required
+        />
+        <input
+          pInputText
+          id="password"
+          placeholder="mot de passe"
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          required
+        />
+      </div>
+
+      <div class="login-buttons">
+        <button pButton type="submit" class="p-button-secondary">
+          Se connecter
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+.menu-item-selected {
+  color: rgb(30, 144, 255);
+  background: rgba(30, 144, 255, 0.25);
+}
+
+.menu-item {
+  font-weight: 700;
+  font-size: 12px;
+  margin-top: 20px;
+  border-radius: 10px;
+  background: white;
+  color: #26292780;
+
+  &:hover {
+    color: rgb(30, 144, 255);
+    background: rgba(30, 144, 255, 0.25);
+  }
+}
+
+.menu-item-list {
+  background: none;
+  list-style-type: none;
+
+  li {
+    height: 2em;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.body {
+  background-color: rgb(255, 255, 255);
+}
+
+.login-body {
+  background-image: url("/assets/login/backgroundBody.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.navbar-shadow {
+  box-shadow: rgba(30, 144, 255, 0.16) 0px 3px 6px,
+    rgba(0, 0, 0, 0.23) 0px 3px 6px inset;
+}
+
+.menu-item-desktop-selected {
+  background: rgba(30, 144, 255, 0.25);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.visible-mobile {
+  display: none;
+}
+
+.hidden-mobile {
+  display: block;
+}
+
+@media only screen and (max-width: 1440px) {
+  .visible-mobile {
+    display: block;
+  }
+
+  .hidden-mobile {
+    display: none;
+  }
+}
