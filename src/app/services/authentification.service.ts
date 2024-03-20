@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { AUTH_API } from './api.service';
+import { AUTH_API, LOGOUT_API } from './api.service';
 import { firstValueFrom } from 'rxjs';
 import { Token } from '../models/token';
 import { RoutesPath } from '../models/route';
@@ -32,6 +32,8 @@ export class AuthentificationService {
 
   logOut(): void {
     if (typeof localStorage !== 'undefined') {
+      const tokenToDelete = localStorage.getItem(TOKEN) as string;
+      this.http.post(LOGOUT_API, { tokenToDelete });
       localStorage.removeItem(CURRENT_USER);
       localStorage.removeItem(TOKEN);
       this.router.navigateByUrl(RoutesPath.ROUTE_LOGIN);
