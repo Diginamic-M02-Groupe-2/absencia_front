@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app.routes';
 import { LoginModule } from './auth/components/login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     LoginModule,
     DashboardModule,
+    ComponentsModule,
   ],
   bootstrap: [AppComponent],
 })
