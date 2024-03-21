@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { AUTH_API } from './api.service';
+import { AUTH_API, LOGOUT_API } from './api.service';
 import { firstValueFrom } from 'rxjs';
 import { Token } from '../models/token';
 import { RoutesPath } from '../models/route';
+import { UserService } from './user.service';
+import { User } from '../models/user';
 
 const CURRENT_USER = 'currentUser';
-const TOKEN = 'token';
+export const TOKEN = 'token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthentificationService {
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private userService: UserService
+  ) {}
 
   async logIn(email: string, password: string): Promise<boolean> {
     if (typeof localStorage !== 'undefined') {
@@ -22,9 +28,9 @@ export class AuthentificationService {
         password: password,
       };
       const token = await firstValueFrom(this.http.post<Token>(AUTH_API, data));
-      localStorage.setItem(TOKEN, token.token);
-      //recup user
-      localStorage.setItem(CURRENT_USER, `prenom nom`);
+      sessionStorage.setItem(TOKEN, token.token);
+      const user = await firstValueFrom(this.userService.getCurrentUser());
+      localStorage.setItem(CURRENT_USER, JSON.stringify(user));
       return true;
     }
     return false;
@@ -32,21 +38,23 @@ export class AuthentificationService {
 
   logOut(): void {
     if (typeof localStorage !== 'undefined') {
+      this.http.post(LOGOUT_API, {});
       localStorage.removeItem(CURRENT_USER);
-      localStorage.removeItem(TOKEN);
+      sessionStorage.removeItem(TOKEN);
       this.router.navigateByUrl(RoutesPath.ROUTE_LOGIN);
     }
   }
 
   getPseudo(): string {
-    let storedUser: string | null = '';
+    let storedUser: User = new User();
     if (typeof localStorage !== 'undefined') {
-      storedUser = localStorage.getItem(CURRENT_USER);
+      const storedUserJSON = localStorage.getItem(CURRENT_USER);
+      storedUser = JSON.parse(storedUserJSON as string);
       if (!storedUser) {
         return '';
       }
     }
-    return storedUser;
+    return `${storedUser.firstName} ${storedUser.lastName}`;
   }
 
   public get isUserConnected(): boolean {
