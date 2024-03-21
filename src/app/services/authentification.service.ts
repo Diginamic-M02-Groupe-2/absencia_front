@@ -6,6 +6,7 @@ import { firstValueFrom } from 'rxjs';
 import { Token } from '../models/token';
 import { RoutesPath } from '../models/route';
 import { UserService } from './user.service';
+import { User } from '../models/user';
 
 const CURRENT_USER = 'currentUser';
 export const TOKEN = 'token';
@@ -29,7 +30,7 @@ export class AuthentificationService {
       const token = await firstValueFrom(this.http.post<Token>(AUTH_API, data));
       sessionStorage.setItem(TOKEN, token.token);
       const user = await firstValueFrom(this.userService.getCurrentUser());
-      localStorage.setItem(CURRENT_USER, `${user.firstName} ${user.lastName}`);
+      localStorage.setItem(CURRENT_USER, JSON.stringify(user));
       return true;
     }
     return false;
@@ -45,14 +46,15 @@ export class AuthentificationService {
   }
 
   getPseudo(): string {
-    let storedUser: string | null = '';
+    let storedUser: User = new User();
     if (typeof localStorage !== 'undefined') {
-      storedUser = localStorage.getItem(CURRENT_USER);
+      const storedUserJSON = localStorage.getItem(CURRENT_USER);
+      storedUser = JSON.parse(storedUserJSON as string);
       if (!storedUser) {
         return '';
       }
     }
-    return storedUser;
+    return `${storedUser.firstName} ${storedUser.lastName}`;
   }
 
   public get isUserConnected(): boolean {
