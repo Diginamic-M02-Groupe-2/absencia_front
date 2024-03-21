@@ -1,0 +1,65 @@
+<form class="form">
+  <div class="alert">
+    <p class="alert__message">
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+    </p>
+
+    <button type="button" class="alert__closeButton">
+      <i class="pi pi-times"></i>
+    </button>
+  </div>
+
+  <h1 class="title">
+    Form example
+  </h1>
+
+  <p class="paragraph">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+  </p>
+
+  <label class="field">
+    <span class="field__label">
+      Text input
+    </span>
+
+    <input pInputText type="text" placeholder="Placeholder">
+  </label>
+
+  <label class="field">
+    <span class="field__label">
+      Select
+    </span>
+
+    <p-dropdown placeholder="Placeholder" class="select">
+      <ng-template pTemplate="dropdownicon">
+        <i class="pi pi-caret-down"></i>
+      </ng-template>
+    </p-dropdown>
+  </label>
+
+  <label class="field">
+    <span class="field__label">
+      Tabs
+    </span>
+
+    <p-selectButton [options]="options" optionValue="value" optionLabel="label" />
+  </label>
+
+  <label class="field">
+    <span class="field__label">
+      Datepicker
+    </span>
+
+    <p-calendar dateFormat="dd/mm/yy" placeholder="Placeholder"></p-calendar>
+  </label>
+
+  <div class="form__footer">
+    <button type="submit" class="button">
+      Cancel
+    </button>
+
+    <button type="submit" class="button button__submit">
+      Submit
+    </button>
+  </div>
+</form>

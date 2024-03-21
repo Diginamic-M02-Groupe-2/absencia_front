@@ -1,7 +1,7 @@
 export enum Service {
   MANAGEMENT,
   DEVELOPMENT,
-  INTEGRATION,
   DESIGN,
+  MARKETING,
   SALES,
 }

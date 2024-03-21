@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app.routes';
 import { LoginModule } from './auth/components/login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { ComponentsModule } from './components/components.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
 
@@ -26,6 +27,7 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
     HttpClientModule,
     LoginModule,
     DashboardModule,
+    ComponentsModule,
   ],
   providers: [
     {
