@@ -22,45 +22,35 @@ export class AuthentificationService {
   ) {}
 
   async logIn(email: string, password: string): Promise<boolean> {
-    if (typeof localStorage !== 'undefined') {
-      const data = {
-        email: email,
-        password: password,
-      };
-      const token = await firstValueFrom(this.http.post<Token>(AUTH_API, data));
-      sessionStorage.setItem(TOKEN, token.token);
-      const user = await firstValueFrom(this.userService.getCurrentUser());
-      localStorage.setItem(CURRENT_USER, JSON.stringify(user));
-      return true;
-    }
-    return false;
+    const data = {
+      email: email,
+      password: password,
+    };
+    const token = await firstValueFrom(this.http.post<Token>(AUTH_API, data));
+    sessionStorage.setItem(TOKEN, token.token);
+    const user = await firstValueFrom(this.userService.getCurrentUser());
+    sessionStorage.setItem(CURRENT_USER, JSON.stringify(user));
+    return true;
   }
 
   logOut(): void {
-    if (typeof localStorage !== 'undefined') {
-      this.http.post(LOGOUT_API, {});
-      localStorage.removeItem(CURRENT_USER);
-      sessionStorage.removeItem(TOKEN);
-      this.router.navigateByUrl(RoutesPath.ROUTE_LOGIN);
-    }
+    this.http.post(LOGOUT_API, {});
+    sessionStorage.removeItem(CURRENT_USER);
+    sessionStorage.removeItem(TOKEN);
+    this.router.navigateByUrl(RoutesPath.ROUTE_LOGIN);
   }
 
   getPseudo(): string {
     let storedUser: User = new User();
-    if (typeof localStorage !== 'undefined') {
-      const storedUserJSON = localStorage.getItem(CURRENT_USER);
-      storedUser = JSON.parse(storedUserJSON as string);
-      if (!storedUser) {
-        return '';
-      }
+    const storedUserJSON = sessionStorage.getItem(CURRENT_USER);
+    storedUser = JSON.parse(storedUserJSON as string);
+    if (!storedUser) {
+      return '';
     }
     return `${storedUser.firstName} ${storedUser.lastName}`;
   }
 
   public get isUserConnected(): boolean {
-    if (typeof localStorage !== 'undefined') {
-      return localStorage.getItem(CURRENT_USER) !== null;
-    }
-    return false;
+    return sessionStorage.getItem(CURRENT_USER) !== null;
   }
 }
