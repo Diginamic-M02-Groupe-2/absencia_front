@@ -64,3 +64,30 @@ input[pinputtext] {
     box-shadow: none;
   }
 }
+
+.p-selectbutton {
+  .p-button {
+    padding: 8px;
+    border: 2px solid $tertiary;
+    box-shadow: none;
+    background-color: $white;
+    color: $tertiary;
+
+    &:not(:last-child) {
+      border-right: none;
+    }
+
+    &:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+
+    &:last-child {
+      border-radius: 0 4px 4px 0;
+    }
+
+    &.p-highlight {
+      background-color: $tertiary;
+      color: $white;
+    }
+  }
+}
