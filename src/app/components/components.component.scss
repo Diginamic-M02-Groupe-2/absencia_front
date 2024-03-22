@@ -34,6 +34,23 @@
   color: $tertiary;
 }
 
+.badgeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.badge {
+  align-self: flex-start;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: $tertiary;
+  color: $white;
+  text-transform: uppercase;
+  font-size: .75rem;
+  font-weight: 700;
+}
+
 .form {
   display: flex;
   flex-direction: column;
