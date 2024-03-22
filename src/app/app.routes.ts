@@ -6,6 +6,7 @@ import { ComponentsComponent } from './components/components.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { RoutesPath } from './models/route';
+import { AbsenceRequestListComponent } from './components/lists/absence-request-list/absence-request-list.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: RoutesPath.ROUTE_LOGIN, pathMatch: 'full' },
@@ -22,6 +23,11 @@ export const routes: Routes = [
   {
     path: RoutesPath.ROUTE_DASHBOARD,
     component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: RoutesPath.ROUTE_USER_ABSENCE_REQUESTS,
+    component: AbsenceRequestListComponent,
     canActivate: [AuthGuard],
   },
   { path: '**', redirectTo: RoutesPath.ROUTE_DASHBOARD },
