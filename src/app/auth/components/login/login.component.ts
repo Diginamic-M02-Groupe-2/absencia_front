@@ -34,7 +34,7 @@ export class LoginComponent {
         return false;
       }
 
-      this.router.navigateByUrl(RoutesPath.ROUTE_DASHBOARD);
+      this.router.navigateByUrl(RoutesPath.ROUTE_USER_ABSENCE_REQUESTS);
       return true;
     } catch (error) {
       console.error("Une erreur s'est produite lors de la connexion :", error);

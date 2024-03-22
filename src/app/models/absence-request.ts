@@ -1,4 +1,4 @@
-import { Absence } from './absence';
+import { Absence, AbsenceType } from './absence';
 import { AbsenceRequestStatus } from './absence-status';
 import { User } from './user';
 
@@ -8,4 +8,11 @@ export class AbsenceRequest {
   absence!: Absence;
   status!: AbsenceRequestStatus;
   reason?: string | null;
+}
+
+export class AbsenceRequestCreate {
+  startedAt!: string;
+  endedAt!: string;
+  type!: string;
+  reason!: string;
 }

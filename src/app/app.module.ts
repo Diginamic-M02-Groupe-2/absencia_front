@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { SidebarModule } from 'primeng/sidebar';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,12 +12,13 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { ComponentsModule } from './components/components.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
+import { AbsenceRequestCreateModule } from './absence-request-create/absence-request-create.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     CommonModule,
-    RouterOutlet,
+    RouterModule,
     SidebarModule,
     RouterModule,
     ButtonModule,
@@ -28,6 +29,7 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
     LoginModule,
     DashboardModule,
     ComponentsModule,
+    AbsenceRequestCreateModule,
   ],
   providers: [
     {

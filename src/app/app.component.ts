@@ -10,8 +10,9 @@ import { RoutesPath } from './models/route';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  routeToDashboard = `/${RoutesPath.ROUTE_DASHBOARD}`;
+  routeToDashboard = `/${RoutesPath.ROUTE_USER_ABSENCE_REQUESTS}`;
   routeToLogin = `/${RoutesPath.ROUTE_LOGIN}`;
+  routeToCreateAbsencesRequest = `/${RoutesPath.ROUTE_ADMIN_ABSENCE_REQUESTS_CREATE}`;
 
   firstName: string = '';
 

@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="card h-100">
+        <div class="card-header">Créer une demande d'absence</div>
+        <div class="card-body">
+          <form
+            [formGroup]="absenceRequestCreateForm"
+            (ngSubmit)="onSubmit($event)"
+          >
+            <div class="form-group mb-3">
+              <label for="startedAt">Date de début:</label>
+              <p-calendar
+                id="startedAt"
+                formControlName="startedAt"
+                [showTime]="true"
+                [showIcon]="true"
+              ></p-calendar>
+              <div *ngIf="formErrors.startedAt" class="error-message">
+                {{ formErrors.startedAt }}
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="endedAt">Date de fin:</label>
+              <p-calendar
+                id="endedAt"
+                formControlName="endedAt"
+                [showTime]="true"
+                [showIcon]="true"
+              ></p-calendar>
+              <div *ngIf="formErrors.endedAt" class="error-message">
+                {{ formErrors.endedAt }}
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="type">Type d'absence:</label>
+              <p-dropdown
+                id="type"
+                formControlName="type"
+                [options]="absenceTypes"
+                optionLabel="label"
+                optionValue="value"
+              ></p-dropdown>
+              <div *ngIf="formErrors.type" class="error-message">
+                {{ formErrors.type }}
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="reason">Raison:</label>
+              <input
+                pInputText
+                type="text"
+                id="reason"
+                formControlName="reason"
+                class="form-control"
+              />
+              <div *ngIf="formErrors.reason" class="error-message">
+                {{ formErrors.reason }}
+              </div>
+            </div>
+            <div style="text-align: right">
+              <button type="submit" class="button button__submit">
+                Envoyer
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>
