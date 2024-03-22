@@ -7,12 +7,13 @@ import { AbsenceType } from '../models/absence';
 import { AbsenceRequestError } from '../models/response-absence-request';
 import { MessageService } from 'primeng/api';
 import { DropdownAbsenceRequestForm } from '../models/dropdown-form';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-absence-request-create',
   templateUrl: './absence-request-create.component.html',
   styleUrls: ['./absence-request-create.component.scss'],
-  providers: [MessageService],
+  providers: [MessageService, DatePipe],
 })
 export class AbsenceRequestCreateComponent {
   formErrors: AbsenceRequestError = {};
@@ -29,7 +30,8 @@ export class AbsenceRequestCreateComponent {
   constructor(
     private formBuilder: FormBuilder,
     private absenceService: AbsenceService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -50,18 +52,21 @@ export class AbsenceRequestCreateComponent {
       const endedAt = this.absenceRequestCreateForm.get('endedAt')!
         .value as Date;
 
-      const formattedStartedAt: string = this.formatDate(startedAt);
-      const formattedEndedAt: string = this.formatDate(endedAt);
-
-      const type = AbsenceType[this.absenceRequestCreateForm.get('type')!
-        .value];
+      const type =
+        AbsenceType[this.absenceRequestCreateForm.get('type')!.value];
       const reason = this.absenceRequestCreateForm.get('reason')!
         .value as string;
 
       if (startedAt && endedAt && type && reason) {
         const request: AbsenceRequestCreate = {
-          startedAt: formattedStartedAt,
-          endedAt: formattedEndedAt,
+          startedAt: this.datePipe.transform(
+            startedAt,
+            'yyyy-MM-ddTHH:mm:ss.SSSZ'
+          ) as string,
+          endedAt: this.datePipe.transform(
+            endedAt,
+            'yyyy-MM-ddTHH:mm:ss.SSSZ'
+          ) as string,
           type: type,
           reason: reason,
         };
@@ -108,9 +113,5 @@ export class AbsenceRequestCreateComponent {
       });
       this.absenceRequestCreateForm.markAllAsTouched();
     }
-  }
-
-  private formatDate(date: Date): string {
-    return date.toISOString().replace('T', ' ').slice(0, -5);
   }
 }
