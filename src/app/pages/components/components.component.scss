@@ -11,6 +11,7 @@
 
   &__message {
     flex-grow: 1;
+    color: inherit;
     font-style: italic;
   }
 
@@ -23,15 +24,6 @@
       display: block;
     }
   }
-}
-
-.title {
-  color: $tertiary;
-  letter-spacing: -1px;
-}
-
-.paragraph {
-  color: $tertiary;
 }
 
 .badgeList {
