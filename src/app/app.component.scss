@@ -133,6 +133,7 @@
 
 .main {
   padding: 16px 0;
+  background-color: $light;
 
   &Login {
     padding: 0;
@@ -146,4 +147,28 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 16px;
+}
+
+.footer {
+  padding: 32px 16px;
+  position: relative;
+  background-color: $primary;
+
+  &__copyright {
+    margin-bottom: 8px;
+    color: $tertiary;
+    font-size: .75rem;
+  }
+
+  &__authors {
+    color: $tertiary;
+    font-size: .75rem;
+    font-style: italic;
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  }
 }
