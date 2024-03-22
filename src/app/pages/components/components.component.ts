@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {Service} from "../models/user-service";
+import {Service} from "../../models/user-service";
 
 @Component({
   selector: "app-components",
