@@ -52,15 +52,26 @@
   row-gap: 4px;
   color: $tertiary;
 
+  &:not(&Invalid):focus-within {
+    color: $primary;
+  }
+
+  &Invalid {
+    color: $error;
+  }
+
   &__label {
-    color: inherit;
+    padding: 0 10px;
     font-size: .75rem;
     font-weight: 700;
     transition: color .2s;
   }
 
-  &:focus-within {
-    color: $primary;
+  &__error {
+    padding: 0 10px;
+    color: $error;
+    font-size: .75rem;
+    font-weight: 700;
   }
 }
 
