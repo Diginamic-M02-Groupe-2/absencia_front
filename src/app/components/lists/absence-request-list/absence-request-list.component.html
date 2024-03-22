@@ -1,0 +1,21 @@
+<h1 class="list-title">Liste des demandes d'absence</h1>
+<div *ngIf="absenceRequests$ | async as data">
+    <p-table styleClass="p-datatable-striped" [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Type</th>
+                <th>Début</th>
+                <th>Fin</th>
+                <th>Status</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-absenceRequests>
+            <tr>
+                <td>{{ absenceRequests.absence.type | absenceType }}</td>
+                <td>{{ absenceRequests.absence.startedAt | date }}</td>
+                <td>{{ absenceRequests.absence.endedAt | date }}</td>
+                <td>{{ absenceRequests.status | absenceRequestStatus }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -17,7 +17,7 @@ export class LoginGuard {
       this.authentificationService.isUserConnected;
 
     if (storedUserConnectedStatus) {
-      this.router.navigateByUrl(RoutesPath.ROUTE_DASHBOARD);
+      this.router.navigateByUrl(RoutesPath.ROUTE_USER_ABSENCE_REQUESTS);
       return false;
     }
 
