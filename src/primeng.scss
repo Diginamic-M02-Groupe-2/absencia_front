@@ -38,6 +38,10 @@ p-dropdown {
       border-color: $error;
     }
 
+    .p-inputtext {
+      color: inherit;
+    }
+
     .p-placeholder {
       opacity: .5;
       color: inherit;
@@ -54,31 +58,11 @@ p-dropdown {
   }
 }
 
-input[pinputtext] {
-  padding: 8px;
-  border: 2px solid $tertiary;
-  border-radius: 4px;
-  background-color: $white;
-  color: inherit;
-  font-size: 1rem;
-
-  &::placeholder {
-    opacity: .5;
-    color: inherit;
-  }
-
-  &:is(.fieldInvalid > input[pinputtext]) {
-    border-color: $error;
-  }
-
-  &:focus {
-    border-color: $primary;
-    box-shadow: none;
-  }
-}
-
 .p-selectbutton {
+  display: flex;
+
   .p-button {
+    flex-grow: 1;
     padding: 8px;
     border: 2px solid $tertiary;
     box-shadow: none;

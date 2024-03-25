@@ -54,6 +54,21 @@ body {
   background-color: $primary;
 }
 
+h1 {
+  color: $tertiary;
+  letter-spacing: -1px;
+}
+
+p {
+  color: $tertiary;
+}
+
 a {
   text-decoration: none;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
