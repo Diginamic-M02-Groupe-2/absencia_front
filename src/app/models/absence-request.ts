@@ -11,8 +11,8 @@ export class AbsenceRequest {
 }
 
 export class AbsenceRequestCreate {
-  startedAt!: string;
-  endedAt!: string;
+  startedAt!: Date;
+  endedAt!: Date;
   type!: string;
   reason!: string;
 }

@@ -13,16 +13,14 @@ export class AbsenceService {
   createAbsenceRequest(
     request: AbsenceRequestCreate
   ): Observable<AbsenceRequestCreate> {
-    return this.http
-      .post<AbsenceRequestCreate>(GET_ABSENCE_REQUESTS, { request })
-      .pipe(
-        catchError((error) => {
-          if (error.status === 400 && error.error && error.error.message) {
-            return throwError(() => new Error(error.error.message));
-          } else {
-            return throwError(() => error);
-          }
-        })
-      );
+    return this.http.post<any>(GET_ABSENCE_REQUESTS, request).pipe(
+      catchError((error) => {
+        if (error.status === 400 && error.error && error.error.message) {
+          return throwError(() => new Error(error.error.message));
+        } else {
+          return throwError(() => error);
+        }
+      })
+    );
   }
 }

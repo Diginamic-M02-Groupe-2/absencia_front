@@ -7,13 +7,12 @@ import { AbsenceType } from '../models/absence';
 import { AbsenceRequestError } from '../models/response-absence-request';
 import { MessageService } from 'primeng/api';
 import { DropdownAbsenceRequestForm } from '../models/dropdown-form';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-absence-request-create',
   templateUrl: './absence-request-create.component.html',
   styleUrls: ['./absence-request-create.component.scss'],
-  providers: [MessageService, DatePipe],
+  providers: [MessageService],
 })
 export class AbsenceRequestCreateComponent {
   formErrors: AbsenceRequestError = {};
@@ -30,8 +29,7 @@ export class AbsenceRequestCreateComponent {
   constructor(
     private formBuilder: FormBuilder,
     private absenceService: AbsenceService,
-    private messageService: MessageService,
-    private datePipe: DatePipe
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -57,53 +55,38 @@ export class AbsenceRequestCreateComponent {
       const reason = this.absenceRequestCreateForm.get('reason')!
         .value as string;
 
-      if (startedAt && endedAt && type && reason) {
-        const request: AbsenceRequestCreate = {
-          startedAt: this.datePipe.transform(
-            startedAt,
-            'yyyy-MM-ddTHH:mm:ss.SSSZ'
-          ) as string,
-          endedAt: this.datePipe.transform(
-            endedAt,
-            'yyyy-MM-ddTHH:mm:ss.SSSZ'
-          ) as string,
-          type: type,
-          reason: reason,
-        };
+      const request: AbsenceRequestCreate = {
+        startedAt: startedAt,
+        endedAt: endedAt,
+        type: type,
+        reason: reason,
+      };
 
-        this.formErrors = {};
+      this.formErrors = {};
 
-        this.absenceService
-          .createAbsenceRequest(request)
-          .pipe(
-            catchError((error) => {
-              this.formErrors = error.error;
-              this.messageService.add({
-                severity: 'error',
-                summary: 'Champs Invalides',
-                detail: 'Vérifiez les champs.',
-                life: 5000,
-              });
-              return throwError(() => error);
-            })
-          )
-          .subscribe((received) => {
+      this.absenceService
+        .createAbsenceRequest(request)
+        .pipe(
+          catchError((error) => {
+            this.formErrors = error.error;
             this.messageService.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: 'Message Content',
+              severity: 'error',
+              summary: 'Champs Invalides',
+              detail: 'Vérifiez les champs.',
               life: 5000,
             });
-            console.log("Demande d'absence créée avec succès:", received);
+            return throwError(() => error);
+          })
+        )
+        .subscribe((received) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Succès',
+            detail: 'Demande d absence créée avec succès',
+            life: 5000,
           });
-      } else {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Champs vides',
-          detail: 'Certains champs sont vides.',
-          life: 5000,
+          console.log("Demande d'absence créée avec succès:", received);
         });
-      }
     } else {
       this.messageService.add({
         severity: 'error',
