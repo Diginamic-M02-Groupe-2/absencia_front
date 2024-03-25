@@ -1,99 +1,41 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AbsenceRequestCreate } from '../models/absence-request';
-import { AbsenceService } from '../services/absence.service';
-import { catchError, throwError } from 'rxjs';
-import { AbsenceType } from '../models/absence';
 import { AbsenceRequestError } from '../models/response-absence-request';
-import { MessageService } from 'primeng/api';
-import { DropdownAbsenceRequestForm } from '../models/dropdown-form';
+import { HttpMethod } from '../services/api.service';
+import { DropdownForm } from '../models/dropdown-form';
+import { RoutesPath } from '../models/route';
 
 @Component({
   selector: 'app-absence-request-create',
   templateUrl: './absence-request-create.component.html',
-  styleUrls: ['./absence-request-create.component.scss'],
-  providers: [MessageService],
+  styleUrls: ['../pages/components/components.component.scss'],
 })
 export class AbsenceRequestCreateComponent {
   formErrors: AbsenceRequestError = {};
 
-  absenceRequestCreateForm!: FormGroup;
+  formMethod: HttpMethod = HttpMethod.POST;
 
-  absenceTypes: DropdownAbsenceRequestForm[] = [
-    { label: 'Férié', value: AbsenceType.PUBLIC_HOLIDAY },
-    { label: 'Congé payé', value: AbsenceType.PAID_LEAVE },
-    { label: 'Congé sans solde', value: AbsenceType.UNPAID_LEAVE },
-    { label: 'Jour de récupération', value: AbsenceType.TOIL_DAY },
+  formAction: string = '/absence-requests';
+
+  formGroup!: FormGroup;
+
+  redirect: string = RoutesPath.ROUTE_USER_ABSENCE_REQUESTS;
+
+  absenceTypes: DropdownForm[] = [
+    { label: 'Férié', value: "PUBLIC_HOLIDAY" },
+    { label: 'Congé payé', value: "PAID_LEAVE" },
+    { label: 'Congé sans solde', value: "UNPAID_LEAVE" },
+    { label: 'Jour de récupération', value: "TOIL_DAY" },
   ];
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private absenceService: AbsenceService,
-    private messageService: MessageService
-  ) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.absenceRequestCreateForm = this.formBuilder.group({
+    this.formGroup = this.formBuilder.group({
       startedAt: ['', Validators.required],
       endedAt: ['', Validators.required],
       type: [null, Validators.required],
       reason: ['', Validators.maxLength(255)],
     });
-  }
-
-  async onSubmit(event: Event): Promise<void> {
-    event.preventDefault();
-
-    if (this.absenceRequestCreateForm.valid) {
-      const startedAt = this.absenceRequestCreateForm.get('startedAt')!
-        .value as Date;
-      const endedAt = this.absenceRequestCreateForm.get('endedAt')!
-        .value as Date;
-
-      const type = this.absenceRequestCreateForm.get('type')!.value as number;
-      const reason = this.absenceRequestCreateForm.get('reason')!
-        .value as string;
-
-      const request: AbsenceRequestCreate = {
-        startedAt: startedAt,
-        endedAt: endedAt,
-        type: type,
-        reason: reason,
-      };
-
-      this.formErrors = {};
-
-      this.absenceService
-        .createAbsenceRequest(request)
-        .pipe(
-          catchError((error) => {
-            this.formErrors = error.error;
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Champs Invalides',
-              detail: 'Vérifiez les champs.',
-              life: 5000,
-            });
-            return throwError(() => error);
-          })
-        )
-        .subscribe((received) => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Succès',
-            detail: 'Demande d absence créée avec succès',
-            life: 5000,
-          });
-          console.log("Demande d'absence créée avec succès:", received);
-        });
-    } else {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Champs vides',
-        detail: 'Certains champs sont vides.',
-        life: 5000,
-      });
-      this.absenceRequestCreateForm.markAllAsTouched();
-    }
   }
 }

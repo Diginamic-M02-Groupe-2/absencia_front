@@ -6,7 +6,7 @@ import { CardModule } from 'primeng/card';
 import { DropdownModule } from 'primeng/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
-import { ToastModule } from 'primeng/toast';
+import { ComponentsModule } from '../pages/components/components.module';
 
 @NgModule({
   declarations: [AbsenceRequestCreateComponent],
@@ -17,7 +17,7 @@ import { ToastModule } from 'primeng/toast';
     DropdownModule,
     ReactiveFormsModule,
     InputTextModule,
-    ToastModule,
+    ComponentsModule,
   ],
 })
 export class AbsenceRequestCreateModule {}

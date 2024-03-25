@@ -16,7 +16,7 @@ export class AbsenceService {
     const formData = new FormData();
     formData.append('startedAt', request.startedAt.toJSON());
     formData.append('endedAt', request.endedAt.toJSON());
-    formData.append('type', request.type.toString());
+    formData.append('type', request.type);
     formData.append('reason', request.reason);
 
     const headers = new HttpHeaders();
