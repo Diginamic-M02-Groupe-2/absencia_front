@@ -1,0 +1,55 @@
+<app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction">
+  <h1>
+    Form example
+  </h1>
+
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+  </p>
+
+  <app-form-group>
+    <app-select
+      [formGroup]="formGroup"
+      name="type"
+      label="Type d'absence"
+      placeholder="Sélectionnez un type d'absence"
+      [options]="options"
+      [segmented]="true"
+    />
+
+    <app-text-input
+      [formGroup]="formGroup"
+      type="text"
+      name="reason"
+      label="Raison"
+      placeholder="Indiquez une raison"
+    />
+  </app-form-group>
+
+  <app-datepicker
+    [formGroup]="formGroup"
+    name="startedAt"
+    label="Date de début"
+    placeholder="Sélectionnez une date de début"
+  />
+
+  <app-form-footer>
+    <button type="button" class="button">
+      Cancel
+    </button>
+
+    <button type="submit" class="button button__submit">
+      Submit
+    </button>
+  </app-form-footer>
+</app-form>
+
+<!-- <div class="alert">
+  <p class="alert__message">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+  </p>
+
+  <button type="button" class="alert__closeButton">
+    <i class="pi pi-times"></i>
+  </button>
+</div> -->

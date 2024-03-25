@@ -1,0 +1,9 @@
+<app-form-field [formGroup]="formGroup" [control]="formGroup.get(name)!" [label]="label">
+  <input
+    pInputText
+    [type]="type"
+    [formControlName]="name"
+    [placeholder]="placeholder"
+    class="textInput"
+  >
+</app-form-field>

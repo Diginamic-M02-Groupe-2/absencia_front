@@ -1,4 +1,4 @@
-@import "../../variables.scss";
+@import "../../../variables.scss";
 
 .alert {
   display: flex;
@@ -11,6 +11,7 @@
 
   &__message {
     flex-grow: 1;
+    color: inherit;
     font-style: italic;
   }
 
@@ -25,71 +26,10 @@
   }
 }
 
-.title {
-  color: $tertiary;
-  letter-spacing: -1px;
-}
-
-.paragraph {
-  color: $tertiary;
-}
-
 .badgeList {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-}
-
-.badge {
-  align-self: flex-start;
-  padding: 4px 8px;
-  border-radius: 4px;
-  background-color: $tertiary;
-  color: $white;
-  text-transform: uppercase;
-  font-size: .75rem;
-  font-weight: 700;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  row-gap: 8px;
-
-  &__footer {
-    display: flex;
-    justify-content: flex-end;
-    column-gap: 4px;
-  }
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  row-gap: 4px;
-  color: $tertiary;
-
-  &:not(&Invalid):focus-within {
-    color: $primary;
-  }
-
-  &Invalid {
-    color: $error;
-  }
-
-  &__label {
-    padding: 0 10px;
-    font-size: .75rem;
-    font-weight: 700;
-    transition: color .2s;
-  }
-
-  &__error {
-    padding: 0 10px;
-    color: $error;
-    font-size: .75rem;
-    font-weight: 700;
-  }
 }
 
 .button {
