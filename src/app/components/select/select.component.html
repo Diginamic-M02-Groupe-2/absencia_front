@@ -1,12 +1,15 @@
 <app-form-field [formGroup]="formGroup" [control]="formGroup.get(name)!" [label]="label">
-  <p-dropdown
-    [formControlName]="name"
-    [placeholder]="placeholder"
-    [options]="options"
-    class="select"
-  >
-    <ng-template pTemplate="dropdownicon">
-      <i class="pi pi-caret-down"></i>
-    </ng-template>
-  </p-dropdown>
+  <ng-container *ngIf="isSegmented; then segmented; else default" />
+
+  <ng-template #default>
+    <p-dropdown [formControlName]="name" [placeholder]="placeholder" [options]="options">
+      <ng-template pTemplate="dropdownicon">
+        <i class="pi pi-caret-down"></i>
+      </ng-template>
+    </p-dropdown>
+  </ng-template>
+
+  <ng-template #segmented>
+    <p-selectButton [formControlName]="name" [options]="options" />
+  </ng-template>
 </app-form-field>

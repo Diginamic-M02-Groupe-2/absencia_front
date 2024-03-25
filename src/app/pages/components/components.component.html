@@ -3,8 +3,9 @@
     [formGroup]="formGroup"
     name="type"
     label="Type d'absence"
-    placeholder="Type d'absence"
+    placeholder="Sélectionnez un type d'absence"
     [options]="options"
+    [segmented]="false"
   />
 
   <app-text-input
@@ -12,7 +13,7 @@
     type="text"
     name="reason"
     label="Raison"
-    placeholder="Raison"
+    placeholder="Indiquez une raison"
   />
 </app-form>
 

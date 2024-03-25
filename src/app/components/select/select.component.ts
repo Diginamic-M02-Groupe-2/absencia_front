@@ -17,8 +17,11 @@ export class SelectComponent {
   label!: string;
 
   @Input()
-  placeholder!: string;
+  placeholder?: string;
 
   @Input()
   options!: any[];
+
+  @Input("segmented")
+  isSegmented: boolean = false;
 }

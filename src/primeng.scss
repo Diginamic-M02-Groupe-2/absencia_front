@@ -59,7 +59,10 @@ p-dropdown {
 }
 
 .p-selectbutton {
+  display: flex;
+
   .p-button {
+    flex-grow: 1;
     padding: 8px;
     border: 2px solid $tertiary;
     box-shadow: none;
