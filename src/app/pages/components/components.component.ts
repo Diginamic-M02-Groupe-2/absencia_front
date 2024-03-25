@@ -30,6 +30,7 @@ export class ComponentsComponent {
 
   constructor() {
     this.formGroup = new FormGroup({
+      startedAt: new FormControl("null", [Validators.required]),
       type: new FormControl(null, [Validators.required]),
       reason: new FormControl("", [Validators.required]),
     });

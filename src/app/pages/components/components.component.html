@@ -1,33 +1,4 @@
 <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction">
-  <app-select
-    [formGroup]="formGroup"
-    name="type"
-    label="Type d'absence"
-    placeholder="Sélectionnez un type d'absence"
-    [options]="options"
-    [segmented]="false"
-  />
-
-  <app-text-input
-    [formGroup]="formGroup"
-    type="text"
-    name="reason"
-    label="Raison"
-    placeholder="Indiquez une raison"
-  />
-</app-form>
-
-<form class="form">
-  <div class="alert">
-    <p class="alert__message">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    </p>
-
-    <button type="button" class="alert__closeButton">
-      <i class="pi pi-times"></i>
-    </button>
-  </div>
-
   <h1>
     Form example
   </h1>
@@ -36,67 +7,49 @@
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
   </p>
 
-  <ul class="badgeList">
-    <app-badge>
-      Badge 1
-    </app-badge>
+  <app-form-group>
+    <app-select
+      [formGroup]="formGroup"
+      name="type"
+      label="Type d'absence"
+      placeholder="Sélectionnez un type d'absence"
+      [options]="options"
+      [segmented]="true"
+    />
 
-    <app-badge>
-      Badge 2
-    </app-badge>
+    <app-text-input
+      [formGroup]="formGroup"
+      type="text"
+      name="reason"
+      label="Raison"
+      placeholder="Indiquez une raison"
+    />
+  </app-form-group>
 
-    <app-badge>
-      Badge 3
-    </app-badge>
+  <app-datepicker
+    [formGroup]="formGroup"
+    name="startedAt"
+    label="Date de début"
+    placeholder="Sélectionnez une date de début"
+  />
 
-    <app-badge>
-      Badge 4
-    </app-badge>
-
-    <app-badge>
-      Badge 5
-    </app-badge>
-
-    <app-badge>
-      Badge 6
-    </app-badge>
-
-    <app-badge>
-      Badge 7
-    </app-badge>
-
-    <app-badge>
-      Badge 8
-    </app-badge>
-  </ul>
-
-  <p>
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-  </p>
-
-  <label class="field">
-    <span class="field__label">
-      Tabs
-    </span>
-
-    <p-selectButton [options]="options" optionValue="value" optionLabel="label" />
-  </label>
-
-  <label class="field">
-    <span class="field__label">
-      Datepicker
-    </span>
-
-    <p-calendar dateFormat="dd/mm/yy" placeholder="Placeholder"></p-calendar>
-  </label>
-
-  <div class="form__footer">
-    <button type="submit" class="button">
+  <app-form-footer>
+    <button type="button" class="button">
       Cancel
     </button>
 
     <button type="submit" class="button button__submit">
       Submit
     </button>
-  </div>
-</form>
+  </app-form-footer>
+</app-form>
+
+<!-- <div class="alert">
+  <p class="alert__message">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+  </p>
+
+  <button type="button" class="alert__closeButton">
+    <i class="pi pi-times"></i>
+  </button>
+</div> -->

@@ -2,11 +2,11 @@ import {Component, Input} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 
 @Component({
-  selector: "app-select",
-  templateUrl: "./select.component.html",
-  styleUrl: "./select.component.module.scss",
+  selector: "app-datepicker",
+  templateUrl: "./datepicker.component.html",
+  styleUrl: "./datepicker.component.module.scss",
 })
-export class SelectComponent {
+export class DatepickerComponent {
   @Input()
   formGroup!: FormGroup;
 
@@ -18,10 +18,4 @@ export class SelectComponent {
 
   @Input()
   placeholder?: string;
-
-  @Input()
-  options!: any[];
-
-  @Input()
-  segmented: boolean = false;
 }
