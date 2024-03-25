@@ -1,6 +1,10 @@
 <label class="field" [class.fieldInvalid]="control.touched && control.invalid">
   <span class="field__label">
     {{label}}
+
+    <span *ngIf="required">
+      *
+    </span>
   </span>
 
   <ng-content />

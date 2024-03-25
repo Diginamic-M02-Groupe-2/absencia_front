@@ -15,12 +15,6 @@ export class ComponentsComponent {
 
   formAction: string = "/absence-requests/test";
 
-  constructor() {
-    this.formGroup = new FormGroup({
-      reason: new FormControl("", [Validators.required]),
-    });
-  }
-
   options = [
     {
       value: Service.MANAGEMENT,
@@ -33,4 +27,11 @@ export class ComponentsComponent {
       label: "Marketing",
     },
   ];
+
+  constructor() {
+    this.formGroup = new FormGroup({
+      type: new FormControl(null, [Validators.required]),
+      reason: new FormControl("", [Validators.required]),
+    });
+  }
 }

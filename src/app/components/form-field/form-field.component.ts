@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {AbstractControl} from "@angular/forms";
+import {AbstractControl, Validators} from "@angular/forms";
 
 @Component({
   selector: "app-form-field",
@@ -12,4 +12,8 @@ export class FormFieldComponent {
 
   @Input()
   label!: string;
+
+  get required(): boolean {
+    return this.control.hasValidator(Validators.required);
+  }
 }

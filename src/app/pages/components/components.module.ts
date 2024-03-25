@@ -9,6 +9,7 @@ import {ComponentsComponent} from "./components.component";
 import {BadgeComponent} from "../../components/badge/badge.component";
 import {FormComponent} from "../../components/form/form.component";
 import {FormFieldComponent} from "../../components/form-field/form-field.component";
+import {SelectComponent} from "../../components/select/select.component";
 import {TextInputComponent} from "../../components/text-input/text-input.component";
 
 @NgModule({
@@ -17,6 +18,7 @@ import {TextInputComponent} from "../../components/text-input/text-input.compone
     ComponentsComponent,
     FormComponent,
     FormFieldComponent,
+    SelectComponent,
     TextInputComponent,
   ],
   imports: [

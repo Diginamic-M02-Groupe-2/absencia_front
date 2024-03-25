@@ -1,0 +1,12 @@
+<app-form-field [formGroup]="formGroup" [control]="formGroup.get(name)!" [label]="label">
+  <p-dropdown
+    [formControlName]="name"
+    [placeholder]="placeholder"
+    [options]="options"
+    class="select"
+  >
+    <ng-template pTemplate="dropdownicon">
+      <i class="pi pi-caret-down"></i>
+    </ng-template>
+  </p-dropdown>
+</app-form-field>
