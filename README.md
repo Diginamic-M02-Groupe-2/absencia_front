@@ -31,3 +31,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - [Utilisation de Primeng](https://primeng.org/installation)
 
 - [Utilisation de PrimeIcons](https://primeng.org/icons)
+
+- [Utilisation de Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/download/)
+
+- [Utilisation de Chartjs](https://primeng.org/chart)

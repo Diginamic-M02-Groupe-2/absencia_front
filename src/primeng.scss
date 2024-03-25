@@ -16,6 +16,10 @@ p-calendar {
         color: inherit;
       }
 
+      &:is(.fieldInvalid .p-inputtext) {
+        border-color: $error;
+      }
+
       &:focus {
         border-color: $primary;
       }
@@ -29,6 +33,10 @@ p-dropdown {
     padding: 8px;
     border: 2px solid $tertiary;
     border-radius: 4px;
+
+    &:is(.fieldInvalid .p-dropdown) {
+      border-color: $error;
+    }
 
     .p-placeholder {
       opacity: .5;
@@ -59,6 +67,10 @@ input[pinputtext] {
     color: inherit;
   }
 
+  &:is(.fieldInvalid > input[pinputtext]) {
+    border-color: $error;
+  }
+
   &:focus {
     border-color: $primary;
     box-shadow: none;
@@ -72,6 +84,11 @@ input[pinputtext] {
     box-shadow: none;
     background-color: $white;
     color: $tertiary;
+
+    &:is(.fieldInvalid .p-button) {
+      border-color: $error;
+      color: $error;
+    }
 
     &:not(:last-child) {
       border-right: none;
@@ -88,6 +105,11 @@ input[pinputtext] {
     &.p-highlight {
       background-color: $tertiary;
       color: $white;
+
+      &:is(.fieldInvalid .p-highlight) {
+        background-color: $error;
+        color: $white;
+      }
     }
   }
 }
