@@ -50,8 +50,7 @@ export class AbsenceRequestCreateComponent {
       const endedAt = this.absenceRequestCreateForm.get('endedAt')!
         .value as Date;
 
-      const type =
-        AbsenceType[this.absenceRequestCreateForm.get('type')!.value];
+      const type = this.absenceRequestCreateForm.get('type')!.value as number;
       const reason = this.absenceRequestCreateForm.get('reason')!
         .value as string;
 

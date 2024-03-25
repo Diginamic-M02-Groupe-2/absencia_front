@@ -13,6 +13,6 @@ export class AbsenceRequest {
 export class AbsenceRequestCreate {
   startedAt!: Date;
   endedAt!: Date;
-  type!: string;
+  type!: number;
   reason!: string;
 }

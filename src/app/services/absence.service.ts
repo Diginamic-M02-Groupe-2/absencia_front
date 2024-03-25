@@ -14,9 +14,9 @@ export class AbsenceService {
     request: AbsenceRequestCreate
   ): Observable<AbsenceRequestCreate> {
     const formData = new FormData();
-    formData.append('startedAt', request.startedAt.toISOString());
-    formData.append('endedAt', request.endedAt.toISOString());
-    formData.append('type', request.type);
+    formData.append('startedAt', request.startedAt.toJSON());
+    formData.append('endedAt', request.endedAt.toJSON());
+    formData.append('type', request.type.toString());
     formData.append('reason', request.reason);
 
     const headers = new HttpHeaders();
