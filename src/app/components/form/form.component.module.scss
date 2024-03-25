@@ -1,0 +1,13 @@
+@import "../../../variables.scss";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 4px;
+  }
+}

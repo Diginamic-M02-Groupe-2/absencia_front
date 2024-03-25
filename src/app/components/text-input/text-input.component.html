@@ -1,0 +1,18 @@
+<label [formGroup]="formGroup" class="field" [class.fieldInvalid]="formGroup.get(name)?.errors?.['serverError']">
+  <span class="field__label">
+    {{label}}
+  </span>
+
+  <input
+    pInputText
+    [type]="type"
+    [name]="name"
+    [formControlName]="name"
+    [placeholder]="placeholder"
+    class="textInput"
+  >
+
+  <span *ngIf="formGroup.get(name)?.errors?.['serverError']" class="field__error">
+    {{formGroup.get(name)?.errors?.['serverError']}}
+  </span>
+</label>

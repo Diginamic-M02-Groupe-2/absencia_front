@@ -1,3 +1,13 @@
+<app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction">
+  <app-text-input
+    [formGroup]="formGroup"
+    type="text"
+    name="reason"
+    label="Label"
+    placeholder="Placeholder"
+  />
+</app-form>
+
 <form class="form">
   <div class="alert">
     <p class="alert__message">
@@ -55,15 +65,15 @@
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
   </p>
 
-  <label class="field">
+  <!-- <label class="field">
     <span class="field__label">
       Text input
     </span>
 
     <input pInputText type="text" placeholder="Placeholder">
-  </label>
+  </label> -->
 
-  <label class="field fieldInvalid">
+  <!-- <label class="field fieldInvalid">
     <span class="field__label">
       Text input
     </span>
@@ -73,7 +83,7 @@
     <span class="field__error">
       Error message
     </span>
-  </label>
+  </label> -->
 
   <label class="field">
     <span class="field__label">

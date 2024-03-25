@@ -1,0 +1,8 @@
+<form
+  [formGroup]="formGroup"
+  [method]="method"
+  [action]="action"
+  (ngSubmit)="onSubmit($event)"
+>
+  <ng-content />
+</form>
