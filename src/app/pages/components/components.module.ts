@@ -8,6 +8,7 @@ import {SelectButtonModule} from "primeng/selectbutton";
 import {ComponentsComponent} from "./components.component";
 import {BadgeComponent} from "../../components/badge/badge.component";
 import {FormComponent} from "../../components/form/form.component";
+import {FormFieldComponent} from "../../components/form-field/form-field.component";
 import {TextInputComponent} from "../../components/text-input/text-input.component";
 
 @NgModule({
@@ -15,6 +16,7 @@ import {TextInputComponent} from "../../components/text-input/text-input.compone
     BadgeComponent,
     ComponentsComponent,
     FormComponent,
+    FormFieldComponent,
     TextInputComponent,
   ],
   imports: [

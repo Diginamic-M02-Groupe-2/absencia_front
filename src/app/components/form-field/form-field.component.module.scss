@@ -1,0 +1,29 @@
+@import "../../../variables.scss";
+
+.field {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  color: $tertiary;
+
+  &:not(&Invalid):focus-within {
+    color: $primary;
+  }
+
+  &Invalid {
+    color: $error;
+  }
+
+  &__label {
+    padding: 0 10px;
+    font-size: .75rem;
+    font-weight: 700;
+    transition: color .2s;
+  }
+
+  &__error {
+    padding: 0 10px;
+    font-size: .75rem;
+    font-weight: 700;
+  }
+}

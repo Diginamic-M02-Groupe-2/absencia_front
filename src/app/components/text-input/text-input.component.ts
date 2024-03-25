@@ -21,7 +21,4 @@ export class TextInputComponent {
 
   @Input()
   placeholder!: string;
-
-  @Input()
-  error?: string;
 }

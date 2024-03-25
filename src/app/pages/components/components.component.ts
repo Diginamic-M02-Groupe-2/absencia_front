@@ -17,7 +17,7 @@ export class ComponentsComponent {
 
   constructor() {
     this.formGroup = new FormGroup({
-      reason: new FormControl("", [Validators.minLength(2), Validators.required]),
+      reason: new FormControl("", [Validators.required]),
     });
   }
 
