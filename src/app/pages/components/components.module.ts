@@ -14,6 +14,7 @@ import { FormFooterComponent } from '../../components/form-footer/form-footer.co
 import { FormGroupComponent } from '../../components/form-group/form-group.component';
 import { SelectComponent } from '../../components/select/select.component';
 import { TextInputComponent } from '../../components/text-input/text-input.component';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TextInputComponent } from '../../components/text-input/text-input.compo
     InputTextModule,
     ReactiveFormsModule,
     SelectButtonModule,
+    ToastModule,
   ],
   bootstrap: [ComponentsComponent],
   exports: [
