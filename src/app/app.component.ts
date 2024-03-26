@@ -14,7 +14,7 @@ export class AppComponent {
 
   loginRoute = Route.LOGIN;
 
-  publicHolidaysAndEmployerWtrRoute = Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR;
+  publicHolidaysAndEmployerWtrRoute = Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST;
  
   createAbsenceRequestRoute = Route.ABSENCE_REQUEST_CREATE;
 

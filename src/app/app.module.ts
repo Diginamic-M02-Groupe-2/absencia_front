@@ -14,6 +14,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
 import { AbsenceRequestCreateModule } from './absence-request-create/absence-request-create.module';
 import { AbsenceRequestListModule } from './pages/absence-request/list/list.module';
+import { PublicHolidaysAndEmployerWtrListModule } from './pages/public-holidays-and-employer-wtr/list/list.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { AbsenceRequestListModule } from './pages/absence-request/list/list.modu
     ComponentsModule,
     AbsenceRequestListModule,
     AbsenceRequestCreateModule,
+    PublicHolidaysAndEmployerWtrListModule,
   ],
   providers: [
     {

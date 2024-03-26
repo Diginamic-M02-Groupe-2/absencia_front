@@ -1,0 +1,28 @@
+@import "../../../variables.scss";
+
+.todo {
+  min-height: 40px;
+  padding: 8px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    -40deg,
+    #000c,
+    #000c 17px,
+    #e2d529cc 18px,
+    #e2d529cc 33px,
+    #000c 34px,
+  );
+
+  &__content {
+    display: inline-block;
+    line-height: 1.25;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #0007;
+    color: $white;
+
+    &:empty {
+      display: none;
+    }
+  }
+}
