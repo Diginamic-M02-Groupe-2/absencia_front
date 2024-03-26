@@ -4,7 +4,7 @@
   </ng-container>
 
   <ng-template #default>
-    <p-dropdown [formControlName]="name" [placeholder]="placeholder" [options]="options">
+    <p-dropdown [formControlName]="name" [appendTo]="'body'" [placeholder]="placeholder" [options]="options">
       <ng-template pTemplate="dropdownicon">
         <i class="pi pi-caret-down"></i>
       </ng-template>
