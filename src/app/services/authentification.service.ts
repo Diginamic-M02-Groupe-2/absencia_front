@@ -22,11 +22,12 @@ export class AuthentificationService {
   ) {}
 
   async logIn(email: string, password: string): Promise<boolean> {
-    const data = {
-      email: email,
-      password: password,
-    };
-    const token = await firstValueFrom(this.http.post<Token>(AUTH_API, data));
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
+    const token = await firstValueFrom(
+      this.http.post<Token>(AUTH_API, formData)
+    );
     sessionStorage.setItem(TOKEN, token.token);
     const user = await firstValueFrom(this.userService.getCurrentUser());
     sessionStorage.setItem(CURRENT_USER, JSON.stringify(user));

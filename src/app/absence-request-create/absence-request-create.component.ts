@@ -38,4 +38,8 @@ export class AbsenceRequestCreateComponent {
       reason: ['', Validators.maxLength(255)],
     });
   }
+
+  clearInputs(){
+    this.formGroup.reset();
+  }
 }
