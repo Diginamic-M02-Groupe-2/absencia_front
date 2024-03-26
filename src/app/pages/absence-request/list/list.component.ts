@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {MessageService} from "primeng/api";
-import {Observable} from "rxjs";
+import {Observable, map} from "rxjs";
 import {AbsenceRequest} from "../../../models/absence-request";
 import {GetAbsenceRequestResponse} from "../../../models/get-absence-request-response";
 import {Route} from "../../../models/route";
@@ -17,12 +17,28 @@ import {ApiRoute, ApiService} from "../../../services/api.service";
 export class AbsenceRequestListComponent {
   absenceRequestNewRoute: Route = Route.ABSENCE_REQUEST_CREATE;
 
-  response: Observable<GetAbsenceRequestResponse>;
+  absenceRequests: Observable<AbsenceRequest[]>;
+
+  remainingPaidLeaves: Observable<number>;
+
+  remainingEmployeeWtr: Observable<number>;
 
   constructor(
     private apiService: ApiService,
   ) {
-    this.response = this.apiService.get<GetAbsenceRequestResponse>(ApiRoute.ABSENCE_REQUEST);
+    const response = this.apiService.get<GetAbsenceRequestResponse>(ApiRoute.ABSENCE_REQUEST);
+
+    this.absenceRequests = response.pipe(
+      map(response => response.absenceRequests as AbsenceRequest[]),
+    );
+
+    this.remainingPaidLeaves = response.pipe(
+      map(response => response.remainingPaidLeaves as number),
+    );
+
+    this.remainingEmployeeWtr = response.pipe(
+      map(response => response.remainingEmployeeWtr as number),
+    );
   }
 
   async deleteAbsenceRequest(absenceRequest: AbsenceRequest): Promise<void> {}
