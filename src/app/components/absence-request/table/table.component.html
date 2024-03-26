@@ -32,13 +32,13 @@
       </td>
 
       <td>
-        {{absenceRequest.type|absenceType}}
+        <app-badge>
+          {{absenceRequest.type|absenceType}}
+        </app-badge>
       </td>
 
       <td>
-        <app-badge>
-          {{absenceRequest.status|absenceRequestStatus}}
-        </app-badge>
+        {{absenceRequest.reason}}
       </td>
 
       <td>
