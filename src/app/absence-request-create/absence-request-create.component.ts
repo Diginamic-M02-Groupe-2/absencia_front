@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AbsenceRequestError } from '../models/response-absence-request';
 import { HttpMethod } from '../services/api.service';
 import { DropdownForm } from '../models/dropdown-form';
 import { RoutesPath } from '../models/route';
@@ -11,7 +10,6 @@ import { RoutesPath } from '../models/route';
   styleUrls: ['../pages/components/components.component.scss'],
 })
 export class AbsenceRequestCreateComponent {
-  formErrors: AbsenceRequestError = {};
 
   formMethod: HttpMethod = HttpMethod.POST;
 

@@ -7,6 +7,7 @@ import { Token } from '../models/token';
 import { RoutesPath } from '../models/route';
 import { UserService } from './user.service';
 import { User } from '../models/user';
+import { ResponseLoginError } from '../models/response-login-error';
 
 const CURRENT_USER = 'currentUser';
 export const TOKEN = 'token';
@@ -21,17 +22,23 @@ export class AuthentificationService {
     private userService: UserService
   ) {}
 
-  async logIn(email: string, password: string): Promise<boolean> {
-    const formData = new FormData();
-    formData.append('email', email);
-    formData.append('password', password);
-    const token = await firstValueFrom(
-      this.http.post<Token>(AUTH_API, formData)
-    );
-    sessionStorage.setItem(TOKEN, token.token);
-    const user = await firstValueFrom(this.userService.getCurrentUser());
-    sessionStorage.setItem(CURRENT_USER, JSON.stringify(user));
-    return true;
+  async logIn(formData: FormData) {
+    try {
+      const token = await firstValueFrom(
+        this.http.post<Token>(AUTH_API, formData)
+      );
+      sessionStorage.setItem(TOKEN, token.token);
+
+      const user = await firstValueFrom(this.userService.getCurrentUser());
+      sessionStorage.setItem(CURRENT_USER, JSON.stringify(user));
+      return true;
+    } catch (error: any) {
+      if (error.status === 400 && error.error) {
+        return error.error as ResponseLoginError;
+      } else {
+        return false;
+      }
+    }
   }
 
   logOut(): void {

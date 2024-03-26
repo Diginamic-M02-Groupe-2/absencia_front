@@ -7,33 +7,34 @@
   <div class="login-container">
     <h1>Connexion</h1>
 
-    <form (submit)="onLogin($event)">
-      <div class="login-input">
-        <input
-          pInputText
-          id="email"
-          placeholder="email"
-          type="text"
-          [(ngModel)]="mailAdress"
-          name="email"
-          required
-        />
-        <input
-          pInputText
-          id="password"
-          placeholder="mot de passe"
-          type="password"
-          [(ngModel)]="password"
-          name="password"
-          required
-        />
+    <form (submit)="onLogin($event)" [formGroup]="formGroup">
+      <app-text-input
+        [formGroup]="formGroup"
+        type="text"
+        name="email"
+        label="email"
+        placeholder="email"
+      />
+      <div *ngIf="formErrors.email" class="error-message">
+        {{ formErrors.email }}
       </div>
 
-      <div class="login-buttons">
-        <button pButton type="submit" class="p-button-secondary">
+      <app-text-input
+        [formGroup]="formGroup"
+        type="password"
+        name="password"
+        label="mot de passe"
+        placeholder="mot de passe"
+      />
+      <div *ngIf="formErrors.password" class="error-message">
+        {{ formErrors.password }}
+      </div>
+
+      <app-form-footer>
+        <button type="submit" class="button button__submit">
           Se connecter
         </button>
-      </div>
+      </app-form-footer>
     </form>
   </div>
 </div>
