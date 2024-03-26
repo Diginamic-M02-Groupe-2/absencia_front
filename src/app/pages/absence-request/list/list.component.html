@@ -1,0 +1,13 @@
+<h1>
+  Demandes d'absence
+
+  <a [routerLink]="absenceRequestNewRoute" class="createButton">
+    <i class="pi pi-file-edit"></i>
+
+    Créer une demande d'absence
+  </a>
+</h1>
+
+<app-absence-request-table [absenceRequests]="(response|async)?.absenceRequests ?? []" />
+
+<p-toast position="top-right" [style]="{ top: '75px' }"></p-toast>

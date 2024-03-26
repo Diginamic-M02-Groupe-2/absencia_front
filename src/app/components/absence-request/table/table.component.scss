@@ -1,0 +1,40 @@
+@import "../../../../variables.scss";
+
+:host::ng-deep p-table {
+  th {
+    padding: 8px;
+    background-color: $white;
+    color: $tertiary;
+    font-style: italic;
+  }
+
+  td {
+    padding: 8px;
+    color: $tertiary;
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      column-gap: 8px;
+    }
+  }
+}
+
+.deleteButton {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 8px;
+  padding: 4px 8px;
+  background-color: $error;
+  color: $white;
+  font-size: .75rem;
+  transition: background-color 0.2s;
+
+  .pi {
+    font-size: .75rem;
+  }
+
+  &:hover {
+    background-color: scale-color($error, $alpha: -25%);
+  }
+}

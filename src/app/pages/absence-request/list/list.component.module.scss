@@ -1,6 +1,21 @@
 @import "../../../../variables.scss";
 
-td {
+.createButton {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: $success;
+  color: $white;
+  transition: background-color .2s;
+
+  &:hover {
+    background-color: scale-color($success, $alpha: -25%);
+  }
+}
+
+/* td {
   height: 3em;
 }
 
@@ -18,4 +33,4 @@ td {
   &:hover {
     background-color: scale-color($error, $alpha: -25%);
   }
-}
+} */

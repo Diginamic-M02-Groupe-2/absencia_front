@@ -13,6 +13,7 @@ import { ComponentsModule } from './pages/components/components.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
 import { AbsenceRequestCreateModule } from './absence-request-create/absence-request-create.module';
+import { AbsenceRequestListModule } from './pages/absence-request/list/list.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { AbsenceRequestCreateModule } from './absence-request-create/absence-req
     LoginModule,
     DashboardModule,
     ComponentsModule,
+    AbsenceRequestListModule,
     AbsenceRequestCreateModule,
   ],
   providers: [
