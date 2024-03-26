@@ -12,7 +12,6 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class AbsenceRequestListComponent {
-  currentUser = JSON.parse(sessionStorage.getItem('currentUser')!);
   absenceRequests: AbsenceRequest[] = [];
   constructor(
     private http: HttpClient,
@@ -25,9 +24,7 @@ export class AbsenceRequestListComponent {
 
   async getAbsenceRequests(): Promise<void> {
     this.absenceRequests = await firstValueFrom(
-      this.http.get<Array<AbsenceRequest>>(
-        GET_ABSENCE_REQUESTS + '/' + this.currentUser.id
-      )
+      this.http.get<Array<AbsenceRequest>>(GET_ABSENCE_REQUESTS)
     );
   }
 
