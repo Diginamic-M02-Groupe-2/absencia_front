@@ -5,38 +5,43 @@ import { LoginComponent } from './auth/components/login/login.component';
 import { ComponentsComponent } from './pages/components/components.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
-import { RoutesPath } from './models/route';
-import { AbsenceRequestListComponent } from './components/lists/absence-request-list/absence-request-list.component';
+import { Route } from './models/route';
 import { AbsenceRequestCreateComponent } from './absence-request-create/absence-request-create.component';
+import { AbsenceRequestListComponent } from './pages/absence-request/list/list.component';
+import { PublicHolidaysAndEmployerWtrListComponent } from './pages/public-holidays-and-employer-wtr/list/list.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: RoutesPath.ROUTE_LOGIN, pathMatch: 'full' },
+  { path: '', redirectTo: Route.LOGIN, pathMatch: 'full' },
   {
-    path: RoutesPath.ROUTE_LOGIN,
+    path: Route.LOGIN,
     component: LoginComponent,
     canActivate: [LoginGuard],
   },
   {
-    path: RoutesPath.ROUTE_COMPONENTS,
+    path: Route.COMPONENTS,
     component: ComponentsComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: RoutesPath.ROUTE_DASHBOARD,
+    path: Route.DASHBOARD,
     component: DashboardComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: RoutesPath.ROUTE_USER_ABSENCE_REQUESTS,
+    path: Route.ABSENCE_REQUEST_LIST,
     component: AbsenceRequestListComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: RoutesPath.ROUTE_ADMIN_ABSENCE_REQUESTS_CREATE,
+    path: Route.ABSENCE_REQUEST_CREATE,
     component: AbsenceRequestCreateComponent,
     canActivate: [AuthGuard],
+  }, {
+    path: Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST,
+    component: PublicHolidaysAndEmployerWtrListComponent,
+    canActivate: [AuthGuard],
   },
-  { path: '**', redirectTo: RoutesPath.ROUTE_DASHBOARD },
+  { path: '**', redirectTo: Route.DASHBOARD },
 ];
 
 @NgModule({

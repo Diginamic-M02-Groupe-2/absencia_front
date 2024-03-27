@@ -1,40 +1,30 @@
-<!-- TODO: Link URLs -->
 <!-- TODO: Active link depending on current page -->
 <p-sidebar #sidebarRef [(visible)]="sidebarVisible" class="drawer">
   <ul class="drawer__list">
     <li class="drawer__list__item">
-      <a [href]="routeToDashboard" class="drawer__list__item__link">
-        <i class="pi pi-home"></i>
-
-        Accueil
-      </a>
-    </li>
-
-    <li class="drawer__list__item">
-      <a [href]="routeToDashboard" class="drawer__list__item__link">
+      <a [routerLink]="absenceRequestRoute" class="drawer__list__item__link">
         <i class="pi pi-briefcase"></i>
 
-        Congés
+        Demandes d'absence
       </a>
     </li>
 
     <li class="drawer__list__item">
-      <a [href]="routeToDashboard" class="drawer__list__item__link">
-        <i class="pi pi-file-edit"></i>
+      <a [routerLink]="publicHolidaysAndEmployerWtrRoute" class="drawer__list__item__link">
+        <i class="pi pi-calendar"></i>
 
-        Créer une demande d'absence
+        Jours fériés et RTT employeur
       </a>
     </li>
   </ul>
 
-  <a href="#" class="drawer__logOutLink" (click)="onLogOut()">
+  <button class="drawer__logOutLink" (click)="onLogOut()">
     <i class="pi pi-sign-out drawer__logOutLink__icon"></i>
 
     Se déconnecter
-  </a>
+  </button>
 </p-sidebar>
 
-<!-- TODO: Link URLs -->
 <!-- TODO: Active link depending on current page -->
 <header *ngIf="isLogged" class="header">
   <button class="header__toggleMenuButton" (click)="toggleSidebar(true)">
@@ -46,39 +36,31 @@
   <nav class="header__navBar">
     <ul class="header__navBar__list">
       <li class="header__navBar__list__item">
-        <a [href]="routeToDashboard" class="header__navBar__list__item__link header__navBar__list__item__linkActive">
-          <i class="pi pi-home"></i>
-
-          Accueil
-        </a>
-      </li>
-
-      <li class="header__navBar__list__item">
-        <a [href]="routeToDashboard" class="header__navBar__list__item__link">
+        <a [routerLink]="absenceRequestRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
           <i class="pi pi-briefcase"></i>
 
-          Congés
+          Demandes d'absence
         </a>
       </li>
 
       <li class="header__navBar__list__item">
-        <a [href]="routeToCreateAbsencesRequest" class="header__navBar__list__item__link">
-          <i class="pi pi-file-edit"></i>
+        <a [routerLink]="publicHolidaysAndEmployerWtrRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
+          <i class="pi pi-calendar"></i>
 
-          Créer une demande d'absence
+          Jours fériés et RTT employeur
         </a>
       </li>
     </ul>
   </nav>
 
-  <a href="#" class="header__logOutLink" (click)="onLogOut()">
+  <button class="header__logOutLink" (click)="onLogOut()">
     <i class="pi pi-sign-out header__logOutLink__icon"></i>
 
     Se déconnecter
-  </a>
+  </button>
 </header>
 
-<main class="main" [class.mainLogin]="isActive(routeToLogin)">
+<main class="main" [class.mainLogin]="isActive(loginRoute)">
   <div class="container">
     <router-outlet></router-outlet>
   </div>

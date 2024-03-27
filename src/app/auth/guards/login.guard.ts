@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthentificationService } from '../../services/authentification.service';
 import { Router } from '@angular/router';
-import { RoutesPath } from '../../models/route';
+import { Route } from '../../models/route';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class LoginGuard {
       this.authentificationService.isUserConnected;
 
     if (storedUserConnectedStatus) {
-      this.router.navigateByUrl(RoutesPath.ROUTE_USER_ABSENCE_REQUESTS);
+      this.router.navigateByUrl(Route.ABSENCE_REQUEST_LIST);
       return false;
     }
 

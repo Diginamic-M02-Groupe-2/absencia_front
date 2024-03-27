@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthentificationService } from '../../../services/authentification.service';
 import { Router } from '@angular/router';
-import { RoutesPath } from '../../../models/route';
+import { Route } from '../../../models/route';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ResponseLoginError } from '../../../models/response-login-error';
 
@@ -43,7 +43,7 @@ export class LoginComponent {
         return false;
       }
 
-      this.router.navigateByUrl(RoutesPath.ROUTE_USER_ABSENCE_REQUESTS);
+      this.router.navigateByUrl(Route.ABSENCE_REQUEST_LIST);
       return true;
     } catch (error) {
       console.error("Une erreur s'est produite lors de la connexion :", error);

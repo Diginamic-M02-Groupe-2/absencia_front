@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpMethod } from '../services/api.service';
 import { DropdownForm } from '../models/dropdown-form';
-import { RoutesPath } from '../models/route';
+import { Route } from '../models/route';
 
 @Component({
   selector: 'app-absence-request-create',
@@ -17,7 +17,7 @@ export class AbsenceRequestCreateComponent {
 
   formGroup!: FormGroup;
 
-  redirect: string = RoutesPath.ROUTE_USER_ABSENCE_REQUESTS;
+  redirect: string = Route.ABSENCE_REQUEST_LIST;
 
   absenceTypes: DropdownForm[] = [
     { label: 'Férié', value: "PUBLIC_HOLIDAY" },

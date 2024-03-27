@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AUTH_API, LOGOUT_API } from './api.service';
 import { firstValueFrom } from 'rxjs';
 import { Token } from '../models/token';
-import { RoutesPath } from '../models/route';
+import { Route } from '../models/route';
 import { UserService } from './user.service';
 import { User } from '../models/user';
 import { ResponseLoginError } from '../models/response-login-error';
@@ -45,7 +45,7 @@ export class AuthentificationService {
     this.http.post(LOGOUT_API, {});
     sessionStorage.removeItem(CURRENT_USER);
     sessionStorage.removeItem(TOKEN);
-    this.router.navigateByUrl(RoutesPath.ROUTE_LOGIN);
+    this.router.navigateByUrl(Route.LOGIN);
   }
 
   getPseudo(): string {

@@ -1,0 +1,20 @@
+<h1>
+  Demandes d'absence
+
+  <a [routerLink]="absenceRequestNewRoute" class="createButton">
+    <i class="pi pi-file-edit"></i>
+
+    <span class="createButton__label">
+      Créer une demande d'absence
+    </span>
+  </a>
+</h1>
+
+<app-absence-request-table [absenceRequests]="absenceRequests ?? []" />
+
+<p class="remaining">
+  {{remainingPaidLeaves}} congés payés restants<br />
+  {{remainingEmployeeWtr}} RTT employé restantes
+</p>
+
+<p-toast position="top-right" [style]="{ top: '75px' }"></p-toast>
