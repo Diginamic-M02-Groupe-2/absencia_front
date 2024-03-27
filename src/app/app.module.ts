@@ -15,6 +15,9 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
 import { AbsenceRequestCreateModule } from './absence-request-create/absence-request-create.module';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { AbsenceRequestListModule } from './pages/absence-request/list/list.module';
+import { PublicHolidaysAndEmployerWtrListModule } from './pages/public-holidays-and-employer-wtr/list/list.module';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,8 +34,10 @@ import { ToastModule } from 'primeng/toast';
     LoginModule,
     DashboardModule,
     ComponentsModule,
+    AbsenceRequestListModule,
     AbsenceRequestCreateModule,
     ToastModule
+    PublicHolidaysAndEmployerWtrListModule,
   ],
   providers: [
     {

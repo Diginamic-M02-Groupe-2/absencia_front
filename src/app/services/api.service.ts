@@ -11,6 +11,12 @@ export const LOGOUT_API = `${API_URL}/logout`;
 export const GET_USER_API = `${API_URL}/users/current`;
 export const GET_ABSENCE_REQUESTS = `${API_URL}/absence-requests`;
 
+export enum ApiRoute {
+  ABSENCE_REQUEST = "/absence-requests",
+  PUBLIC_HOLIDAY = "/public-holidays",
+  EMPLOYER_WTR = "/employer-wtr",
+}
+
 export enum HttpMethod {
   GET = 'GET',
   POST = 'POST',
@@ -29,11 +35,7 @@ export class ApiService {
     private authenticationService: AuthentificationService
   ) {}
 
-  request(
-    endpoint: string,
-    method: HttpMethod,
-    body?: FormData
-  ): Observable<any> {
+  request(endpoint: string, method: HttpMethod, body?: FormData): Observable<any> {
     if (!this.authenticationService.isUserConnected) {
       return throwError(() => new Error('User is logged out'));
     }
@@ -52,5 +54,9 @@ export class ApiService {
           }
         })
       );
+  }
+
+  get<T>(endpoint: string): Observable<T> {
+    return this.request(endpoint, HttpMethod.GET);
   }
 }

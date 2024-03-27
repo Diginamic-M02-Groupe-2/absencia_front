@@ -1,7 +1,12 @@
-export enum RoutesPath {
-  ROUTE_DASHBOARD = "dashboard",
-  ROUTE_COMPONENTS = "components",
-  ROUTE_LOGIN = "login",
-  ROUTE_USER_ABSENCE_REQUESTS = "absence-requests",
-  ROUTE_ADMIN_ABSENCE_REQUESTS_CREATE = "admin/absences/create",
+export enum Route {
+  DASHBOARD = "dashboard",
+  // Component development page
+  COMPONENTS = "components",
+  // Authentication
+  LOGIN = "login",
+  // Absence requests
+  ABSENCE_REQUEST_LIST = "absence-requests",
+  ABSENCE_REQUEST_CREATE = "absence-requests/create",
+  // Public holidays & employer WTR
+  PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST = "public-holidays-and-employer-wtr",
 }

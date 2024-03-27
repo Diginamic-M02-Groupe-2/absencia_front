@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AUTH_API, LOGOUT_API } from './api.service';
 import { firstValueFrom } from 'rxjs';
 import { Token } from '../models/token';
-import { RoutesPath } from '../models/route';
+import { Route } from '../models/route';
 import { UserService } from './user.service';
 import { User } from '../models/user';
 import { ResponseLoginError } from '../models/response-login-error';
