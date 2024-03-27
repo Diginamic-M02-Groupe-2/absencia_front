@@ -56,6 +56,15 @@ p-dropdown {
   .p-dropdown-trigger .pi {
     display: block;
   }
+
+  .p-component.p-overlay {
+    top: 40px !important;
+    left: -2px !important;
+
+    .p-dropdown-item {
+      padding: 8px;
+    }
+  }
 }
 
 .p-selectbutton {
