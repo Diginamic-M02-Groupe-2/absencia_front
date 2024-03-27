@@ -1,9 +1,23 @@
+import {Option} from "./option";
+
 export enum AbsenceType {
-  PUBLIC_HOLIDAY, // Férié
-  PAID_LEAVE, // Congé payé
-  UNPAID_LEAVE, // Congé sans solde
-  TOIL_DAY, // RTT
+  PAID_LEAVE = "PAID_LEAVE", // Congé payé
+  UNPAID_LEAVE = "UNPAID_LEAVE", // Congé sans solde
+  EMPLOYEE_WTR = "EMPLOYEE_WTR", // RTT employé
 }
+
+export const absenceTypeOptions: Option[] = [
+  {
+    value: AbsenceType.PAID_LEAVE.toString(),
+    label: "Congé payé",
+  }, {
+    value: AbsenceType.UNPAID_LEAVE.toString(),
+    label: "Congé sans solde",
+  }, {
+    value: AbsenceType.EMPLOYEE_WTR.toString(),
+    label: "RTT employé",
+  },
+];
 
 export function toString(absenceRequestStatus: string): string {
   switch (absenceRequestStatus) {

@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AbsenceType} from "../../../models/absence";
-import {DropdownForm} from "../../../models/dropdown-form";
+import {AbsenceType, absenceTypeOptions} from "../../../models/absence";
+import {Option} from "../../../models/option";
 import {Route} from "../../../models/route";
 import {HttpMethod} from "../../../services/api.service";
 
@@ -18,12 +18,13 @@ export class AbsenceRequestNewComponent {
 
   redirect: string = Route.ABSENCE_REQUEST_LIST;
 
-  absenceTypes: DropdownForm[] = [
+  absenceTypes: any = /* [
     { label: 'Férié', value: AbsenceType.PUBLIC_HOLIDAY.toString() },
     { label: 'Congé payé', value: "PAID_LEAVE" },
     { label: 'Congé sans solde', value: "UNPAID_LEAVE" },
     { label: 'Jour de récupération', value: "TOIL_DAY" },
-  ];
+  ]; */
+  absenceTypeOptions;
 
   constructor(
     private formBuilder: FormBuilder,
