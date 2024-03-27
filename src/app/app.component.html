@@ -1,8 +1,12 @@
-<!-- TODO: Active link depending on current page -->
 <p-sidebar #sidebarRef [(visible)]="sidebarVisible" class="drawer">
   <ul class="drawer__list">
     <li class="drawer__list__item">
-      <a [routerLink]="absenceRequestRoute" class="drawer__list__item__link" (click)="closeBack($event)">
+      <a
+        [routerLink]="absenceRequestRoute"
+        routerLinkActive="drawer__list__item__linkActive"
+        class="drawer__list__item__link"
+        (click)="closeBack($event)"
+      >
         <i class="pi pi-briefcase"></i>
 
         Demandes d'absence
@@ -10,7 +14,12 @@
     </li>
 
     <li class="drawer__list__item">
-      <a [routerLink]="publicHolidaysAndEmployerWtrRoute" class="drawer__list__item__link" (click)="closeBack($event)">
+      <a
+        [routerLink]="publicHolidaysAndEmployerWtrRoute"
+        routerLinkActive="drawer__list__item__linkActive"
+        class="drawer__list__item__link"
+        (click)="closeBack($event)"
+      >
         <i class="pi pi-calendar"></i>
 
         Jours fériés et RTT employeur
@@ -25,7 +34,6 @@
   </button>
 </p-sidebar>
 
-<!-- TODO: Active link depending on current page -->
 <p-toast position="top-right" [showTransformOptions]="'translateY(100px)'"></p-toast>
 
 <header *ngIf="isLogged" class="header">
