@@ -72,7 +72,7 @@ export class FormComponent {
         this.messageService.add({
           severity: 'success',
           summary: 'Action validée',
-          detail: 'L action effectuée a été validée',
+          detail: response.message,
           life: 5000,
         });
 
@@ -91,7 +91,7 @@ export class FormComponent {
       if (control.value instanceof Date) {
         const date = new Date(control.value);
         date.setDate(date.getDate() + 1);
-        
+
         const isoDate = date.toISOString().split("T")[0];
 
         formData.append(key, isoDate);
