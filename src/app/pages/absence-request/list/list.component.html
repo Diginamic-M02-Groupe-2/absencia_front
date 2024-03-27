@@ -8,11 +8,11 @@
   </a>
 </h1>
 
-<app-absence-request-table [absenceRequests]="(absenceRequests|async) ?? []" />
+<app-absence-request-table [absenceRequests]="absenceRequests ?? []" />
 
 <p class="remaining">
-  {{remainingPaidLeaves|async}} congés payés restant<br />
-  {{remainingEmployeeWtr|async}} RTT employé restantes
+  {{remainingPaidLeaves}} congés payés restant<br />
+  {{remainingEmployeeWtr}} RTT employé restantes
 </p>
 
 <p-toast position="top-right" [style]="{ top: '75px' }"></p-toast>
