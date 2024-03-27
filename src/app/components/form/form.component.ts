@@ -83,9 +83,15 @@ export class FormComponent {
     const formData = new FormData();
 
     for (const [key, control] of Object.entries(this.formGroup.controls)) {
-      control.value instanceof Date
-        ? formData.append(key, (control.value as Date).toJSON())
-        : formData.append(key, control.value);
+      if (control.value instanceof Date) {
+        const date = control.value.toISOString().split("T")[0];
+
+        formData.append(key, date);
+
+        continue;
+      }
+
+      formData.append(key, control.value);
     }
 
     return formData;
