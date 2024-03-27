@@ -13,6 +13,8 @@ import { ComponentsModule } from './pages/components/components.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
 import { AbsenceRequestCreateModule } from './absence-request-create/absence-request-create.module';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +32,7 @@ import { AbsenceRequestCreateModule } from './absence-request-create/absence-req
     DashboardModule,
     ComponentsModule,
     AbsenceRequestCreateModule,
+    ToastModule
   ],
   providers: [
     {
@@ -37,6 +40,7 @@ import { AbsenceRequestCreateModule } from './absence-request-create/absence-req
       useClass: AuthorizationInterceptor,
       multi: true,
     },
+    MessageService
   ],
   bootstrap: [AppComponent],
 })

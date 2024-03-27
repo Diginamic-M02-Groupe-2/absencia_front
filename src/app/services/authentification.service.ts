@@ -8,6 +8,7 @@ import { RoutesPath } from '../models/route';
 import { UserService } from './user.service';
 import { User } from '../models/user';
 import { ResponseLoginError } from '../models/response-login-error';
+import { MessageService } from 'primeng/api';
 
 const CURRENT_USER = 'currentUser';
 export const TOKEN = 'token';
@@ -19,8 +20,9 @@ export class AuthentificationService {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private messageService: MessageService
+  ) { }
 
   async logIn(formData: FormData) {
     try {
@@ -42,10 +44,17 @@ export class AuthentificationService {
   }
 
   logOut(): void {
-    this.http.post(LOGOUT_API, {});
-    sessionStorage.removeItem(CURRENT_USER);
-    sessionStorage.removeItem(TOKEN);
-    this.router.navigateByUrl(RoutesPath.ROUTE_LOGIN);
+    this.http.post(LOGOUT_API, {}).subscribe((logoutStatus: any) => {
+      this.messageService.add({
+        severity: 'success', summary: 'Session', detail: logoutStatus.message
+      });
+    }).add(() => {
+      setTimeout(() => {
+        sessionStorage.removeItem(CURRENT_USER);
+        sessionStorage.removeItem(TOKEN);
+        this.router.navigateByUrl(RoutesPath.ROUTE_LOGIN);
+      }, 2000);
+    });
   }
 
   getPseudo(): string {
