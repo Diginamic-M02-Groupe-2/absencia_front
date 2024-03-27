@@ -17,7 +17,7 @@ import { Option } from "../../../models/option";
   ],
 })
 export class AbsenceRequestListComponent {
-  absenceRequests?: AbsenceRequest[];
+  absenceRequests: AbsenceRequest[] = [];
 
   action: string = "Modifier";
 
