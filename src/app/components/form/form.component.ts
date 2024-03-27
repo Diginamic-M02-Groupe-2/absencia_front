@@ -36,18 +36,6 @@ export class FormComponent {
   async onSubmit(event: SubmitEvent): Promise<void> {
     event.preventDefault();
 
-    if (this.formGroup.invalid) {
-      this.formGroup.markAllAsTouched();
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Champs vides ou invalides',
-        detail: 'Vérifiez les champs.',
-        life: 5000,
-      });
-
-      return;
-    }
-
     const formData = this.getFormData();
 
     this.apiService
