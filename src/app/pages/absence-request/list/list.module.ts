@@ -8,6 +8,9 @@ import {AbsenceRequestTableComponent} from "../../../components/absence-request/
 import {AbsenceRequestStatusPipe} from "../../../pipes/absence-request-status.pipe";
 import {AbsenceTypePipe} from "../../../pipes/absence-type.pipe";
 import {SharedModule} from "../../../shared/shared.module";
+import { DialogModule } from "primeng/dialog";
+import { ComponentsModule } from "../../components/components.module";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import {SharedModule} from "../../../shared/shared.module";
     SharedModule,
     TableModule,
     ToastModule,
+    DialogModule,
+    ComponentsModule,
+    FormsModule,
   ],
 })
 export class AbsenceRequestListModule {}

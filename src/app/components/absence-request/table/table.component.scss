@@ -38,3 +38,22 @@
     background-color: scale-color($error, $alpha: -25%);
   }
 }
+
+.updateButton {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 8px;
+  padding: 4px 8px;
+  background-color: $success;
+  color: $white;
+  font-size: .75rem;
+  transition: background-color 0.2s;
+
+  .pi {
+    font-size: .75rem;
+  }
+
+  &:hover {
+    background-color: scale-color($success, $alpha: -25%);
+  }
+}
