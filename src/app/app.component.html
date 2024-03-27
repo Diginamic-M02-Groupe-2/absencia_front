@@ -39,11 +39,18 @@
 <header *ngIf="isLogged" class="header">
   <button class="header__toggleMenuButton" (click)="toggleSidebar(true)">
     <i class="pi pi-bars"></i>
+
     Absencia
   </button>
 
   <nav class="header__navBar">
     <ul class="header__navBar__list">
+      <li class="header__navBar__list__item">
+        <a [routerLink]="absenceRequestRoute" class="logoLink">
+          Absencia
+        </a>
+      </li>
+
       <li class="header__navBar__list__item">
         <a [routerLink]="absenceRequestRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
           <i class="pi pi-briefcase"></i>
@@ -64,6 +71,7 @@
 
   <button class="header__logOutLink" (click)="onLogOut()">
     <i class="pi pi-sign-out header__logOutLink__icon"></i>
+
     Se déconnecter
   </button>
 </header>
