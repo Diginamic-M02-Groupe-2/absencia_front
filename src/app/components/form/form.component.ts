@@ -32,6 +32,7 @@ export class FormComponent {
 
   async onSubmit(event: SubmitEvent): Promise<void> {
     event.preventDefault();
+
     if (this.formGroup.invalid) {
       this.formGroup.markAllAsTouched();
       this.messageService.add({
@@ -40,6 +41,7 @@ export class FormComponent {
         detail: 'Vérifiez les champs.',
         life: 5000,
       });
+
       return;
     }
 

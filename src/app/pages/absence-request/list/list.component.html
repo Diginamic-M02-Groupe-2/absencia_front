@@ -4,14 +4,16 @@
   <a [routerLink]="absenceRequestNewRoute" class="createButton">
     <i class="pi pi-file-edit"></i>
 
-    Créer une demande d'absence
+    <span class="createButton__label">
+      Créer une demande d'absence
+    </span>
   </a>
 </h1>
 
 <app-absence-request-table [absenceRequests]="absenceRequests ?? []" />
 
 <p class="remaining">
-  {{remainingPaidLeaves}} congés payés restant<br />
+  {{remainingPaidLeaves}} congés payés restants<br />
   {{remainingEmployeeWtr}} RTT employé restantes
 </p>
 

@@ -13,6 +13,12 @@
   &:hover {
     background-color: scale-color($success, $alpha: -25%);
   }
+
+  &__label {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
 }
 
 .remaining {
