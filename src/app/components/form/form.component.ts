@@ -89,9 +89,12 @@ export class FormComponent {
 
     for (const [key, control] of Object.entries(this.formGroup.controls)) {
       if (control.value instanceof Date) {
-        const date = control.value.toISOString().split("T")[0];
+        const date = new Date(control.value);
+        date.setDate(date.getDate() + 1);
+        
+        const isoDate = date.toISOString().split("T")[0];
 
-        formData.append(key, date);
+        formData.append(key, isoDate);
 
         continue;
       }
