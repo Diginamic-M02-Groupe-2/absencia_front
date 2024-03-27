@@ -12,7 +12,6 @@
       [action]="formAction"
       (postSubmit)="onPostSubmit($event)"
     >
-      <!-- (submit)="onLogin($event)" -->
       <app-text-input
         [formGroup]="formGroup"
         type="text"
@@ -20,10 +19,6 @@
         label="Email"
         placeholder="Email"
       />
-
-      <!-- <div *ngIf="formErrors.email" class="error-message">
-        {{formErrors.email}}
-      </div> -->
 
       <app-text-input
         [formGroup]="formGroup"
@@ -33,10 +28,6 @@
         placeholder="Mot de passe"
         autocomplete="current-password"
       />
-
-      <!-- <div *ngIf="formErrors.password" class="error-message">
-        {{formErrors.password}}
-      </div> -->
 
       <app-form-footer>
         <button type="submit" class="button button__submit">
