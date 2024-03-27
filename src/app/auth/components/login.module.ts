@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ComponentsModule } from '../../pages/components/components.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -15,6 +16,7 @@ import { ComponentsModule } from '../../pages/components/components.module';
     InputTextModule,
     ComponentsModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
 })
 export class LoginModule {}

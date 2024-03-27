@@ -3,7 +3,6 @@ import {MessageService} from "primeng/api";
 import {firstValueFrom} from "rxjs";
 import {AbsenceRequest} from "../../../models/absence-request";
 import {GetAbsenceRequestResponse} from "../../../models/get-absence-request-response";
-import {Route} from "../../../models/route";
 import {ApiRoute, ApiService} from "../../../services/api.service";
 
 @Component({
@@ -15,8 +14,6 @@ import {ApiRoute, ApiService} from "../../../services/api.service";
   ],
 })
 export class AbsenceRequestListComponent {
-  absenceRequestNewRoute: Route = Route.ABSENCE_REQUEST_CREATE;
-
   absenceRequests?: AbsenceRequest[];
 
   remainingPaidLeaves?: number;

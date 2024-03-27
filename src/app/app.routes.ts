@@ -6,9 +6,9 @@ import { ComponentsComponent } from './pages/components/components.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Route } from './models/route';
-import { AbsenceRequestCreateComponent } from './absence-request-create/absence-request-create.component';
-import { AbsenceRequestListComponent } from './pages/absence-request/list/list.component';
-import { PublicHolidaysAndEmployerWtrListComponent } from './pages/public-holidays-and-employer-wtr/list/list.component';
+import {AbsenceRequestListComponent} from "./pages/absence-request/list/list.component";
+import {AbsenceRequestNewComponent} from "./pages/absence-request/new/new.component";
+import {PublicHolidaysAndEmployerWtrListComponent} from "./pages/public-holidays-and-employer-wtr/list/list.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: Route.LOGIN, pathMatch: 'full' },
@@ -34,7 +34,7 @@ export const routes: Routes = [
   },
   {
     path: Route.ABSENCE_REQUEST_CREATE,
-    component: AbsenceRequestCreateComponent,
+    component: AbsenceRequestNewComponent,
     canActivate: [AuthGuard],
   }, {
     path: Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST,
