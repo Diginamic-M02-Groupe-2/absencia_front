@@ -26,10 +26,11 @@
 </p-sidebar>
 
 <!-- TODO: Active link depending on current page -->
+<p-toast position="top-right" [showTransformOptions]="'translateY(100px)'"></p-toast>
+
 <header *ngIf="isLogged" class="header">
   <button class="header__toggleMenuButton" (click)="toggleSidebar(true)">
     <i class="pi pi-bars"></i>
-
     Absencia
   </button>
 
@@ -55,7 +56,6 @@
 
   <button class="header__logOutLink" (click)="onLogOut()">
     <i class="pi pi-sign-out header__logOutLink__icon"></i>
-
     Se déconnecter
   </button>
 </header>
