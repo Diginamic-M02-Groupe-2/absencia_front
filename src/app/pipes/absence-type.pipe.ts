@@ -1,15 +1,14 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import {  toString } from '../models/absence';
+import {Pipe, PipeTransform} from "@angular/core";
+import {AbsenceType, absenceTypeStrings} from "../entities/absence-type";
 
 @Pipe({
-  name: 'absenceType',
-  standalone: true
+  name: "absenceType",
+  standalone: true,
 })
 export class AbsenceTypePipe implements PipeTransform {
+  transform(value: string): string {
+    const absenceType: AbsenceType = value as AbsenceType;
 
-  transform(value: string, ...args: unknown[]): unknown {
-
-    return toString(value);
+    return absenceTypeStrings[absenceType];
   }
-
 }

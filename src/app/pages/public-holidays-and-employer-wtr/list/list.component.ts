@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {Observable} from "rxjs";
-import {EmployerWtr} from "../../../models/employer-wtr";
-import {PublicHoliday} from "../../../models/public-holiday";
+import {EmployerWtr} from "../../../entities/employer-wtr";
+import {PublicHoliday} from "../../../entities/public-holiday";
 import {ApiRoute, ApiService} from "../../../services/api.service";
 
 @Component({

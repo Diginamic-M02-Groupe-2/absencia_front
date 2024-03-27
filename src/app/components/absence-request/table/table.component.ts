@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {AbsenceRequest} from "../../../models/absence-request";
+import {AbsenceRequest} from "../../../entities/absence-request";
 
 @Component({
   selector: "app-absence-request-table",

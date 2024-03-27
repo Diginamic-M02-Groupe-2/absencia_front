@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Service} from "../../entities/user/service";
 import {HttpMethod} from "../../services/api.service";
-import {Service} from "../../models/user-service";
 
 @Component({
   selector: "app-components",

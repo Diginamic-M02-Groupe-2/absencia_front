@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { AuthentificationService } from '../../../services/authentification.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Route } from '../../../models/route';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ResponseLoginError } from '../../../models/response-login-error';
+import { AuthentificationService } from '../../../services/authentification.service';
 
 @Component({
   selector: 'app-login',

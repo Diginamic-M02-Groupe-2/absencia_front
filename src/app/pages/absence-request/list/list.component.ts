@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {MessageService} from "primeng/api";
 import {firstValueFrom} from "rxjs";
-import {AbsenceRequest} from "../../../models/absence-request";
+import {AbsenceRequest} from "../../../entities/absence-request";
 import {GetAbsenceRequestResponse} from "../../../models/get-absence-request-response";
 import {ApiRoute, ApiService} from "../../../services/api.service";
 
