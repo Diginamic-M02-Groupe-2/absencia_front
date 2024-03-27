@@ -20,5 +20,8 @@ export class TextInputComponent {
   label!: string;
 
   @Input()
-  placeholder!: string;
+  placeholder?: string = "";
+
+  @Input()
+  autocomplete?: string = "off";
 }

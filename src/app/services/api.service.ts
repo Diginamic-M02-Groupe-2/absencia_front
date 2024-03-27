@@ -18,32 +18,26 @@ export enum ApiRoute {
 }
 
 export enum HttpMethod {
-  GET = 'GET',
-  POST = 'POST',
-  PUT = 'PUT',
-  PATCH = 'PATCH',
-  DELETE = 'DELETE',
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  PATCH = "PATCH",
+  DELETE = "DELETE",
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class ApiService {
   constructor(
-    private router: Router,
     private http: HttpClient,
-    private authenticationService: AuthentificationService
   ) {}
 
   request(endpoint: string, method: HttpMethod, body?: FormData): Observable<any> {
-    if (!this.authenticationService.isUserConnected) {
-      return throwError(() => new Error('User is logged out'));
-    }
-
     return this.http
       .request(method, `${BASE_URL}${endpoint}`, {
         body,
-        responseType: 'json',
+        responseType: "json",
       })
       .pipe(
         catchError((error) => {

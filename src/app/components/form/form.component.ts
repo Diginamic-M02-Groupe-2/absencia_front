@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService, HttpMethod } from '../../services/api.service';
@@ -23,6 +23,9 @@ export class FormComponent {
 
   @Input()
   redirect?: string;
+
+  @Output()
+  postSubmit: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private router: Router,
@@ -72,10 +75,12 @@ export class FormComponent {
           detail: 'L action effectuée a été validée',
           life: 5000,
         });
-        if (!this.redirect) {
-          return;
+
+        if (this.postSubmit) {
+          this.postSubmit.emit(response);
+        } else if (this.redirect) {
+          this.router.navigateByUrl(this.redirect);
         }
-        this.router.navigateByUrl(this.redirect);
       });
   }
 
