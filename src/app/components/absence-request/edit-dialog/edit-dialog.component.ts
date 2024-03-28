@@ -16,6 +16,9 @@ export class AbsenceRequestEditDialogComponent {
   formAction: string = ApiRoute.ABSENCE_REQUEST;
 
   @Input()
+  visible: boolean = false;
+
+  @Input()
   absenceTypeOptions!: Option[];
 
   constructor(

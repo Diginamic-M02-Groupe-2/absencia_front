@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {AbsenceRequest} from "../../../entities/absence-request";
-import { FormGroup } from "@angular/forms";
-import { HttpMethod } from "../../../services/api.service";
+import {HttpMethod} from "../../../services/api.service";
 
 @Component({
   selector: "app-absence-request-table",
@@ -9,37 +8,26 @@ import { HttpMethod } from "../../../services/api.service";
   styleUrl: "./table.component.module.scss",
 })
 export class AbsenceRequestTableComponent {
-
   formMethod: HttpMethod = HttpMethod.PATCH;
 
   @Input()
   absenceRequests!: AbsenceRequest[];
 
-  @Input()
-  isDialogVisible: boolean = false;
-
-  @Input()
-  formAction: string = '/absence-requests';
-
-  @Input()
-  formGroup!: FormGroup;
+  @Output()
+  openEditDialog: EventEmitter<void> = new EventEmitter<void>();
 
   @Output()
-  triggerDialog: EventEmitter<boolean> = new EventEmitter<boolean>();
+  openDeleteDialog: EventEmitter<void> = new EventEmitter<void>();
 
-  @Output()
-  triggerAbsenceRequest: EventEmitter<AbsenceRequest> = new EventEmitter<AbsenceRequest>();
+  onClickEditButton(): void {
+    this.openEditDialog.emit();
+  }
 
-  @Output()
-  triggerFormAction: EventEmitter<string> = new EventEmitter<string>();
-  
-  @Output()
-  triggerFormGroup: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
+  onClickDeleteButton(): void {
+    this.openDeleteDialog.emit();
+  }
 
-  @Output()
-  triggerFormMethod: EventEmitter<HttpMethod> = new EventEmitter<HttpMethod>();
-
-  async openAbsenceRequestDialog(
+  /* async openAbsenceRequestDialog(
     method: string,
     absenceRequest?: AbsenceRequest
   ) {
@@ -62,5 +50,5 @@ export class AbsenceRequestTableComponent {
       });
       this.triggerFormGroup.emit(this.formGroup);
     }
-  }
+  } */
 }

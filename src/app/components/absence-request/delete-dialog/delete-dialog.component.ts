@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ApiRoute, HttpMethod} from "../../../services/api.service";
 
@@ -13,6 +13,9 @@ export class AbsenceRequestDeleteDialogComponent {
   formMethod: HttpMethod = HttpMethod.DELETE;
 
   formAction: string = ApiRoute.ABSENCE_REQUEST;
+
+  @Input()
+  visible: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,

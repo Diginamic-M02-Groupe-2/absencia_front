@@ -2,7 +2,8 @@
   [modal]="true"
   [draggable]="false"
   [resizable]="false"
-  [visible]="true"
+  [visible]="visible"
+  (onHide)="onClose()"
 >
   <ng-template pTemplate="header">
     <ng-container [ngTemplateOutlet]="header" />

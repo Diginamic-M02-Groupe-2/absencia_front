@@ -10,11 +10,7 @@
   </a>
 </h1>
 
-<app-absence-request-table [absenceRequests]="absenceRequests" [isDialogVisible]="isDialogVisible"
-  [formAction]="formAction" [formGroup]="formGroup" (triggerAbsenceRequest)="getAbsenceRequest($event)"
-  (triggerDialog)="showDialog($event)" (triggerFormAction)="getFormAction($event)"
-  (triggerFormGroup)="getFormGroup($event)" (triggerFormMethod)="getFormMethod($event)"
-/>
+<app-absence-request-table [absenceRequests]="absenceRequests" (openEditDialog)="openEditDialog()" (openDeleteDialog)="openDeleteDialog()" />
 
 <p class="remaining">
   {{remainingPaidLeaves}} congés payés restants<br />
@@ -23,11 +19,11 @@
 
 <p-toast position="top-right" [style]="{ top: '75px' }"></p-toast>
 
-<app-absence-request-edit-dialog [absenceTypeOptions]="absenceTypeOptions" />
+<app-absence-request-edit-dialog [visible]="editDialogVisible" [absenceTypeOptions]="absenceTypeOptions" />
 
-<!-- <app-absence-request-delete-dialog /> -->
+<app-absence-request-delete-dialog [visible]="deleteDialogVisible" />
 
-<p-dialog
+<!-- <p-dialog
   header="{{action}} une demande d'absence"
   [(visible)]="isDialogVisible"
   [modal]="true"
@@ -99,4 +95,4 @@
       <button type="submit" class="deleteButton">Supprimer</button>
     </app-form-footer>
   </app-form>
-</p-dialog>
+</p-dialog> -->

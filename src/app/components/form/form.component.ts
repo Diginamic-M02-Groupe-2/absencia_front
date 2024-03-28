@@ -25,7 +25,7 @@ export class FormComponent {
   redirect?: string;
 
   @Output()
-  postSubmit: EventEmitter<any> = new EventEmitter();
+  postSubmit: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private router: Router,

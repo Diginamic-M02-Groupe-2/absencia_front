@@ -43,14 +43,15 @@
 
       <td>
         <div class="actions">
-          <button type="button" class="button updateButton" (click)="openAbsenceRequestDialog('PATCH', absenceRequest)">
+          <button type="button" class="button updateButton" (click)="onClickEditButton()">
             <i class="pi pi-file-edit"></i>
 
             <span class="label">
               Modifier
             </span>
           </button>
-          <button type="button" class="button deleteButton"  (click)="openAbsenceRequestDialog('DELETE', absenceRequest)">
+
+          <button type="button" class="button deleteButton" (click)="onClickDeleteButton()">
             <i class="pi pi-trash"></i>
 
             <span class="label">

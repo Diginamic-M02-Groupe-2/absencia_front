@@ -2,11 +2,11 @@ import {Component} from "@angular/core";
 import {MessageService} from "primeng/api";
 import {firstValueFrom} from "rxjs";
 import {AbsenceRequest} from "../../../entities/absence-request";
+import {absenceTypeOptions} from "../../../entities/absence-type";
 import {GetAbsenceRequestResponse} from "../../../models/get-absence-request-response";
+import {Option} from "../../../models/option";
 import {Route} from "../../../models/route";
-import {ApiRoute, ApiService, HttpMethod} from "../../../services/api.service";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Option } from "../../../models/option";
+import {ApiRoute, ApiService} from "../../../services/api.service";
 
 @Component({
   selector: "app-absence-request-list",
@@ -21,8 +21,6 @@ export class AbsenceRequestListComponent {
 
   action: string = "Modifier";
 
-  isDialogVisible: boolean = false;
-
   absenceRequestNewRoute: string = `/${Route.ABSENCE_REQUEST_CREATE}`;
 
   absenceRequest: AbsenceRequest = new AbsenceRequest();
@@ -31,28 +29,15 @@ export class AbsenceRequestListComponent {
 
   remainingEmployeeWtr: number = 0;
 
-  formMethod: HttpMethod = HttpMethod.PATCH;
+  absenceTypeOptions: Option[] = absenceTypeOptions;
 
-  formAction: string = '/absence-requests';
+  editDialogVisible: boolean = false;
 
-  formGroup!: FormGroup;
-
-  absenceTypeOptions: Option[] = [
-    { label: 'Congé payé', value: 'PAID_LEAVE' },
-    { label: 'Congé sans solde', value: 'UNPAID_LEAVE' },
-    { label: 'Jour de récupération', value: 'EMPLOYEE_WTR' },
-  ];
+  deleteDialogVisible: boolean = false;
 
   constructor(
     private apiService: ApiService,
-    private formBuilder: FormBuilder
   ) {
-    this.formGroup = this.formBuilder.group({
-      startedAt: ['', Validators.required],
-      endedAt: ['', Validators.required],
-      type: [null, Validators.required],
-      reason: ['', Validators.maxLength(255)],
-    });
     this.getAbsenceRequests();
   }
 
@@ -64,33 +49,20 @@ export class AbsenceRequestListComponent {
     this.remainingEmployeeWtr = response.remainingEmployeeWtr;
   }
 
-  clearDialog(){
-    this.formGroup.reset();
-    this.isDialogVisible = false;
+  clearDialog() {
     this.getAbsenceRequests();
   }
 
-  showDialog(isVisible: boolean){
-    this.isDialogVisible = isVisible;
+  openEditDialog(): void {
+    this.editDialogVisible = true;
   }
 
-  getAbsenceRequest(absenceRequest: AbsenceRequest){
+  openDeleteDialog(): void {
+    this.deleteDialogVisible = true;
+  }
+
+  getAbsenceRequest(absenceRequest: AbsenceRequest) {
     this.absenceRequest = absenceRequest;
-  }
-
-  getFormGroup(formGroup: FormGroup){
-    this.formGroup = formGroup;
-  }
-
-  getFormAction(formAction: string){
-    this.formAction = formAction;
-  }
-
-  getFormMethod(formMethod: HttpMethod){
-    this.formMethod = formMethod;
-    this.formMethod === HttpMethod.DELETE
-      ? this.action = "Supprimer"
-      : this.action = "Modifier"
   }
 
   /**
