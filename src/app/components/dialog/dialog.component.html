@@ -1,9 +1,9 @@
 <p-dialog
+  [(visible)]="visible"
   [modal]="true"
+  [closable]="false"
   [draggable]="false"
   [resizable]="false"
-  [visible]="visible"
-  (onHide)="onClose()"
 >
   <ng-template pTemplate="header">
     <ng-container [ngTemplateOutlet]="header" />

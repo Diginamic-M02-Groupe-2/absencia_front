@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Option} from "../../../models/option";
 import {ApiRoute, HttpMethod} from "../../../services/api.service";
@@ -16,7 +16,10 @@ export class AbsenceRequestEditDialogComponent {
   formAction: string = ApiRoute.ABSENCE_REQUEST;
 
   @Input()
-  visible: boolean = false;
+  visible!: boolean;
+
+  @Output()
+  visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @Input()
   absenceTypeOptions!: Option[];
@@ -32,10 +35,9 @@ export class AbsenceRequestEditDialogComponent {
     });
   }
 
-  /**
-   * @todo
-   */
-  closeDialog(): void {
-    debugger;
+  onClose(): void {
+    this.visible = false;
+
+    this.visibleChange.emit(this.visible);
   }
 }

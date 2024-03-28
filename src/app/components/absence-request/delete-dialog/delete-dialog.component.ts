@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ApiRoute, HttpMethod} from "../../../services/api.service";
 
@@ -15,7 +15,10 @@ export class AbsenceRequestDeleteDialogComponent {
   formAction: string = ApiRoute.ABSENCE_REQUEST;
 
   @Input()
-  visible: boolean = false;
+  visible!: boolean;
+
+  @Output()
+  visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,10 +26,9 @@ export class AbsenceRequestDeleteDialogComponent {
     this.formGroup = this.formBuilder.group({});
   }
 
-  /**
-   * @todo
-   */
-  closeDialog(): void {
-    debugger;
+  onClose(): void {
+    this.visible = false;
+
+    this.visibleChange.emit(this.visible);
   }
 }

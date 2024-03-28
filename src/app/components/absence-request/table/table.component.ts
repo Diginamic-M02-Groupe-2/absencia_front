@@ -1,5 +1,7 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {Component, Input} from "@angular/core";
 import {AbsenceRequest} from "../../../entities/absence-request";
+import {absenceTypeOptions} from "../../../entities/absence-type";
+import {Option} from "../../../models/option";
 import {HttpMethod} from "../../../services/api.service";
 
 @Component({
@@ -13,18 +15,18 @@ export class AbsenceRequestTableComponent {
   @Input()
   absenceRequests!: AbsenceRequest[];
 
-  @Output()
-  openEditDialog: EventEmitter<void> = new EventEmitter<void>();
+  absenceTypeOptions: Option[] = absenceTypeOptions;
 
-  @Output()
-  openDeleteDialog: EventEmitter<void> = new EventEmitter<void>();
+  editDialogVisible: boolean = false;
+
+  deleteDialogVisible: boolean = false;
 
   onClickEditButton(): void {
-    this.openEditDialog.emit();
+    this.editDialogVisible = true;
   }
 
   onClickDeleteButton(): void {
-    this.openDeleteDialog.emit();
+    this.deleteDialogVisible = true;
   }
 
   /* async openAbsenceRequestDialog(
