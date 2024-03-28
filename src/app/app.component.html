@@ -1,6 +1,9 @@
 <!-- TODO: Link URLs -->
 <!-- TODO: Active link depending on current page -->
-<p-sidebar #sidebarRef [(visible)]="sidebarVisible" class="drawer">
+<p-sidebar #sidebarRef [(visible)]="sidebarVisible" class="drawer" [showCloseIcon]="false">
+  <button class="drawer__close-button" (click)="closeBack($event)">
+    <i class="pi pi-times"></i>
+  </button>
   <ul class="drawer__list">
     <li class="drawer__list__item">
       <a [href]="routeToDashboard" class="drawer__list__item__link">
@@ -91,7 +94,10 @@
     </p>
 
     <p class="footer__authors">
-      Projet final de la formation Diginamic CDA (2023-2024) réalisé par <a href="https://github.com/CedricBds">Cédric Baudais</a>, <a href="https://github.com/PamelaCalcei">Pamela Calcei</a>, <a href="https://github.com/Nerfez">Clément Olivier</a> et <a href="https://github.com/matteokeole" target="_blank">Mattéo Legagneux</a>.
+      Projet final de la formation Diginamic CDA (2023-2024) réalisé par <a href="https://github.com/CedricBds">Cédric
+        Baudais</a>, <a href="https://github.com/PamelaCalcei">Pamela Calcei</a>, <a
+        href="https://github.com/Nerfez">Clément Olivier</a> et <a href="https://github.com/matteokeole"
+        target="_blank">Mattéo Legagneux</a>.
     </p>
   </div>
 </footer>
