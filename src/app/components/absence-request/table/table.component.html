@@ -2,11 +2,11 @@
   <ng-template pTemplate="header">
     <tr>
       <th>
-        Date de début
+        Début
       </th>
 
       <th>
-        Date de fin
+        Fin
       </th>
 
       <th>
@@ -43,15 +43,19 @@
 
       <td>
         <div class="actions">
-          <button type="button" class="updateButton" (click)="openAbsenceRequestDialog('PATCH', absenceRequest)">
+          <button type="button" class="button updateButton" (click)="openAbsenceRequestDialog('PATCH', absenceRequest)">
             <i class="pi pi-file-edit"></i>
 
-            Modifier
+            <span class="label">
+              Modifier
+            </span>
           </button>
-          <button type="button" class="deleteButton"  (click)="openAbsenceRequestDialog('DELETE', absenceRequest)">
+          <button type="button" class="button deleteButton"  (click)="openAbsenceRequestDialog('DELETE', absenceRequest)">
             <i class="pi pi-trash"></i>
 
-            Supprimer
+            <span class="label">
+              Supprimer
+            </span>
           </button>
         </div>
       </td>

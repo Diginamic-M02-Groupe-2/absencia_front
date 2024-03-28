@@ -84,6 +84,12 @@ button {
   cursor: pointer;
 }
 
+.button .label {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
 ul {
   margin: 0;
   padding: 0;

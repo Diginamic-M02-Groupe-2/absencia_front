@@ -6,7 +6,7 @@ import { HttpMethod } from "../../../services/api.service";
 @Component({
   selector: "app-absence-request-table",
   templateUrl: "./table.component.html",
-  styleUrl: "./table.component.scss",
+  styleUrl: "./table.component.module.scss",
 })
 export class AbsenceRequestTableComponent {
 
