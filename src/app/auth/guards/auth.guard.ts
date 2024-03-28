@@ -25,7 +25,7 @@ export class AuthGuard {
 
     const requiredPermission: string = route.data['requiredPermission'];
 
-    if (!await this.permissionsService.hasPermission(requiredPermission)) {
+    if (!(await this.permissionsService.hasPermission(requiredPermission))) {
       this.router.navigateByUrl(Route.ABSENCE_REQUEST_LIST);
       return false;
     }
