@@ -43,7 +43,7 @@
 
       <td>
         <div class="actions">
-          <button type="button" class="deleteButton">
+          <button type="button" class="deleteButton" *ngxPermissionsOnly="['CAN_DELETE_ABSENCE_REQUEST']">
             <i class="pi pi-trash"></i>
 
             Supprimer

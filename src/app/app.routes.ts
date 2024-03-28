@@ -36,6 +36,7 @@ export const routes: Routes = [
     path: Route.ABSENCE_REQUEST_CREATE,
     component: AbsenceRequestNewComponent,
     canActivate: [AuthGuard],
+    data: { requiredPermission: 'CAN_ROUTE_TO_POST_ABSENCE_REQUEST' }
   }, {
     path: Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST,
     component: PublicHolidaysAndEmployerWtrListComponent,
