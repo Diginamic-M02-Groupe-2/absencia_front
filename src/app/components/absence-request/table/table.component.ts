@@ -15,17 +15,21 @@ export class AbsenceRequestTableComponent {
   @Input()
   absenceRequests!: AbsenceRequest[];
 
+  absenceRequest?: AbsenceRequest;
+
   absenceTypeOptions: Option[] = absenceTypeOptions;
 
   editDialogVisible: boolean = false;
 
   deleteDialogVisible: boolean = false;
 
-  onClickEditButton(): void {
+  onClickEditButton(absenceRequest: AbsenceRequest): void {
+    this.absenceRequest = absenceRequest;
     this.editDialogVisible = true;
   }
 
-  onClickDeleteButton(): void {
+  onClickDeleteButton(absenceRequest: AbsenceRequest): void {
+    this.absenceRequest = absenceRequest;
     this.deleteDialogVisible = true;
   }
 

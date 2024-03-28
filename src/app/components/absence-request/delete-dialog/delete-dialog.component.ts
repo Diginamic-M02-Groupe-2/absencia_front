@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {Component, EventEmitter, Input, Output, SimpleChanges} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {AbsenceRequest} from "../../../entities/absence-request";
 import {ApiRoute, HttpMethod} from "../../../services/api.service";
 
 @Component({
@@ -12,7 +13,7 @@ export class AbsenceRequestDeleteDialogComponent {
 
   formMethod: HttpMethod = HttpMethod.DELETE;
 
-  formAction: string = ApiRoute.ABSENCE_REQUEST;
+  formAction: string = "";
 
   @Input()
   visible!: boolean;
@@ -20,10 +21,24 @@ export class AbsenceRequestDeleteDialogComponent {
   @Output()
   visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  @Input()
+  absenceRequest?: AbsenceRequest;
+
   constructor(
     private formBuilder: FormBuilder,
   ) {
     this.formGroup = this.formBuilder.group({});
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const absenceRequest = changes["absenceRequest"]?.currentValue as undefined|AbsenceRequest;
+
+    if (!absenceRequest) {
+      return;
+    }
+
+    this.absenceRequest = absenceRequest;
+    this.formAction = `${ApiRoute.ABSENCE_REQUEST}/${this.absenceRequest.id ?? ""}`;
   }
 
   onClose(): void {

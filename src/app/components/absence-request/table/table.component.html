@@ -43,7 +43,7 @@
 
       <td>
         <div class="actions">
-          <button type="button" class="button updateButton" (click)="onClickEditButton()" *ngxPermissionsOnly="['CAN_PATCH_ABSENCE_REQUEST']">
+          <button type="button" class="button updateButton" (click)="onClickEditButton(absenceRequest)" *ngxPermissionsOnly="['CAN_PATCH_ABSENCE_REQUEST']">
             <i class="pi pi-file-edit"></i>
 
             <span class="label">
@@ -51,7 +51,7 @@
             </span>
           </button>
 
-          <button type="button" class="button deleteButton" (click)="onClickDeleteButton()" *ngxPermissionsOnly="['CAN_DELETE_ABSENCE_REQUEST']">
+          <button type="button" class="button deleteButton" (click)="onClickDeleteButton(absenceRequest)" *ngxPermissionsOnly="['CAN_DELETE_ABSENCE_REQUEST']">
             <i class="pi pi-trash"></i>
 
             <span class="label">
@@ -64,6 +64,6 @@
   </ng-template>
 </p-table>
 
-<app-absence-request-edit-dialog [(visible)]="editDialogVisible" [absenceTypeOptions]="absenceTypeOptions" />
+<app-absence-request-edit-dialog [(visible)]="editDialogVisible" [absenceRequest]="absenceRequest" [absenceTypeOptions]="absenceTypeOptions" />
 
-<app-absence-request-delete-dialog [(visible)]="deleteDialogVisible" />
+<app-absence-request-delete-dialog [(visible)]="deleteDialogVisible" [absenceRequest]="absenceRequest" />

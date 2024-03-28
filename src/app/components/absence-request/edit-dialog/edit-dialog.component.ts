@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {Component, EventEmitter, Input, Output, SimpleChanges} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbsenceRequest} from "../../../entities/absence-request";
 import {Option} from "../../../models/option";
 import {ApiRoute, HttpMethod} from "../../../services/api.service";
 
@@ -13,13 +14,16 @@ export class AbsenceRequestEditDialogComponent {
 
   formMethod: HttpMethod = HttpMethod.PATCH;
 
-  formAction: string = ApiRoute.ABSENCE_REQUEST;
+  formAction: string = "";
 
   @Input()
   visible!: boolean;
 
   @Output()
   visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @Input()
+  absenceRequest?: AbsenceRequest;
 
   @Input()
   absenceTypeOptions!: Option[];
@@ -33,6 +37,17 @@ export class AbsenceRequestEditDialogComponent {
       type: [null, Validators.required],
       reason: ["", Validators.maxLength(255)],
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const absenceRequest = changes["absenceRequest"]?.currentValue as undefined|AbsenceRequest;
+
+    if (!absenceRequest) {
+      return;
+    }
+
+    this.absenceRequest = absenceRequest;
+    this.formAction = `${ApiRoute.ABSENCE_REQUEST}/${this.absenceRequest?.id ?? ""}`;
   }
 
   onClose(): void {
