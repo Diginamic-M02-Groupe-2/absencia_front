@@ -13,7 +13,8 @@
 <app-absence-request-table [absenceRequests]="absenceRequests" [isDialogVisible]="isDialogVisible"
   [formAction]="formAction" [formGroup]="formGroup" (triggerAbsenceRequest)="getAbsenceRequest($event)"
   (triggerDialog)="showDialog($event)" (triggerFormAction)="getFormAction($event)"
-  (triggerFormGroup)="getFormGroup($event)" (triggerFormMethod)="getFormMethod($event)"/>
+  (triggerFormGroup)="getFormGroup($event)" (triggerFormMethod)="getFormMethod($event)"
+/>
 
 <p class="remaining">
   {{remainingPaidLeaves}} congés payés restants<br />
@@ -22,28 +23,7 @@
 
 <p-toast position="top-right" [style]="{ top: '75px' }"></p-toast>
 
-<app-dialog>
-  <ng-template #header>
-    Confirmation de suppression
-  </ng-template>
-
-  <ng-template #body>
-    <p>
-      Etes-vous sûr(e) de vouloir supprimer cette demande d'absence ?<br />
-      Cette action est irréversible.
-    </p>
-  </ng-template>
-
-  <ng-template #footer>
-    <button type="button">
-      Annuler
-    </button>
-
-    <button type="submit">
-      Supprimer
-    </button>
-  </ng-template>
-</app-dialog>
+<app-absence-request-delete-dialog />
 
 <p-dialog
   header="{{action}} une demande d'absence"

@@ -1,4 +1,4 @@
-import {Component, ContentChild} from "@angular/core";
+import {Component, ContentChild, TemplateRef} from "@angular/core";
 
 @Component({
   selector: "app-dialog",
@@ -7,11 +7,8 @@ import {Component, ContentChild} from "@angular/core";
 })
 export class DialogComponent {
   @ContentChild("header")
-  header!: any;
+  header!: TemplateRef<HTMLElement>;
 
   @ContentChild("body")
-  body!: any;
-
-  @ContentChild("footer")
-  footer!: any;
+  body!: TemplateRef<HTMLElement>;
 }

@@ -1,16 +1,12 @@
 <p-dialog
   [modal]="true"
-  [visible]="true"
   [draggable]="false"
   [resizable]="false"
+  [visible]="true"
 >
   <ng-template pTemplate="header">
-    <ng-container [ngTemplateOutlet]="header"/>
+    <ng-container [ngTemplateOutlet]="header" />
   </ng-template>
 
   <ng-container [ngTemplateOutlet]="body" />
-
-  <ng-template pTemplate="footer">
-    <ng-container [ngTemplateOutlet]="footer" />
-  </ng-template>
 </p-dialog>
