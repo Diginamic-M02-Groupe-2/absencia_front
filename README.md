@@ -35,3 +35,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - [Utilisation de Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/download/)
 
 - [Utilisation de Chartjs](https://primeng.org/chart)
+
+- [Utilisation de ngx-permissions](https://www.npmjs.com/package/ngx-permissions)
