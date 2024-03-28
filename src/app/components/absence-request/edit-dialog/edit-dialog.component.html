@@ -4,7 +4,7 @@
   </ng-template>
 
   <ng-template #body>
-    <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction">
+    <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction" (postSubmit)="postSubmit()">
       <app-form-group>
         <app-datepicker
           [formGroup]="formGroup"

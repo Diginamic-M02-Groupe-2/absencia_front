@@ -14,6 +14,10 @@
       </th>
 
       <th>
+        Statut
+      </th>
+
+      <th>
         Motif
       </th>
 
@@ -34,6 +38,12 @@
       <td>
         <app-badge>
           {{absenceRequest.type|absenceType}}
+        </app-badge>
+      </td>
+
+      <td>
+        <app-badge>
+          {{absenceRequest.status|absenceRequestStatus}}
         </app-badge>
       </td>
 
@@ -64,6 +74,11 @@
   </ng-template>
 </p-table>
 
-<app-absence-request-edit-dialog [(visible)]="editDialogVisible" [absenceRequest]="absenceRequest" [absenceTypeOptions]="absenceTypeOptions" />
+<app-absence-request-edit-dialog
+  [(visible)]="editDialogVisible"
+  [absenceRequest]="absenceRequest"
+  [absenceTypeOptions]="absenceTypeOptions"
+  (onEdit)="onEdit(absenceRequest)"
+/>
 
-<app-absence-request-delete-dialog [(visible)]="deleteDialogVisible" [absenceRequest]="absenceRequest" />
+<app-absence-request-delete-dialog [(visible)]="deleteDialogVisible" [absenceRequest]="absenceRequest" (onDelete)="onDelete(absenceRequest)" />
