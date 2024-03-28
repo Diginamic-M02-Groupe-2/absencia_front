@@ -25,7 +25,7 @@ export class FormComponent {
   redirect?: string;
 
   @Output()
-  postSubmit: EventEmitter<any> = new EventEmitter();
+  postSubmit: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private router: Router,
@@ -35,18 +35,6 @@ export class FormComponent {
 
   async onSubmit(event: SubmitEvent): Promise<void> {
     event.preventDefault();
-
-    if (this.formGroup.invalid) {
-      this.formGroup.markAllAsTouched();
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Champs vides ou invalides',
-        detail: 'Vérifiez les champs.',
-        life: 5000,
-      });
-
-      return;
-    }
 
     const formData = this.getFormData();
 
@@ -72,7 +60,7 @@ export class FormComponent {
         this.messageService.add({
           severity: 'success',
           summary: 'Action validée',
-          detail: 'L action effectuée a été validée',
+          detail: response.message,
           life: 5000,
         });
 
@@ -89,9 +77,11 @@ export class FormComponent {
 
     for (const [key, control] of Object.entries(this.formGroup.controls)) {
       if (control.value instanceof Date) {
-        const date = control.value.toISOString().split("T")[0];
+        const timezoneOffset = control.value.getTimezoneOffset() * 60000;
+        const date = new Date(control.value.getTime() - timezoneOffset);
+        const isoString = date.toISOString().split("T")[0];
 
-        formData.append(key, date);
+        formData.append(key, isoString);
 
         continue;
       }

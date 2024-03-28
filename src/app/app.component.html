@@ -1,8 +1,12 @@
-<!-- TODO: Active link depending on current page -->
 <p-sidebar #sidebarRef [(visible)]="sidebarVisible" class="drawer">
   <ul class="drawer__list">
     <li class="drawer__list__item">
-      <a [routerLink]="absenceRequestRoute" class="drawer__list__item__link">
+      <a
+        [routerLink]="absenceRequestRoute"
+        routerLinkActive="drawer__list__item__linkActive"
+        class="drawer__list__item__link"
+        (click)="closeBack($event)"
+      >
         <i class="pi pi-briefcase"></i>
 
         Demandes d'absence
@@ -10,7 +14,12 @@
     </li>
 
     <li class="drawer__list__item">
-      <a [routerLink]="publicHolidaysAndEmployerWtrRoute" class="drawer__list__item__link">
+      <a
+        [routerLink]="publicHolidaysAndEmployerWtrRoute"
+        routerLinkActive="drawer__list__item__linkActive"
+        class="drawer__list__item__link"
+        (click)="closeBack($event)"
+      >
         <i class="pi pi-calendar"></i>
 
         Jours fériés et RTT employeur
@@ -18,24 +27,30 @@
     </li>
   </ul>
 
-  <button class="drawer__logOutLink" (click)="onLogOut()">
+  <button class="drawer__logOutLink" (click)="onLogOut();closeBack($event)">
     <i class="pi pi-sign-out drawer__logOutLink__icon"></i>
 
     Se déconnecter
   </button>
 </p-sidebar>
 
-<!-- TODO: Active link depending on current page -->
 <p-toast position="top-right" [showTransformOptions]="'translateY(100px)'"></p-toast>
 
 <header *ngIf="isLogged" class="header">
   <button class="header__toggleMenuButton" (click)="toggleSidebar(true)">
     <i class="pi pi-bars"></i>
+
     Absencia
   </button>
 
   <nav class="header__navBar">
     <ul class="header__navBar__list">
+      <li class="header__navBar__list__item">
+        <a [routerLink]="absenceRequestRoute" class="logoLink">
+          Absencia
+        </a>
+      </li>
+
       <li class="header__navBar__list__item">
         <a [routerLink]="absenceRequestRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
           <i class="pi pi-briefcase"></i>
@@ -56,6 +71,7 @@
 
   <button class="header__logOutLink" (click)="onLogOut()">
     <i class="pi pi-sign-out header__logOutLink__icon"></i>
+
     Se déconnecter
   </button>
 </header>
@@ -73,7 +89,11 @@
     </p>
 
     <p class="footer__authors">
-      Projet final de la formation Diginamic CDA (2023-2024) réalisé par <a href="https://github.com/CedricBds">Cédric Baudais</a>, <a href="https://github.com/PamelaCalcei">Pamela Calcei</a>, <a href="https://github.com/Nerfez">Clément Olivier</a> et <a href="https://github.com/matteokeole" target="_blank">Mattéo Legagneux</a>.
+      Projet final de la formation Diginamic CDA (2023-2024) réalisé par
+      <a href="https://github.com/CedricBds">Cédric Baudais</a>,
+      <a href="https://github.com/PamelaCalcei">Pamela Calcei</a>,
+      <a href="https://github.com/Nerfez">Clément Olivier</a> et
+      <a href="https://github.com/matteokeole" target="_blank">Mattéo Legagneux</a>.
     </p>
   </div>
 </footer>

@@ -2,6 +2,7 @@ import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
 import {ReactiveFormsModule} from "@angular/forms";
 import {CalendarModule} from "primeng/calendar";
+import {DialogModule} from "primeng/dialog";
 import {DropdownModule} from "primeng/dropdown";
 import {InputTextModule} from "primeng/inputtext";
 import {SelectButtonModule} from "primeng/selectbutton";
@@ -10,6 +11,7 @@ import {AppRoutingModule} from "../app.routes";
 import {BackLinkComponent} from "../components/back-link/back-link.component";
 import {BadgeComponent} from "../components/badge/badge.component";
 import {DatepickerComponent} from "../components/datepicker/datepicker.component";
+import {DialogComponent} from "../components/dialog/dialog.component";
 import {FormComponent} from "../components/form/form.component";
 import {FormFieldComponent} from "../components/form-field/form-field.component";
 import {FormFooterComponent} from "../components/form-footer/form-footer.component";
@@ -23,6 +25,7 @@ import {TodoComponent} from "../components/todo/todo.component";
     BackLinkComponent,
 	  BadgeComponent,
     DatepickerComponent,
+    DialogComponent,
     FormComponent,
     FormFieldComponent,
     FormFooterComponent,
@@ -36,6 +39,7 @@ import {TodoComponent} from "../components/todo/todo.component";
     CalendarModule,
     CommonModule,
     DropdownModule,
+    DialogModule,
     InputTextModule,
     ReactiveFormsModule,
     SelectButtonModule,
@@ -45,6 +49,7 @@ import {TodoComponent} from "../components/todo/todo.component";
     BackLinkComponent,
     BadgeComponent,
     DatepickerComponent,
+    DialogComponent,
     FormComponent,
     FormFieldComponent,
     FormFooterComponent,
