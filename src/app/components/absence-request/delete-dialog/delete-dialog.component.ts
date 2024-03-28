@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {ApiRoute, HttpMethod} from "../../../../services/api.service";
+import {ApiRoute, HttpMethod} from "../../../services/api.service";
 
 @Component({
   selector: "app-absence-request-delete-dialog",

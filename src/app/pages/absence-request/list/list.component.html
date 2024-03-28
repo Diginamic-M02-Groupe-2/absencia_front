@@ -23,7 +23,9 @@
 
 <p-toast position="top-right" [style]="{ top: '75px' }"></p-toast>
 
-<app-absence-request-delete-dialog />
+<app-absence-request-edit-dialog [absenceTypeOptions]="absenceTypeOptions" />
+
+<!-- <app-absence-request-delete-dialog /> -->
 
 <p-dialog
   header="{{action}} une demande d'absence"
@@ -57,7 +59,7 @@
       name="type"
       label="Type d'absence"
       placeholder="Sélectionnez un type d'absence"
-      [options]="absenceTypes"
+      [options]="absenceTypeOptions"
       [segmented]="false"
     />
 
@@ -65,8 +67,8 @@
       [formGroup]="formGroup"
       type="text"
       name="reason"
-      label="Raison"
-      placeholder="Indiquez une raison"
+      label="Motif"
+      placeholder="Indiquez un motif"
     />
 
     <app-form-footer>

@@ -1,0 +1,23 @@
+@import "../../../../variables.scss";
+
+.cancelButton {
+  padding: 8px;
+  background: none;
+  color: $tertiary;
+  transition: background-color .2s;
+
+  &:hover {
+    background-color: lighten($tertiary, 50%);
+  }
+}
+
+.saveButton {
+  padding: 8px;
+  background-color: $tertiary;
+  color: $white;
+  transition: background-color .2s;
+
+  &:hover {
+    background-color: darken($tertiary, 10%);
+  }
+}

@@ -37,7 +37,7 @@ export class AbsenceRequestListComponent {
 
   formGroup!: FormGroup;
 
-  absenceTypes: Option[] = [
+  absenceTypeOptions: Option[] = [
     { label: 'Congé payé', value: 'PAID_LEAVE' },
     { label: 'Congé sans solde', value: 'UNPAID_LEAVE' },
     { label: 'Jour de récupération', value: 'EMPLOYEE_WTR' },
