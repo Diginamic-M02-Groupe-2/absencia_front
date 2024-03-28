@@ -1,16 +1,16 @@
 <h1>
   Demandes d'absence
 
-  <a routerLink="create" class="createButton">
-    <i class="pi pi-file-edit"></i>
+  <a routerLink="create" class="button createButton">
+    <i class="pi pi-plus"></i>
 
-    <span class="createButton__label">
+    <span class="label">
       Créer une demande d'absence
     </span>
   </a>
 </h1>
 
-<app-absence-request-table [absenceRequests]="absenceRequests ?? []" />
+<app-absence-request-table [absenceRequests]="absenceRequests" (openEditDialog)="openEditDialog()" (openDeleteDialog)="openDeleteDialog()" />
 
 <p class="remaining">
   {{remainingPaidLeaves}} congés payés restants<br />
@@ -18,3 +18,81 @@
 </p>
 
 <p-toast position="top-right" [style]="{ top: '75px' }"></p-toast>
+
+<app-absence-request-edit-dialog [visible]="editDialogVisible" [absenceTypeOptions]="absenceTypeOptions" />
+
+<app-absence-request-delete-dialog [visible]="deleteDialogVisible" />
+
+<!-- <p-dialog
+  header="{{action}} une demande d'absence"
+  [(visible)]="isDialogVisible"
+  [modal]="true"
+  [style]="{ width: '70vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  [dismissableMask]="true"
+  (onHide)="clearDialog()"
+>
+  <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction" *ngIf="action === 'Modifier'">
+    <app-form-group>
+      <app-datepicker
+        [formGroup]="formGroup"
+        name="startedAt"
+        label="Date de début"
+        placeholder="Sélectionnez une date de début"
+      />
+
+      <app-datepicker
+        [formGroup]="formGroup"
+        name="endedAt"
+        label="Date de fin"
+        placeholder="Sélectionnez une date de fin"
+      />
+    </app-form-group>
+
+    <app-select
+      [formGroup]="formGroup"
+      name="type"
+      label="Type d'absence"
+      placeholder="Sélectionnez un type d'absence"
+      [options]="absenceTypeOptions"
+      [segmented]="false"
+    />
+
+    <app-text-input
+      [formGroup]="formGroup"
+      type="text"
+      name="reason"
+      label="Motif"
+      placeholder="Indiquez un motif"
+    />
+
+    <app-form-footer>
+      <button
+        type="button"
+        class="cancelButton"
+        (click)="clearDialog()"
+      >
+        Annuler
+      </button>
+
+      <button type="submit" class="updateButton">Envoyer</button>
+    </app-form-footer>
+  </app-form>
+
+  <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction" *ngIf="action === 'Supprimer'">
+    <p>Voulez-vous vraiment supprimer la demande d'absence ?</p>
+
+    <app-form-footer>
+      <button
+        type="button"
+        class="cancelButton"
+        (click)="clearDialog()"
+      >
+        Annuler
+      </button>
+
+      <button type="submit" class="deleteButton">Supprimer</button>
+    </app-form-footer>
+  </app-form>
+</p-dialog> -->

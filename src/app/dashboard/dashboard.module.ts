@@ -5,6 +5,9 @@ import { AbsenceTypePipe } from '../pipes/absence-type.pipe';
 import { AbsenceRequestStatusPipe } from '../pipes/absence-request-status.pipe';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
+import { DialogModule } from 'primeng/dialog';
+import { ComponentsModule } from '../pages/components/components.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -13,7 +16,10 @@ import { ToastModule } from 'primeng/toast';
     AbsenceTypePipe,
     AbsenceRequestStatusPipe,
     ButtonModule,
-    ToastModule
+    ToastModule,
+    DialogModule,
+    ComponentsModule,
+    FormsModule,
   ],
 })
 export class DashboardModule {}

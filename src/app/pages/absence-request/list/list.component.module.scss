@@ -14,15 +14,70 @@
     background-color: scale-color($success, $alpha: -25%);
   }
 
-  &__label {
-    @media (max-width: 768px) {
-      display: none;
-    }
+  .pi {
+    font-size: .75rem;
+    font-weight: 900;
   }
 }
 
 .remaining {
-  line-height: 1.25;
   margin-top: 8px;
   text-align: end;
+}
+
+.cancelButton {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 8px;
+  padding: 4px 8px;
+  background-color: $tertiary;
+  color: $white;
+  font-size: .75rem;
+  transition: background-color 0.2s;
+
+  .pi {
+    font-size: .75rem;
+  }
+
+  &:hover {
+    background-color: scale-color($tertiary, $alpha: -25%);
+  }
+}
+
+.updateButton {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 8px;
+  padding: 4px 8px;
+  background-color: $success;
+  color: $white;
+  font-size: .75rem;
+  transition: background-color 0.2s;
+
+  .pi {
+    font-size: .75rem;
+  }
+
+  &:hover {
+    background-color: scale-color($success, $alpha: -25%);
+  }
+}
+
+.deleteButton {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 8px;
+  padding: 4px 8px;
+  background-color: $error;
+  color: $white;
+  font-size: .75rem;
+  transition: background-color 0.2s;
+
+  .pi {
+    font-size: .75rem;
+  }
+
+  &:hover {
+    background-color: scale-color($error, $alpha: -25%);
+  }
 }

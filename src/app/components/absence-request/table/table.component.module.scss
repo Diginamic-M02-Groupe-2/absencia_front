@@ -1,11 +1,10 @@
 @import "../../../../variables.scss";
 
-:host::ng-deep p-table {
+p-table {
   th {
     padding: 8px;
     background-color: $white;
     color: $tertiary;
-    font-style: italic;
   }
 
   td {
@@ -17,6 +16,29 @@
       justify-content: flex-end;
       column-gap: 8px;
     }
+  }
+}
+
+.updateButton {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 8px;
+  padding: 4px 8px;
+  background-color: $tertiary;
+  color: $white;
+  font-size: .75rem;
+  transition: background-color 0.2s;
+
+  .pi {
+    font-size: .75rem;
+  }
+
+  &:hover {
+    background-color: scale-color($tertiary, $alpha: -25%);
+  }
+
+  @media (max-width: 768px) {
+    padding: 8px;
   }
 }
 
@@ -36,5 +58,9 @@
 
   &:hover {
     background-color: scale-color($error, $alpha: -25%);
+  }
+
+  @media (max-width: 768px) {
+    padding: 8px;
   }
 }

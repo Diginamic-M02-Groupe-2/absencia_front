@@ -2,11 +2,11 @@
   <ng-template pTemplate="header">
     <tr>
       <th>
-        Date de début
+        Début
       </th>
 
       <th>
-        Date de fin
+        Fin
       </th>
 
       <th>
@@ -43,10 +43,20 @@
 
       <td>
         <div class="actions">
-          <button type="button" class="deleteButton">
+          <button type="button" class="button updateButton" (click)="onClickEditButton()">
+            <i class="pi pi-file-edit"></i>
+
+            <span class="label">
+              Modifier
+            </span>
+          </button>
+
+          <button type="button" class="button deleteButton" (click)="onClickDeleteButton()">
             <i class="pi pi-trash"></i>
 
-            Supprimer
+            <span class="label">
+              Supprimer
+            </span>
           </button>
         </div>
       </td>
