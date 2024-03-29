@@ -1,8 +1,45 @@
-<h1>
-  Jours fériés et RTT employeur
-</h1>
+<h1>Jours fériés et RTT employeur</h1>
 
-<app-todo>
+<!-- <app-todo>
   Received public holidays: {{(publicHolidays|async)?.length}}<br />
   Received employer WTR: {{(employerWtr|async)?.length}}
-</app-todo>
+</app-todo> -->
+
+<div class="calendar-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th *ngFor="let day of weekDays" class="text-center header-day p-4">
+          {{ day }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let week of calendar">
+        <td
+          *ngFor="let day of week"
+          class="calendar-cell"
+          [ngClass]="{
+            'sunday-cell': isSunday(day),
+            'public-holiday-cell': isPublicHoliday(day)
+          }"
+        >
+          <div class="d-flex flex-column h-100">
+            <div class="flex-grow-1"></div>
+            <button
+              *ngIf="isEmployerWtrDay(day)"
+              type="button"
+              class="showButton"
+              (click)="showEmployerWtrDetails(day)"
+            >
+              <ng-container *ngFor="let label of getEmployerLabels(day)">
+                {{ label }}<br />
+              </ng-container>
+            </button>
+            <div class="text-right day-number">{{ day }}</div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
