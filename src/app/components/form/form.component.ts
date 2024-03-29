@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService, HttpMethod } from '../../services/api.service';
@@ -24,6 +24,9 @@ export class FormComponent {
   @Input()
   redirect?: string;
 
+  @Output()
+  postSubmit: EventEmitter<any> = new EventEmitter<any>();
+
   constructor(
     private router: Router,
     private apiService: ApiService,
@@ -32,16 +35,6 @@ export class FormComponent {
 
   async onSubmit(event: SubmitEvent): Promise<void> {
     event.preventDefault();
-    if (this.formGroup.invalid) {
-      this.formGroup.markAllAsTouched();
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Champs vides ou invalides',
-        detail: 'Vérifiez les champs.',
-        life: 5000,
-      });
-      return;
-    }
 
     const formData = this.getFormData();
 
@@ -67,13 +60,15 @@ export class FormComponent {
         this.messageService.add({
           severity: 'success',
           summary: 'Action validée',
-          detail: 'L action effectuée a été validée',
+          detail: response.message,
           life: 5000,
         });
-        if (!this.redirect) {
-          return;
+
+        if (this.postSubmit) {
+          this.postSubmit.emit(response);
+        } else if (this.redirect) {
+          this.router.navigateByUrl(this.redirect);
         }
-        this.router.navigateByUrl(this.redirect);
       });
   }
 
@@ -81,9 +76,17 @@ export class FormComponent {
     const formData = new FormData();
 
     for (const [key, control] of Object.entries(this.formGroup.controls)) {
-      control.value instanceof Date
-        ? formData.append(key, (control.value as Date).toJSON())
-        : formData.append(key, control.value);
+      if (control.value instanceof Date) {
+        const timezoneOffset = control.value.getTimezoneOffset() * 60000;
+        const date = new Date(control.value.getTime() - timezoneOffset);
+        const isoString = date.toISOString().split("T")[0];
+
+        formData.append(key, isoString);
+
+        continue;
+      }
+
+      formData.append(key, control.value);
     }
 
     return formData;

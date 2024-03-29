@@ -1,0 +1,65 @@
+<p-table [value]="absenceRequests">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>
+        Début
+      </th>
+
+      <th>
+        Fin
+      </th>
+
+      <th>
+        Type
+      </th>
+
+      <th>
+        Motif
+      </th>
+
+      <th></th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-absenceRequest>
+    <tr>
+      <td>
+        {{absenceRequest.startedAt|date}}
+      </td>
+
+      <td>
+        {{absenceRequest.endedAt|date}}
+      </td>
+
+      <td>
+        <app-badge>
+          {{absenceRequest.type|absenceType}}
+        </app-badge>
+      </td>
+
+      <td>
+        {{absenceRequest.reason}}
+      </td>
+
+      <td>
+        <div class="actions">
+          <button type="button" class="button updateButton" (click)="onClickEditButton()">
+            <i class="pi pi-file-edit"></i>
+
+            <span class="label">
+              Modifier
+            </span>
+          </button>
+
+          <button type="button" class="button deleteButton" (click)="onClickDeleteButton()">
+            <i class="pi pi-trash"></i>
+
+            <span class="label">
+              Supprimer
+            </span>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

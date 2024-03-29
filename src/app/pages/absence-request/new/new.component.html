@@ -1,0 +1,51 @@
+<app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction" [redirect]="redirect">
+  <div>
+    <app-back-link routerLink="/absence-requests" />
+
+    <h1>
+      Nouvelle demande d'absence
+    </h1>
+  </div>
+
+  <app-form-group>
+    <app-datepicker
+      [formGroup]="formGroup"
+      name="startedAt"
+      label="Date de début"
+      placeholder="Sélectionnez une date de début"
+    />
+
+    <app-datepicker
+      [formGroup]="formGroup"
+      name="endedAt"
+      label="Date de fin"
+      placeholder="Sélectionnez une date de fin"
+    />
+  </app-form-group>
+
+  <app-select
+    [formGroup]="formGroup"
+    name="type"
+    label="Type d'absence"
+    placeholder="Sélectionnez un type d'absence"
+    [options]="absenceTypes"
+  />
+
+  <app-text-input
+    [formGroup]="formGroup"
+    type="text"
+    name="reason"
+    label="Motif"
+    placeholder="Indiquez un motif"
+  />
+
+  <app-form-footer>
+    <button type="button" class="button" (click)="clearInputs()">
+      Annuler
+    </button>
+
+    <button type="submit" class="button button__submit">
+      Créer la demande
+    </button>
+  </app-form-footer>
+</app-form>

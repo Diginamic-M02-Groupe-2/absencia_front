@@ -1,65 +1,35 @@
-import { Component } from '@angular/core';
-import { AuthentificationService } from '../../../services/authentification.service';
-import { Router } from '@angular/router';
-import { RoutesPath } from '../../../models/route';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ResponseLoginError } from '../../../models/response-login-error';
+import {Component} from "@angular/core";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+import {Route} from "../../../models/route";
+import {LoginResponse} from "../../../models/login-response";
+import {HttpMethod} from "../../../services/api.service";
+import {AuthentificationService} from "../../../services/authentification.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent {
   formGroup: FormGroup;
-
-  formErrors: ResponseLoginError = {};
+  formMethod: HttpMethod = HttpMethod.POST;
+  formAction: string = "/login";
 
   constructor(
-    private authentificationService: AuthentificationService,
-    private router: Router
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthentificationService,
   ) {
-    this.formGroup = new FormGroup({
-      password: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required]),
+    this.formGroup = this.formBuilder.group({
+      email: ["", [Validators.required]],
+      password: ["", [Validators.required]],
     });
   }
 
-  async onLogin(event: Event): Promise<boolean> {
-    event.preventDefault();
-    if (this.formGroup.invalid) {
-      this.formGroup.markAllAsTouched();
-      return false;
-    }
+  async onPostSubmit(response: LoginResponse): Promise<void> {
+    await this.authenticationService.createSession(response.token);
 
-    try {
-      const formData = this.getFormData();
-      const isUserConnected = await this.authentificationService.logIn(
-        formData
-      );
-
-      if (isUserConnected !== true) {
-        this.formErrors = isUserConnected as ResponseLoginError;
-        return false;
-      }
-
-      this.router.navigateByUrl(RoutesPath.ROUTE_USER_ABSENCE_REQUESTS);
-      return true;
-    } catch (error) {
-      console.error("Une erreur s'est produite lors de la connexion :", error);
-      return false;
-    }
-  }
-
-  private getFormData(): FormData {
-    const formData = new FormData();
-
-    for (const [key, control] of Object.entries(this.formGroup.controls)) {
-      control.value instanceof Date
-        ? formData.append(key, (control.value as Date).toJSON())
-        : formData.append(key, control.value);
-    }
-
-    return formData;
+    this.router.navigateByUrl(Route.ABSENCE_REQUEST_LIST);
   }
 }

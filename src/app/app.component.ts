@@ -1,18 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificationService } from './services/authentification.service';
 import { Sidebar } from 'primeng/sidebar';
-import { RoutesPath } from './models/route';
+import { Route } from './models/route';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  routeToDashboard = `/${RoutesPath.ROUTE_USER_ABSENCE_REQUESTS}`;
-  routeToLogin = `/${RoutesPath.ROUTE_LOGIN}`;
-  routeToCreateAbsencesRequest = `/${RoutesPath.ROUTE_ADMIN_ABSENCE_REQUESTS_CREATE}`;
+export class AppComponent {
+  absenceRequestRoute = Route.ABSENCE_REQUEST_LIST;
+
+  loginRoute = Route.LOGIN;
+
+  publicHolidaysAndEmployerWtrRoute = Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST;
+ 
+  createAbsenceRequestRoute = Route.ABSENCE_REQUEST_CREATE;
 
   firstName: string = '';
 
@@ -24,8 +28,6 @@ export class AppComponent implements OnInit {
     private authentificationService: AuthentificationService,
     private router: Router
   ) {}
-
-  async ngOnInit() {}
 
   isActive = (path: string) => {
     return path === this.router.url;

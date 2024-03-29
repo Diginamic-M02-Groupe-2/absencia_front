@@ -1,40 +1,39 @@
 <div class="login-main-body">
-  <img
-    class="logo-login"
-    src="/assets/login/leftSideLogin.svg"
-    alt="logo absencia"
-  />
-  <div class="login-container">
-    <h1>Connexion</h1>
+  <img src="/assets/login/leftSideLogin.svg" alt="Logo" class="logo-login" />
 
-    <form (submit)="onLogin($event)" [formGroup]="formGroup">
+  <div class="login-container">
+    <h1>
+      Connexion
+    </h1>
+
+    <app-form
+      [formGroup]="formGroup"
+      [method]="formMethod"
+      [action]="formAction"
+      (postSubmit)="onPostSubmit($event)"
+    >
       <app-text-input
         [formGroup]="formGroup"
         type="text"
         name="email"
-        label="email"
-        placeholder="email"
+        label="Email"
+        placeholder="Email"
       />
-      <div *ngIf="formErrors.email" class="error-message">
-        {{ formErrors.email }}
-      </div>
 
       <app-text-input
         [formGroup]="formGroup"
         type="password"
         name="password"
-        label="mot de passe"
-        placeholder="mot de passe"
+        label="Mot de passe"
+        placeholder="Mot de passe"
+        autocomplete="current-password"
       />
-      <div *ngIf="formErrors.password" class="error-message">
-        {{ formErrors.password }}
-      </div>
 
       <app-form-footer>
         <button type="submit" class="button button__submit">
           Se connecter
         </button>
       </app-form-footer>
-    </form>
+    </app-form>
   </div>
 </div>

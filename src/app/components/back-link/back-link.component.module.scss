@@ -1,0 +1,15 @@
+@import "../../../variables.scss";
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 2px;
+  color: scale-color($tertiary, $alpha: -50%);
+  font-size: .75rem;
+  font-weight: 900;
+  transition: color .2s;
+
+  &:hover {
+    color: $tertiary;
+  }
+}

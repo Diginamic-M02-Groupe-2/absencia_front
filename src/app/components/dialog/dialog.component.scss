@@ -1,0 +1,32 @@
+@import "../../../variables.scss";
+
+:host::ng-deep .p-dialog {
+  width: 700px;
+  margin: 0 16px;
+  box-shadow: 0 4px 8px $shadow;
+
+  .p-dialog-header {
+    padding: 8px;
+    border-radius: 4px 4px 0 0;
+    color: $tertiary;
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+
+    .p-dialog-header-close {
+      box-shadow: none;
+    }
+  }
+
+  .p-dialog-content {
+    padding: 8px;
+  }
+
+  .p-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 8px;
+    padding: 8px;
+    border-radius: 0 0 4px 4px;
+  }
+}
