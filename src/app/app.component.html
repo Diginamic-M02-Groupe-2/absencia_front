@@ -1,4 +1,9 @@
-<p-sidebar #sidebarRef [(visible)]="sidebarVisible" class="drawer">
+<!-- TODO: Link URLs -->
+<!-- TODO: Active link depending on current page -->
+<p-sidebar #sidebarRef [(visible)]="sidebarVisible" class="drawer" [showCloseIcon]="false">
+  <button class="drawer__close-button" (click)="closeBack($event)">
+    <i class="pi pi-times"></i>
+  </button>
   <ul class="drawer__list">
     <li class="drawer__list__item">
       <a
