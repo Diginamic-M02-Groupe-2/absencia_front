@@ -8,7 +8,6 @@ export class AbsenceRequest {
   type!: AbsenceType;
   startedAt!: Date;
   endedAt!: Date;
-  deletedAt?: Date;
   status!: AbsenceRequestStatus;
   reason?: string | null;
 }

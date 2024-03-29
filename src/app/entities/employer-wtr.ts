@@ -5,5 +5,4 @@ export class EmployerWtr {
   status!: EmployerWtrStatus;
   date!: Date;
   label!: String;
-  deletedAt?: Date;
 }
