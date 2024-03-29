@@ -23,7 +23,17 @@ export class AuthentificationService {
     private userService: UserService,
     private messageService: MessageService,
     private permissionsService: NgxPermissionsService
-  ) {}
+  ) {
+    this.loadSession();
+  }
+
+  async loadSession(): Promise<void> {
+    const token = sessionStorage.getItem(TOKEN);
+    if (token) {
+      const user: User = JSON.parse(sessionStorage.getItem(CURRENT_USER) || '{}');
+      this.loadPermissions(user.role);
+    }
+  }
 
   async createSession(jwt: string): Promise<void> {
     sessionStorage.setItem(TOKEN, jwt);
@@ -31,9 +41,13 @@ export class AuthentificationService {
     const user = await firstValueFrom(this.userService.getCurrentUser());
     sessionStorage.setItem(CURRENT_USER, JSON.stringify(user));
 
+    this.loadPermissions(user.role);
+  }
+
+  loadPermissions(role: Role): void {
     let rolePermissions: string[] = [];
 
-    switch (user.role) {
+    switch (role) {
       case Role.EMPLOYEE:
         rolePermissions = Object.values(ALLOWED_PERMISSIONS[Role.EMPLOYEE]);
         break;
