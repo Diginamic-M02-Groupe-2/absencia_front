@@ -62,11 +62,9 @@ export class AuthentificationService {
         });
       })
       .add(() => {
-        setTimeout(() => {
-          sessionStorage.removeItem(CURRENT_USER);
-          sessionStorage.removeItem(TOKEN);
-          this.router.navigateByUrl(Route.LOGIN);
-        }, 2000);
+        sessionStorage.removeItem(CURRENT_USER);
+        sessionStorage.removeItem(TOKEN);
+        this.router.navigateByUrl(Route.LOGIN);
       });
   }
 
