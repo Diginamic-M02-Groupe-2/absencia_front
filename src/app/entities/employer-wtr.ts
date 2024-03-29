@@ -4,5 +4,6 @@ export class EmployerWtr {
   id!: number;
   status!: EmployerWtrStatus;
   date!: Date;
-  label!: string;
+  label!: String;
+  deletedAt?: Date;
 }

@@ -1,5 +1,6 @@
 export class PublicHoliday {
   id!: number;
   date!: Date;
-  label!: string;
+  label!: String;
+  worked!: boolean;
 }
