@@ -4,5 +4,5 @@ export class EmployerWtr {
   id!: number;
   status!: EmployerWtrStatus;
   date!: Date;
-  label!: String;
+  label!: string;
 }
