@@ -1,4 +1,4 @@
-<app-dialog [visible]="visible">
+<app-dialog [(visible)]="visible">
   <ng-template #header>
     Suppression
   </ng-template>
@@ -9,9 +9,9 @@
       Cette action est irréversible.
     </p>
 
-    <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction">
+    <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction" (postSubmit)="postSubmit()">
       <app-form-footer>
-        <button type="button" class="cancelButton" (click)="closeDialog()">
+        <button type="button" class="cancelButton" (click)="onClose()">
           Annuler
         </button>
 

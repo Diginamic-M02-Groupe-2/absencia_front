@@ -3,7 +3,6 @@ import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {DialogModule} from "primeng/dialog";
 import {TableModule} from "primeng/table";
-import {ToastModule} from "primeng/toast";
 import {AbsenceRequestListComponent} from "./list.component";
 import {AppRoutingModule} from "../../../app.routes";
 import {AbsenceRequestTableComponent} from "../../../components/absence-request/table/table.component";
@@ -30,7 +29,6 @@ import { NgxPermissionsModule } from "ngx-permissions";
     AbsenceTypePipe,
     SharedModule,
     TableModule,
-    ToastModule,
     DialogModule,
     ComponentsModule,
     FormsModule,

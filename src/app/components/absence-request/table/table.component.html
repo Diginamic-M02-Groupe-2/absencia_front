@@ -14,6 +14,10 @@
       </th>
 
       <th>
+        Statut
+      </th>
+
+      <th>
         Motif
       </th>
 
@@ -38,12 +42,18 @@
       </td>
 
       <td>
+        <app-badge>
+          {{absenceRequest.status|absenceRequestStatus}}
+        </app-badge>
+      </td>
+
+      <td>
         {{absenceRequest.reason}}
       </td>
 
       <td>
         <div class="actions">
-          <button type="button" class="button updateButton" (click)="onClickEditButton()" *ngxPermissionsOnly="['CAN_PATCH_ABSENCE_REQUEST']">
+          <button type="button" class="button updateButton" (click)="onClickEditButton(absenceRequest)" *ngxPermissionsOnly="['CAN_PATCH_ABSENCE_REQUEST']">
             <i class="pi pi-file-edit"></i>
 
             <span class="label">
@@ -51,7 +61,7 @@
             </span>
           </button>
 
-          <button type="button" class="button deleteButton" (click)="onClickDeleteButton()" *ngxPermissionsOnly="['CAN_DELETE_ABSENCE_REQUEST']">
+          <button type="button" class="button deleteButton" (click)="onClickDeleteButton(absenceRequest)" *ngxPermissionsOnly="['CAN_DELETE_ABSENCE_REQUEST']">
             <i class="pi pi-trash"></i>
 
             <span class="label">
@@ -63,3 +73,18 @@
     </tr>
   </ng-template>
 </p-table>
+
+<app-absence-request-edit-dialog
+  *ngIf="absenceRequest"
+  [(visible)]="editDialogVisible"
+  [absenceRequest]="absenceRequest"
+  [absenceTypeOptions]="absenceTypeOptions"
+  (onEdit)="onEdit(absenceRequest)"
+/>
+
+<app-absence-request-delete-dialog
+  *ngIf="absenceRequest"
+  [(visible)]="deleteDialogVisible"
+  [absenceRequest]="absenceRequest"
+  (onDelete)="onDelete(absenceRequest)"
+/>

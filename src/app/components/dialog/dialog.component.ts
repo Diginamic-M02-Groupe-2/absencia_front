@@ -1,4 +1,4 @@
-import {Component, ContentChild, Input, TemplateRef} from "@angular/core";
+import {Component, ContentChild, EventEmitter, Input, Output, TemplateRef} from "@angular/core";
 
 @Component({
   selector: "app-dialog",
@@ -7,7 +7,10 @@ import {Component, ContentChild, Input, TemplateRef} from "@angular/core";
 })
 export class DialogComponent {
   @Input()
-  visible: boolean = false;
+  visible!: boolean;
+
+  @Output()
+  visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @ContentChild("header")
   header!: TemplateRef<HTMLElement>;
@@ -15,7 +18,9 @@ export class DialogComponent {
   @ContentChild("body")
   body!: TemplateRef<HTMLElement>;
 
-  onClose(): void {
+  onClickCloseButton(): void {
     this.visible = false;
+
+    this.visibleChange.emit(this.visible);
   }
 }

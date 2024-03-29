@@ -1,5 +1,7 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {Component, Input} from "@angular/core";
 import {AbsenceRequest} from "../../../entities/absence-request";
+import {absenceTypeOptions} from "../../../entities/absence-type";
+import {Option} from "../../../models/option";
 import {HttpMethod} from "../../../services/api.service";
 
 @Component({
@@ -13,42 +15,33 @@ export class AbsenceRequestTableComponent {
   @Input()
   absenceRequests!: AbsenceRequest[];
 
-  @Output()
-  openEditDialog: EventEmitter<void> = new EventEmitter<void>();
+  absenceRequest?: AbsenceRequest;
 
-  @Output()
-  openDeleteDialog: EventEmitter<void> = new EventEmitter<void>();
+  absenceTypeOptions: Option[] = absenceTypeOptions;
 
-  onClickEditButton(): void {
-    this.openEditDialog.emit();
+  editDialogVisible: boolean = false;
+
+  deleteDialogVisible: boolean = false;
+
+  onClickEditButton(absenceRequest: AbsenceRequest): void {
+    this.absenceRequest = absenceRequest;
+    this.editDialogVisible = true;
   }
 
-  onClickDeleteButton(): void {
-    this.openDeleteDialog.emit();
+  onClickDeleteButton(absenceRequest: AbsenceRequest): void {
+    this.absenceRequest = absenceRequest;
+    this.deleteDialogVisible = true;
   }
 
-  /* async openAbsenceRequestDialog(
-    method: string,
-    absenceRequest?: AbsenceRequest
-  ) {
-    this.isDialogVisible = true;
-    this.triggerDialog.emit(true);
+  onEdit(absenceRequest: AbsenceRequest): void {
+    const index = this.absenceRequests.findIndex(item => item.id === absenceRequest.id);
 
-    method === "PATCH"
-      ? this.triggerFormMethod.emit(HttpMethod.PATCH)
-      : this.triggerFormMethod.emit(HttpMethod.DELETE)
+    this.absenceRequests[index] = absenceRequest;
+  }
 
-    if (absenceRequest) {
-      this.formAction = `/absence-requests/${absenceRequest.id}`;
-      this.triggerFormAction.emit(this.formAction);
-      this.triggerAbsenceRequest.emit(absenceRequest);
-      this.formGroup.patchValue({
-        startedAt: new Date(absenceRequest.startedAt),
-        endedAt: new Date(absenceRequest.endedAt),
-        type: absenceRequest.type,
-        reason: absenceRequest.reason,
-      });
-      this.triggerFormGroup.emit(this.formGroup);
-    }
-  } */
+  onDelete(absenceRequest: AbsenceRequest): void {
+    const index = this.absenceRequests.findIndex(item => item.id === absenceRequest.id);
+
+    this.absenceRequests.splice(index, 1);
+  }
 }

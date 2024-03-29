@@ -47,12 +47,7 @@ export class FormComponent {
               api: value,
             });
           }
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Champs invalides',
-            detail: 'Vérifiez les champs.',
-            life: 5000,
-          });
+
           return throwError(() => error);
         })
       )
