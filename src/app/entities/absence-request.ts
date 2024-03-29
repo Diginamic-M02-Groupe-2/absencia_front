@@ -4,8 +4,8 @@ import {AbsenceType} from "./absence-type";
 export class AbsenceRequest {
   id!: number;
   type!: AbsenceType;
-  status!: AbsenceRequestStatus;
   startedAt!: Date;
   endedAt!: Date;
-  reason?: string;
+  status!: AbsenceRequestStatus;
+  reason?: string | null;
 }
