@@ -20,12 +20,20 @@
           *ngFor="let day of week"
           class="calendar-cell"
           [ngClass]="{
-            'sunday-cell': isSunday(day),
+            'week-cell': isWeekend(day),
             'public-holiday-cell': isPublicHoliday(day)
           }"
         >
           <div class="d-flex flex-column h-100">
             <div class="flex-grow-1"></div>
+            <p
+              *ngIf="isPublicHoliday(day)"
+              [ngClass]="{
+                'public-holiday-cell-text': isPublicHoliday(day)
+              }"
+            >
+              Lundi de pentecôte
+            </p>
             <button
               *ngIf="isEmployerWtrDay(day)"
               type="button"

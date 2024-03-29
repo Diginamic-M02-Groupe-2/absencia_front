@@ -92,16 +92,18 @@ export class PublicHolidaysAndEmployerWtrListComponent {
     }
   }
 
-  isSunday(day: number | null): boolean {
+  isWeekend(day: number | null): boolean {
     if (day === null) {
-      return false; // Null represents days outside the current month
+      return false;
     }
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth();
     const currentYear = currentDate.getFullYear();
     const date = new Date(currentYear, currentMonth, day);
-    return date.getDay() === 0; // 0 corresponds to Sunday
+    const dayOfWeek = date.getDay();
+    return dayOfWeek === 0 || dayOfWeek === 6;
   }
+  
 
   isPublicHoliday(day: number | null): boolean {
     if (day === null) {

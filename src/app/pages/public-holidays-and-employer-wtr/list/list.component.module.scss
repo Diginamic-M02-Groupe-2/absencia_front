@@ -27,14 +27,16 @@
 }
 
 .calendar-cell {
+  position: relative;
   border: 1px solid $light;
   padding: 5px;
   width: 14.28%;
   height: 150px;
 }
 
-.sunday-cell {
+.week-cell {
   background-color: scale-color($tertiary, $alpha: -25%);
+  color: $white;
 }
 
 .day-number {
@@ -43,4 +45,11 @@
 
 .public-holiday-cell {
   background-color: $secondary;
+}
+
+.public-holiday-cell-text {
+  position: absolute;
+  top: 5px; // Ajustez la valeur pour la position verticale
+  left: 5px; // Ajustez la valeur pour la position horizontale
+  color: darken($secondary, 50%);
 }
