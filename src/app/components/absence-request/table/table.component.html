@@ -43,7 +43,7 @@
 
       <td>
         <div class="actions">
-          <button type="button" class="button updateButton" (click)="onClickEditButton()">
+          <button type="button" class="button updateButton" (click)="onClickEditButton()" *ngxPermissionsOnly="['CAN_PATCH_ABSENCE_REQUEST']">
             <i class="pi pi-file-edit"></i>
 
             <span class="label">
@@ -51,7 +51,7 @@
             </span>
           </button>
 
-          <button type="button" class="button deleteButton" (click)="onClickDeleteButton()">
+          <button type="button" class="button deleteButton" (click)="onClickDeleteButton()" *ngxPermissionsOnly="['CAN_DELETE_ABSENCE_REQUEST']">
             <i class="pi pi-trash"></i>
 
             <span class="label">

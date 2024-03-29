@@ -17,6 +17,7 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
 import { AbsenceRequestListModule } from './pages/absence-request/list/list.module';
 import { AbsenceRequestNewModule } from './pages/absence-request/new/new.module';
 import { PublicHolidaysAndEmployerWtrListModule } from './pages/public-holidays-and-employer-wtr/list/list.module';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +38,7 @@ import { PublicHolidaysAndEmployerWtrListModule } from './pages/public-holidays-
     AbsenceRequestNewModule,
     PublicHolidaysAndEmployerWtrListModule,
     ToastModule,
+    NgxPermissionsModule.forRoot()
   ],
   providers: [
     {

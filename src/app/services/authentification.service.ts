@@ -7,7 +7,9 @@ import { User } from '../entities/user/user';
 import { UserService } from './user.service';
 import { MessageService } from 'primeng/api';
 import { Route } from '../models/route';
-
+import { NgxPermissionsService } from 'ngx-permissions';
+import { Role } from '../entities/user/role';
+import { ALLOWED_PERMISSIONS } from '../models/permissions-role';
 const CURRENT_USER = 'currentUser';
 export const TOKEN = 'token';
 
@@ -19,29 +21,53 @@ export class AuthentificationService {
     private router: Router,
     private http: HttpClient,
     private userService: UserService,
-    private messageService: MessageService
-  ) { }
+    private messageService: MessageService,
+    private permissionsService: NgxPermissionsService
+  ) {}
 
   async createSession(jwt: string): Promise<void> {
     sessionStorage.setItem(TOKEN, jwt);
 
     const user = await firstValueFrom(this.userService.getCurrentUser());
-
     sessionStorage.setItem(CURRENT_USER, JSON.stringify(user));
+
+    let rolePermissions: string[] = [];
+
+    switch (user.role) {
+      case Role.EMPLOYEE:
+        rolePermissions = Object.values(ALLOWED_PERMISSIONS[Role.EMPLOYEE]);
+        break;
+      case Role.ADMINISTRATOR:
+        rolePermissions = Object.values(ALLOWED_PERMISSIONS[Role.ADMINISTRATOR]);
+        break;
+      case Role.MANAGER:
+        rolePermissions = Object.values(ALLOWED_PERMISSIONS[Role.MANAGER]);
+        break;
+      default:
+        rolePermissions = Object.values(ALLOWED_PERMISSIONS[Role.EMPLOYEE]);
+        break;
+    }
+
+    this.permissionsService.loadPermissions(rolePermissions);
   }
 
   logOut(): void {
-    this.http.post(LOGOUT_API, {}).subscribe((logoutStatus: any) => {
-      this.messageService.add({
-        severity: 'success', summary: 'Session', detail: logoutStatus.message
+    this.http
+      .post(LOGOUT_API, {})
+      .subscribe((logoutStatus: any) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Session',
+          detail: logoutStatus.message,
+        });
+      })
+      .add(() => {
+        setTimeout(() => {
+          sessionStorage.removeItem(CURRENT_USER);
+          sessionStorage.removeItem(TOKEN);
+          this.router.navigateByUrl(Route.LOGIN);
+        }, 2000);
       });
-    }).add(() => {
-      setTimeout(() => {
-        sessionStorage.removeItem(CURRENT_USER);
-        sessionStorage.removeItem(TOKEN);
-        this.router.navigateByUrl(Route.LOGIN);
-      }, 2000);
-    });
   }
 
   getPseudo(): string {

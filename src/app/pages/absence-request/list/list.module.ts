@@ -13,6 +13,7 @@ import {ComponentsModule} from "../../components/components.module";
 import {AbsenceRequestStatusPipe} from "../../../pipes/absence-request-status.pipe";
 import {AbsenceTypePipe} from "../../../pipes/absence-type.pipe";
 import {SharedModule} from "../../../shared/shared.module";
+import { NgxPermissionsModule } from "ngx-permissions";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {SharedModule} from "../../../shared/shared.module";
     AbsenceRequestTableComponent,
   ],
   imports: [
+    NgxPermissionsModule.forRoot(),
     AppRoutingModule,
     CommonModule,
     AbsenceRequestStatusPipe,
