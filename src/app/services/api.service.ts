@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthentificationService } from './authentification.service';
 import { Observable, catchError, throwError } from 'rxjs';
 
 const API_URL = 'http://localhost:8080/api';
@@ -13,6 +11,9 @@ export const GET_ABSENCE_REQUESTS = `${API_URL}/absence-requests`;
 
 export enum ApiRoute {
   ABSENCE_REQUEST = "/absence-requests",
+  ABSENCE_REQUEST_MANAGER = "/absence-requests/manager",
+  ABSENCE_REQUEST_APPROVE = "/absence-requests/approve",
+  ABSENCE_REQUEST_REJECT = "/absence-requests/reject",
   PUBLIC_HOLIDAY = "/public-holidays",
   EMPLOYER_WTR = "/employer-wtr",
 }

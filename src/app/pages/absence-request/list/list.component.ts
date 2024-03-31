@@ -19,8 +19,6 @@ import {ApiRoute, ApiService} from "../../../services/api.service";
 export class AbsenceRequestListComponent {
   absenceRequests: AbsenceRequest[] = [];
 
-  action: string = "Modifier";
-
   absenceRequestNewRoute: string = `/${Route.ABSENCE_REQUEST_CREATE}`;
 
   absenceRequest: AbsenceRequest = new AbsenceRequest();
@@ -63,44 +61,5 @@ export class AbsenceRequestListComponent {
 
   getAbsenceRequest(absenceRequest: AbsenceRequest) {
     this.absenceRequest = absenceRequest;
-  }
-
-  /**
-   * @todo Utiliser app-form?
-   */
-  async deleteAbsenceRequest(absenceRequest: AbsenceRequest): Promise<void> {
-    /* const deletedAbsenceRequest = this.http
-      .delete<any>(`${GET_ABSENCE_REQUESTS}/${absenceRequest.id}`)
-      .pipe(
-        catchError((error) => {
-          if (error.status === 400 && error.error && error.error.message) {
-            return throwError(() => new Error(error.error.message));
-          } else {
-            return throwError(() => error);
-          }
-        })
-      );
-
-    deletedAbsenceRequest
-      .pipe(
-        catchError((error) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Suppression',
-            detail: error,
-            life: 5000,
-          });
-          return throwError(() => error);
-        })
-      )
-      .subscribe((response: { message: string }) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Suppression',
-          detail: response.message,
-          life: 5000,
-        });
-        this.getAbsenceRequests();
-      }); */
   }
 }

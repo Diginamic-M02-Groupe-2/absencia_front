@@ -1,0 +1,85 @@
+<ng-container *ngIf="!employees.length; else table">
+  <div class="noResults">
+    Aucun résultat.
+  </div>
+</ng-container>
+
+<ng-template #table>
+  <p-table [value]="employees">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          Nom
+        </th>
+
+        <th>
+          Du
+        </th>
+
+        <th>
+          Au
+        </th>
+
+        <th>
+          Type
+        </th>
+
+        <th>
+          Motif
+        </th>
+
+        <th></th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-employee>
+      <tr *ngFor="let absenceRequest of employee.absenceRequests">
+        <td>
+          {{employee.firstName}} {{employee.lastName}}
+        </td>
+
+        <td>
+          {{absenceRequest.startedAt|date: "dd/MM/yyyy"}}
+        </td>
+
+        <td>
+          {{absenceRequest.endedAt|date: "dd/MM/yyyy"}}
+        </td>
+
+        <td>
+          <app-badge>
+            {{absenceRequest.type|absenceType}}
+          </app-badge>
+        </td>
+
+        <td>
+          {{absenceRequest.reason}}
+        </td>
+
+        <td>
+          <div class="actions">
+            <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction + '/' + absenceRequest.id + '/approve'" (postSubmit)="postApprove(absenceRequest)">
+              <button type="submit" class="button approveButton">
+                <i class="pi pi-check"></i>
+
+                <span class="label">
+                  Valider
+                </span>
+              </button>
+            </app-form>
+
+            <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction + '/' + absenceRequest.id + '/reject'" (postSubmit)="postReject(absenceRequest)">
+              <button type="submit" class="button rejectButton">
+                <i class="pi pi-times"></i>
+
+                <span class="label">
+                  Refuser
+                </span>
+              </button>
+            </app-form>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ng-template>

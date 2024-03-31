@@ -1,90 +1,98 @@
-<p-table [value]="absenceRequests">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>
-        Début
-      </th>
+<ng-container *ngIf="!absenceRequests.length; else table">
+  <div class="noResults">
+    Aucun résultat.
+  </div>
+</ng-container>
 
-      <th>
-        Fin
-      </th>
+<ng-template #table>
+  <p-table [value]="absenceRequests">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          Début
+        </th>
 
-      <th>
-        Type
-      </th>
+        <th>
+          Du
+        </th>
 
-      <th>
-        Statut
-      </th>
+        <th>
+          Au
+        </th>
 
-      <th>
-        Motif
-      </th>
+        <th>
+          Statut
+        </th>
 
-      <th></th>
-    </tr>
-  </ng-template>
+        <th>
+          Motif
+        </th>
 
-  <ng-template pTemplate="body" let-absenceRequest>
-    <tr>
-      <td>
-        {{absenceRequest.startedAt|date}}
-      </td>
+        <th></th>
+      </tr>
+    </ng-template>
 
-      <td>
-        {{absenceRequest.endedAt|date}}
-      </td>
+    <ng-template pTemplate="body" let-absenceRequest>
+      <tr>
+        <td>
+          {{absenceRequest.startedAt|date: "dd/MM/yyyy"}}
+        </td>
 
-      <td>
-        <app-badge>
-          {{absenceRequest.type|absenceType}}
-        </app-badge>
-      </td>
+        <td>
+          {{absenceRequest.endedAt|date: "dd/MM/yyyy"}}
+        </td>
 
-      <td>
-        <app-badge>
-          {{absenceRequest.status|absenceRequestStatus}}
-        </app-badge>
-      </td>
+        <td>
+          <app-badge>
+            {{absenceRequest.type|absenceType}}
+          </app-badge>
+        </td>
 
-      <td>
-        {{absenceRequest.reason}}
-      </td>
+        <td>
+          <app-badge>
+            {{absenceRequest.status|absenceRequestStatus}}
+          </app-badge>
+        </td>
 
-      <td>
-        <div class="actions">
-          <button type="button" class="button updateButton" (click)="onClickEditButton(absenceRequest)" *ngxPermissionsOnly="['CAN_PATCH_ABSENCE_REQUEST']">
-            <i class="pi pi-file-edit"></i>
+        <td>
+          {{absenceRequest.reason}}
+        </td>
 
-            <span class="label">
-              Modifier
-            </span>
-          </button>
+        <td>
+          <div class="actions">
+            <button class="button updateButton" (click)="onClickEditButton(absenceRequest)" *ngxPermissionsOnly="['CAN_PATCH_ABSENCE_REQUEST']">
+              <i class="pi pi-file-edit"></i>
 
-          <button type="button" class="button deleteButton" (click)="onClickDeleteButton(absenceRequest)" *ngxPermissionsOnly="['CAN_DELETE_ABSENCE_REQUEST']">
-            <i class="pi pi-trash"></i>
+              <span class="label">
+                Modifier
+              </span>
+            </button>
 
-            <span class="label">
-              Supprimer
-            </span>
-          </button>
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+            <button class="button deleteButton" (click)="onClickDeleteButton(absenceRequest)" *ngxPermissionsOnly="['CAN_DELETE_ABSENCE_REQUEST']">
+              <i class="pi pi-trash"></i>
 
-<app-absence-request-edit-dialog
-  *ngIf="absenceRequest"
-  [(visible)]="editDialogVisible"
-  [absenceRequest]="absenceRequest"
-  [absenceTypeOptions]="absenceTypeOptions"
-  (onEdit)="onEdit(absenceRequest)"
-/>
+              <span class="label">
+                Supprimer
+              </span>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 
-<app-absence-request-delete-dialog
-  *ngIf="absenceRequest"
-  [(visible)]="deleteDialogVisible"
-  [absenceRequest]="absenceRequest"
-  (onDelete)="onDelete(absenceRequest)"
-/>
+  <app-absence-request-edit-dialog
+    *ngIf="absenceRequest"
+    [(visible)]="editDialogVisible"
+    [absenceRequest]="absenceRequest"
+    [absenceTypeOptions]="absenceTypeOptions"
+    (onEdit)="onEdit(absenceRequest)"
+  />
+
+  <app-absence-request-delete-dialog
+    *ngIf="absenceRequest"
+    [(visible)]="deleteDialogVisible"
+    [absenceRequest]="absenceRequest"
+    (onDelete)="onDelete(absenceRequest)"
+  />
+</ng-template>

@@ -1,5 +1,5 @@
 <h1>
-  Demandes d'absence
+  Mes demandes d'absence
 
   <a routerLink="create" class="button createButton" *ngxPermissionsOnly="['CAN_POST_ABSENCE_REQUEST']">
     <i class="pi pi-plus"></i>
@@ -16,3 +16,11 @@
   {{remainingPaidLeaves}} congés payés restants<br />
   {{remainingEmployeeWtr}} RTT employé restantes
 </p>
+
+<ng-container *ngxPermissionsOnly="['CAN_APPROVE_ABSENCE_REQUEST', 'CAN_REJECT_ABSENCE_REQUEST']">
+  <h1>
+    Demandes d'absence de mes salariés
+  </h1>
+
+  <app-absence-request-employee-table />
+</ng-container>

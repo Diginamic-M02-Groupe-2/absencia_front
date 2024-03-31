@@ -39,7 +39,7 @@
   transition: background-color .2s;
 
   &:hover {
-    background-color: scale-color($tertiary, $alpha: -25%);
+    background-color: darken($tertiary, 10%);
   }
 
   &__submit {
@@ -47,7 +47,7 @@
     color: $white;
 
     &:hover {
-      background-color: scale-color($success, $alpha: -25%);
+      background-color: darken($success, 10%);
     }
   }
 }

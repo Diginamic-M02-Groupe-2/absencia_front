@@ -27,12 +27,12 @@ p-table {
   }
 }
 
-.updateButton {
+.approveButton {
   display: inline-flex;
   align-items: center;
   column-gap: 8px;
   padding: 4px 8px;
-  background-color: $tertiary;
+  background-color: $success;
   color: $white;
   font-size: .75rem;
   transition: background-color 0.2s;
@@ -42,7 +42,7 @@ p-table {
   }
 
   &:hover {
-    background-color: darken($tertiary, 10%);
+    background-color: darken($success, 10%);
   }
 
   @media (max-width: 768px) {
@@ -50,7 +50,7 @@ p-table {
   }
 }
 
-.deleteButton {
+.rejectButton {
   display: inline-flex;
   align-items: center;
   column-gap: 8px;

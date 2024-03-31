@@ -2,7 +2,6 @@ import {Component, Input} from "@angular/core";
 import {AbsenceRequest} from "../../../entities/absence-request";
 import {absenceTypeOptions} from "../../../entities/absence-type";
 import {Option} from "../../../models/option";
-import {HttpMethod} from "../../../services/api.service";
 
 @Component({
   selector: "app-absence-request-table",
@@ -10,8 +9,6 @@ import {HttpMethod} from "../../../services/api.service";
   styleUrl: "./table.component.module.scss",
 })
 export class AbsenceRequestTableComponent {
-  formMethod: HttpMethod = HttpMethod.PATCH;
-
   @Input()
   absenceRequests!: AbsenceRequest[];
 
