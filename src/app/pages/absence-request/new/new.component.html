@@ -1,4 +1,10 @@
-<app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction" [redirect]="redirect" *ngxPermissionsOnly="['CAN_POST_ABSENCE_REQUEST']">
+<app-form
+  [formGroup]="formGroup"
+  [method]="formMethod"
+  [action]="formAction"
+  (postSubmit)="postSubmit($event)"
+  *ngxPermissionsOnly="['CAN_POST_ABSENCE_REQUEST']"
+>
   <div>
     <app-back-link routerLink="/absence-requests" />
 

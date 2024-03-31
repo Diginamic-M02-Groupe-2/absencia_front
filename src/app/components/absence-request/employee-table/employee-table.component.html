@@ -13,15 +13,15 @@
         </th>
 
         <th>
+          Type
+        </th>
+
+        <th>
           Du
         </th>
 
         <th>
           Au
-        </th>
-
-        <th>
-          Type
         </th>
 
         <th>
@@ -39,17 +39,17 @@
         </td>
 
         <td>
+          <app-badge>
+            {{absenceRequest.type|absenceType}}
+          </app-badge>
+        </td>
+
+        <td>
           {{absenceRequest.startedAt|date: "dd/MM/yyyy"}}
         </td>
 
         <td>
           {{absenceRequest.endedAt|date: "dd/MM/yyyy"}}
-        </td>
-
-        <td>
-          <app-badge>
-            {{absenceRequest.type|absenceType}}
-          </app-badge>
         </td>
 
         <td>

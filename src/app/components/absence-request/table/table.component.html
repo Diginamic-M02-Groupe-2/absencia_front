@@ -9,7 +9,11 @@
     <ng-template pTemplate="header">
       <tr>
         <th>
-          Début
+          Type
+        </th>
+
+        <th>
+          Statut
         </th>
 
         <th>
@@ -18,10 +22,6 @@
 
         <th>
           Au
-        </th>
-
-        <th>
-          Statut
         </th>
 
         <th>
@@ -35,14 +35,6 @@
     <ng-template pTemplate="body" let-absenceRequest>
       <tr>
         <td>
-          {{absenceRequest.startedAt|date: "dd/MM/yyyy"}}
-        </td>
-
-        <td>
-          {{absenceRequest.endedAt|date: "dd/MM/yyyy"}}
-        </td>
-
-        <td>
           <app-badge>
             {{absenceRequest.type|absenceType}}
           </app-badge>
@@ -52,6 +44,14 @@
           <app-badge>
             {{absenceRequest.status|absenceRequestStatus}}
           </app-badge>
+        </td>
+
+        <td>
+          {{absenceRequest.startedAt|date: "dd/MM/yyyy"}}
+        </td>
+
+        <td>
+          {{absenceRequest.endedAt|date: "dd/MM/yyyy"}}
         </td>
 
         <td>
