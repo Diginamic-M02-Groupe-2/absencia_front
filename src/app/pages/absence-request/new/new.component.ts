@@ -7,6 +7,7 @@ import {HttpMethod} from "../../../services/api.service";
 
 @Component({
   selector: "app-absence-request-new",
+  styleUrl: "./new.component.module.scss",
   templateUrl: "./new.component.html",
 })
 export class AbsenceRequestNewComponent {
