@@ -47,10 +47,6 @@ export class AbsenceRequestListComponent {
     this.remainingEmployeeWtr = response.remainingEmployeeWtr;
   }
 
-  clearDialog() {
-    this.getAbsenceRequests();
-  }
-
   openEditDialog(): void {
     this.editDialogVisible = true;
   }
