@@ -2,12 +2,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginGuard } from './auth/guards/login.guard';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { LoginComponent } from './auth/components/login/login.component';
-import { ComponentsComponent } from './pages/components/components.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Route } from './models/route';
 import {AbsenceRequestListComponent} from "./pages/absence-request/list/list.component";
+import {AbsenceRequestHistogramReportComponent} from "./pages/absence-request/histogram-report/histogram-report.component";
 import {AbsenceRequestNewComponent} from "./pages/absence-request/new/new.component";
+import {ComponentsComponent} from "./pages/components/components.component";
+import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {PublicHolidaysAndEmployerWtrListComponent} from "./pages/public-holidays-and-employer-wtr/list/list.component";
 
 export const routes: Routes = [
@@ -23,11 +24,6 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: Route.DASHBOARD,
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-  },
-  {
     path: Route.ABSENCE_REQUEST_LIST,
     component: AbsenceRequestListComponent,
     canActivate: [AuthGuard],
@@ -39,11 +35,21 @@ export const routes: Routes = [
     data: { requiredPermission: 'CAN_ROUTE_TO_POST_ABSENCE_REQUEST' }
   },
   {
+    path: Route.HISTOGRAM,
+    component: AbsenceRequestHistogramReportComponent,
+    canActivate: [AuthGuard],
+    data: { requiredPermission: 'CAN_VISUALIZE_HISTOGRAM_ABSENCE_REQUEST' }
+  },
+  {
     path: Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST,
     component: PublicHolidaysAndEmployerWtrListComponent,
     canActivate: [AuthGuard],
   },
-  { path: '**', redirectTo: Route.DASHBOARD },
+  {
+    path: "**",
+    component: NotFoundComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

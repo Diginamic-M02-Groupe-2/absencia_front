@@ -1,5 +1,3 @@
-<!-- TODO: Link URLs -->
-<!-- TODO: Active link depending on current page -->
 <p-sidebar #sidebarRef [(visible)]="sidebarVisible" class="drawer" [showCloseIcon]="false">
   <button class="drawer__close-button" (click)="closeBack($event)">
     <i class="pi pi-times"></i>
@@ -28,6 +26,19 @@
         <i class="pi pi-calendar"></i>
 
         Jours fériés et RTT employeur
+      </a>
+    </li>
+
+    <li class="drawer__list__item" *ngxPermissionsOnly="['CAN_VISUALIZE_HISTOGRAM_ABSENCE_REQUEST']">
+      <a
+        [routerLink]="histogramRoute"
+        routerLinkActive="drawer__list__item__linkActive"
+        class="drawer__list__item__link"
+        (click)="closeBack($event)"
+      >
+        <i class="pi pi-chart-bar"></i>
+
+        Histogramme
       </a>
     </li>
   </ul>
@@ -69,6 +80,14 @@
           <i class="pi pi-calendar"></i>
 
           Jours fériés et RTT employeur
+        </a>
+      </li>
+
+      <li class="header__navBar__list__item" *ngxPermissionsOnly="['CAN_VISUALIZE_HISTOGRAM_ABSENCE_REQUEST']">
+        <a [routerLink]="histogramRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
+          <i class="pi pi-chart-bar"></i>
+
+          Histogramme
         </a>
       </li>
     </ul>
