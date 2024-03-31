@@ -21,9 +21,6 @@ export class FormComponent {
   @Input()
   action!: string;
 
-  @Input()
-  redirect?: string;
-
   @Output()
   postSubmit: EventEmitter<any> = new EventEmitter<any>();
 
@@ -43,7 +40,10 @@ export class FormComponent {
       .pipe(
         catchError((error) => {
           for (const [key, value] of Object.entries(error.error)) {
-            this.formGroup.get(key)?.setErrors({
+            const control = this.formGroup.get(key);
+
+            control!.markAsTouched();
+            control!.setErrors({
               api: value,
             });
           }
@@ -59,11 +59,11 @@ export class FormComponent {
           life: 5000,
         });
 
-        if (this.postSubmit) {
-          this.postSubmit.emit(response);
-        } else if (this.redirect) {
-          this.router.navigateByUrl(this.redirect);
+        if (!this.postSubmit) {
+          return;
         }
+
+        this.postSubmit.emit(response);
       });
   }
 
@@ -71,6 +71,10 @@ export class FormComponent {
     const formData = new FormData();
 
     for (const [key, control] of Object.entries(this.formGroup.controls)) {
+      if (!control.value) {
+        continue;
+      }
+
       if (control.value instanceof Date) {
         const timezoneOffset = control.value.getTimezoneOffset() * 60000;
         const date = new Date(control.value.getTime() - timezoneOffset);

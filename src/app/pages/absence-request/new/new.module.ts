@@ -1,7 +1,8 @@
 import {NgModule} from "@angular/core";
+import {RouterModule} from "@angular/router";
+import {NgxPermissionsModule} from "ngx-permissions";
 import {AbsenceRequestNewComponent} from "./new.component";
 import {SharedModule} from "../../../shared/shared.module";
-import { NgxPermissionsModule } from "ngx-permissions";
 
 @NgModule({
   declarations: [
@@ -9,6 +10,7 @@ import { NgxPermissionsModule } from "ngx-permissions";
   ],
   imports: [
     NgxPermissionsModule.forRoot(),
+    RouterModule,
     SharedModule,
   ],
 })

@@ -1,12 +1,16 @@
 import {Component} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+import {MessageService} from "primeng/api";
 import {absenceTypeOptions} from "../../../entities/absence-type";
+import {MessageResponse} from "../../../models/message-response";
 import {Option} from "../../../models/option";
 import {Route} from "../../../models/route";
 import {HttpMethod} from "../../../services/api.service";
 
 @Component({
   selector: "app-absence-request-new",
+  styleUrl: "./new.component.module.scss",
   templateUrl: "./new.component.html",
 })
 export class AbsenceRequestNewComponent {
@@ -16,12 +20,12 @@ export class AbsenceRequestNewComponent {
 
   formGroup!: FormGroup;
 
-  redirect: string = Route.ABSENCE_REQUEST_LIST;
-
   absenceTypes: Option[] = absenceTypeOptions;
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
+    private messageService: MessageService,
   ) {
     this.formGroup = this.formBuilder.group({
       startedAt: [null, Validators.required],
@@ -31,7 +35,12 @@ export class AbsenceRequestNewComponent {
     });
   }
 
-  clearInputs(): void {
-    this.formGroup.reset();
+  postSubmit(response: MessageResponse) {
+    this.router.navigateByUrl(Route.ABSENCE_REQUEST_LIST);
+    this.messageService.add({
+      severity: "success",
+      detail: response.message,
+      life: 5000,
+    });
   }
 }

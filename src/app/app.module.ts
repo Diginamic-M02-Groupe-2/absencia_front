@@ -23,7 +23,6 @@ import { NgxPermissionsModule } from 'ngx-permissions';
   declarations: [AppComponent],
   imports: [
     CommonModule,
-    RouterModule,
     SidebarModule,
     RouterModule,
     ButtonModule,
