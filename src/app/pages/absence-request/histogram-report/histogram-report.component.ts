@@ -1,25 +1,41 @@
 import {Component} from "@angular/core";
-import {Service} from "../../../entities/user/service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {serviceOptions} from "../../../entities/user/service";
 import {GetHistogramResponse} from "../../../models/get-histogram-response";
+import {Option} from "../../../models/option";
+import {ApiRoute, HttpMethod} from "../../../services/api.service";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: "app-absence-request-histogram-report",
+  styleUrl: "./histogram-report.component.module.scss",
   templateUrl: "./histogram-report.component.html",
 })
 export class AbsenceRequestHistogramReportComponent {
-  year!: number;
+  formGroup: FormGroup;
 
-  month!: number;
+  formMethod: HttpMethod = HttpMethod.GET;
 
-  service?: Service;
+  formAction: string = ApiRoute.GET_ABSENCE_REQUEST_HISTOGRAM;
+
+  services: Option[] = serviceOptions;
 
   datasets!: GetHistogramResponse;
 
-  constructor() {
-    const date = new Date();
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+  ) {
+    this.formGroup = this.formBuilder.group({
+      period: [new Date(), [Validators.required]],
+      service: [null, [Validators.required]],
+    });
 
-    this.year = date.getFullYear();
-    this.month = date.getMonth() + 1;
+    this.userService.getCurrentUser().subscribe(user => {
+      this.formGroup.patchValue({
+        service: user.service,
+      });
+    });
 
     this.getHistogramDatasets();
   }
@@ -46,4 +62,9 @@ export class AbsenceRequestHistogramReportComponent {
 
     this.datasets = response;
   }
+
+  /**
+   * @todo
+   */
+  postSubmit(response: any): void {}
 }

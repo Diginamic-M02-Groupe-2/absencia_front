@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { LOGOUT_API } from './api.service';
+import { ApiRoute, LOGOUT_API } from './api.service';
 import { firstValueFrom } from 'rxjs';
 import { User } from '../entities/user/user';
 import { UserService } from './user.service';
@@ -94,5 +94,11 @@ export class AuthentificationService {
 
   public get isUserConnected(): boolean {
     return sessionStorage.getItem(CURRENT_USER) !== null;
+  }
+
+  async getUser(): Promise<User> {
+    const user = await firstValueFrom(this.http.get<User>(ApiRoute.GET_CURRENT_USER));
+
+    return user;
   }
 }

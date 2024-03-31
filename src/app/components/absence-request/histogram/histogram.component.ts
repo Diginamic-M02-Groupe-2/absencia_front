@@ -5,7 +5,6 @@ import {GetHistogramResponse, HistogramDataset} from "../../../models/get-histog
 @Component({
   selector: "app-absence-request-histogram",
   templateUrl: "./histogram.component.html",
-  styleUrl: "./histogram.component.module.scss",
 })
 export class AbsenceRequestHistogramComponent implements OnInit {
   private colors: string[] = [
@@ -34,10 +33,10 @@ export class AbsenceRequestHistogramComponent implements OnInit {
   options: any;
 
   @Input()
-  year!: number;
+  month!: number;
 
   @Input()
-  month!: number;
+  year!: number;
 
   @Input()
   datasets!: GetHistogramResponse;

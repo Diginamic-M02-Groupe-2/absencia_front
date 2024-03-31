@@ -1,3 +1,9 @@
 <app-form-field [formGroup]="formGroup" [control]="formGroup.get(name)!" [label]="label">
-  <p-calendar dateFormat="dd/mm/yy" [appendTo]="'body'" [formControlName]="name" [placeholder]="placeholder"></p-calendar>
+  <p-calendar
+    [dateFormat]="view === 'date' ? 'dd/mm/yy' : 'mm/yy'"
+    [view]="view"
+    [appendTo]="'body'"
+    [formControlName]="name"
+    [placeholder]="placeholder"
+  />
 </app-form-field>

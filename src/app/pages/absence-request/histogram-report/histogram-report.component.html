@@ -2,4 +2,26 @@
   Histogramme
 </h1>
 
-<app-absence-request-histogram [year]="year" [month]="month" [datasets]="datasets" />
+<div class="formContainer">
+  <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction" (postSubmit)="postSubmit($event)">
+    <app-form-group>
+      <app-datepicker
+        [formGroup]="formGroup"
+        view="month"
+        name="period"
+        label="Période"
+        placeholder="Période"
+      />
+
+      <app-select
+        [formGroup]="formGroup"
+        name="service"
+        label="Département"
+        placeholder="Département"
+        [options]="services"
+      />
+    </app-form-group>
+  </app-form>
+</div>
+
+<app-absence-request-histogram [month]="formGroup.get('period')?.value.getMonth()" [year]="formGroup.get('period')?.value.getFullYear()" [datasets]="datasets" />
