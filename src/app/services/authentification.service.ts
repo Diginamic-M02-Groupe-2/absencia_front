@@ -9,7 +9,7 @@ import { MessageService } from 'primeng/api';
 import { Route } from '../models/route';
 import { NgxPermissionsService } from 'ngx-permissions';
 import { Role } from '../entities/user/role';
-import { ALLOWED_PERMISSIONS } from '../models/permissions-role';
+import { ALLOWED_PERMISSIONS } from '../models/permission-role';
 const CURRENT_USER = 'currentUser';
 export const TOKEN = 'token';
 
