@@ -53,12 +53,14 @@ export class PublicHolidaysAndEmployerWtrListComponent {
   }
 
   previousMonth(): void {
-    this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+    const newMonth = this.currentDate.getMonth() - 1;
+    this.currentDate = new Date(this.currentDate.getFullYear(), newMonth, 1);
     this.generateCalendar();
   }
 
   nextMonth(): void {
-    this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+    const newMonth = this.currentDate.getMonth() + 1;
+    this.currentDate = new Date(this.currentDate.getFullYear(), newMonth, 1);
     this.generateCalendar();
   }
 
