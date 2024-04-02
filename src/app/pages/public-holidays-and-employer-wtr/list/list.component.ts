@@ -20,6 +20,8 @@ export class PublicHolidaysAndEmployerWtrListComponent {
     'Dimanche',
   ];
 
+  currentDate: Date = new Date();
+
   calendar: (number | null)[][] = [];
 
   publicHolidays: PublicHoliday[] = [];
@@ -50,12 +52,20 @@ export class PublicHolidaysAndEmployerWtrListComponent {
     );
   }
 
-  //mettre en jaune si férié
+  previousMonth(): void {
+    this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+    this.generateCalendar();
+  }
+
+  nextMonth(): void {
+    this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+    this.generateCalendar();
+  }
 
   generateCalendar(): void {
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth();
-    const currentYear = currentDate.getFullYear();
+    const currentMonth = this.currentDate.getMonth();
+    const currentYear = this.currentDate.getFullYear();
+    this.calendar = [];
 
     const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
     const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0);
@@ -88,31 +98,50 @@ export class PublicHolidaysAndEmployerWtrListComponent {
 
     // Ajouter la dernière semaine si elle n'a pas encore été ajoutée
     if (currentWeek.length > 0) {
+      while (currentWeek.length < 7) {
+        currentWeek.push(null);
+      }
       this.calendar.push(currentWeek);
     }
+  }
+
+  getPublicHolidayName(day: number | null): string | null {
+    if (day === null) {
+      return null;
+    }
+    const currentMonth = this.currentDate.getMonth();
+    const currentYear = this.currentDate.getFullYear();
+    const date = new Date(currentYear, currentMonth, day);
+
+    const publicHoliday = this.publicHolidays.find((holiday) => {
+      const holidayDate = new Date(holiday.date);
+      return (
+        date.getFullYear() === holidayDate.getFullYear() &&
+        date.getMonth() === holidayDate.getMonth() &&
+        date.getDate() === holidayDate.getDate()
+      );
+    });
+    return publicHoliday ? publicHoliday.label : null;
   }
 
   isWeekend(day: number | null): boolean {
     if (day === null) {
       return false;
     }
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth();
-    const currentYear = currentDate.getFullYear();
+    const currentMonth = this.currentDate.getMonth();
+    const currentYear = this.currentDate.getFullYear();
     const date = new Date(currentYear, currentMonth, day);
     const dayOfWeek = date.getDay();
     return dayOfWeek === 0 || dayOfWeek === 6;
   }
-  
 
   isPublicHoliday(day: number | null): boolean {
     if (day === null) {
       return false;
     }
 
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth();
-    const currentYear = currentDate.getFullYear();
+    const currentMonth = this.currentDate.getMonth();
+    const currentYear = this.currentDate.getFullYear();
     const date = new Date(currentYear, currentMonth, day);
 
     // Vérifier si la date correspond à un jour férié dans votre liste `publicHolidays`
@@ -134,9 +163,8 @@ export class PublicHolidaysAndEmployerWtrListComponent {
     }
 
     // Convertir la date du jour en objet Date
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth();
-    const currentYear = currentDate.getFullYear();
+    const currentMonth = this.currentDate.getMonth();
+    const currentYear = this.currentDate.getFullYear();
     const date = new Date(currentYear, currentMonth, day);
 
     // Vérifier si la date correspond à un jour de RTT employeur dans votre liste `employerWtrs`
@@ -150,57 +178,5 @@ export class PublicHolidaysAndEmployerWtrListComponent {
         date.getDate() === wtrDate.getDate()
       );
     });
-  }
-
-  showEmployerWtrDetails(day: number | null): void {
-    if (day === null) {
-      return;
-    }
-  
-    // Recherche des employeurs correspondant à la date donnée
-    const employers = this.employerWtr.filter(wtr => {
-      const currentDate = new Date();
-      const currentMonth = currentDate.getMonth();
-      const currentYear = currentDate.getFullYear();
-      const date = new Date(currentYear, currentMonth, day);
-  
-      const wtrDate = new Date(wtr.date);
-      return date.getFullYear() === wtrDate.getFullYear() &&
-             date.getMonth() === wtrDate.getMonth() &&
-             date.getDate() === wtrDate.getDate();
-    });
-  
-    // Affichage des détails de tous les employeurs correspondants
-    employers.forEach(employer => {
-      alert(employer.status + employer.label)
-      console.log("Employer Label:", employer.label);
-      console.log("Employer Status:", employer.status);
-      //on affichera plutot dans un dialog
-    });
-  }
-  
-
-  getEmployerLabels(day: number | null): string[] {
-    if (day === null) {
-      return [];
-    }
-
-    // Recherche des employeurs correspondant à la date donnée
-    const employers = this.employerWtr.filter((wtr) => {
-      const currentDate = new Date();
-      const currentMonth = currentDate.getMonth();
-      const currentYear = currentDate.getFullYear();
-      const date = new Date(currentYear, currentMonth, day);
-
-      const wtrDate = new Date(wtr.date);
-      return (
-        date.getFullYear() === wtrDate.getFullYear() &&
-        date.getMonth() === wtrDate.getMonth() &&
-        date.getDate() === wtrDate.getDate()
-      );
-    });
-
-    // Renvoie les labels des employeurs
-    return employers.map((employer) => employer.label);
   }
 }

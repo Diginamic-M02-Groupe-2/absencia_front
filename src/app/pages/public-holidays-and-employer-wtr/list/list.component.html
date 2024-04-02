@@ -1,9 +1,13 @@
 <h1>Jours fériés et RTT employeur</h1>
 
-<!-- <app-todo>
-  Received public holidays: {{(publicHolidays|async)?.length}}<br />
-  Received employer WTR: {{(employerWtr|async)?.length}}
-</app-todo> -->
+<div class="calendar-navigation d-flex justify-content-between mb-2 mt-2">
+  <button type="button" class="button" (click)="previousMonth()">
+    Mois précédent
+  </button>
+  <button type="button" class="button" (click)="nextMonth()">
+    Mois suivant
+  </button>
+</div>
 
 <div class="calendar-container">
   <table class="table">
@@ -32,17 +36,14 @@
                 'public-holiday-cell-text': isPublicHoliday(day)
               }"
             >
-              Lundi de pentecôte
+              {{ getPublicHolidayName(day) }}
             </p>
             <button
               *ngIf="isEmployerWtrDay(day)"
               type="button"
               class="showButton"
-              (click)="showEmployerWtrDetails(day)"
             >
-              <ng-container *ngFor="let label of getEmployerLabels(day)">
-                {{ label }}<br />
-              </ng-container>
+              Congés payés
             </button>
             <div class="text-right day-number">{{ day }}</div>
           </div>
