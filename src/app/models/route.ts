@@ -1,5 +1,4 @@
 export enum Route {
-  DASHBOARD = "dashboard",
   // Component development page
   COMPONENTS = "components",
   // Authentication
@@ -7,6 +6,7 @@ export enum Route {
   // Absence requests
   ABSENCE_REQUEST_LIST = "absence-requests",
   ABSENCE_REQUEST_CREATE = "absence-requests/create",
+  HISTOGRAM = "histogram",
   // Public holidays & employer WTR
   PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST = "public-holidays-and-employer-wtr",
 }

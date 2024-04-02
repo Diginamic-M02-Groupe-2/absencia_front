@@ -14,8 +14,10 @@ export enum ApiRoute {
   ABSENCE_REQUEST_MANAGER = "/absence-requests/manager",
   ABSENCE_REQUEST_APPROVE = "/absence-requests/approve",
   ABSENCE_REQUEST_REJECT = "/absence-requests/reject",
+  GET_ABSENCE_REQUEST_HISTOGRAM = "/absence-requests/histogram",
   PUBLIC_HOLIDAY = "/public-holidays",
   EMPLOYER_WTR = "/employer-wtr",
+  GET_CURRENT_USER = "/users/current",
 }
 
 export enum HttpMethod {

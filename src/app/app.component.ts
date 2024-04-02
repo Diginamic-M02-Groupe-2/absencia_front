@@ -10,13 +10,15 @@ import { Route } from './models/route';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  absenceRequestRoute = Route.ABSENCE_REQUEST_LIST;
+  absenceRequestRoute: string = Route.ABSENCE_REQUEST_LIST;
 
-  loginRoute = Route.LOGIN;
+  loginRoute: string = Route.LOGIN;
 
-  publicHolidaysAndEmployerWtrRoute = Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST;
+  publicHolidaysAndEmployerWtrRoute: string = Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST;
  
-  createAbsenceRequestRoute = Route.ABSENCE_REQUEST_CREATE;
+  createAbsenceRequestRoute: string = Route.ABSENCE_REQUEST_CREATE;
+
+  histogramRoute: string = Route.HISTOGRAM;
 
   firstName: string = '';
 

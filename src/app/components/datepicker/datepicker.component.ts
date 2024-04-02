@@ -1,5 +1,6 @@
 import {Component, Input} from "@angular/core";
 import {FormGroup} from "@angular/forms";
+import { CalendarTypeView } from "primeng/calendar";
 
 @Component({
   selector: "app-datepicker",
@@ -9,6 +10,9 @@ import {FormGroup} from "@angular/forms";
 export class DatepickerComponent {
   @Input()
   formGroup!: FormGroup;
+
+  @Input()
+  view: CalendarTypeView = "date";
 
   @Input()
   name!: string;
