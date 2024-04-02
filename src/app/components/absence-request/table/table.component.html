@@ -60,13 +60,12 @@
 
         <td>
           <div class="actions">
-            <button class="button updateButton" (click)="onClickEditButton(absenceRequest)" *ngxPermissionsOnly="['CAN_PATCH_ABSENCE_REQUEST']">
-              <i class="pi pi-file-edit"></i>
-
-              <span class="label">
-                Modifier
-              </span>
-            </button>
+            <ng-container *ngIf="isStatusEditable(absenceRequest)">
+              <button class="button updateButton" (click)="onClickEditButton(absenceRequest)" *ngxPermissionsOnly="['CAN_PATCH_ABSENCE_REQUEST']">
+                <i class="pi pi-file-edit"></i>
+                <span class="label">Modifier</span>
+              </button>
+            </ng-container>
 
             <button class="button deleteButton" (click)="onClickDeleteButton(absenceRequest)" *ngxPermissionsOnly="['CAN_DELETE_ABSENCE_REQUEST']">
               <i class="pi pi-trash"></i>
