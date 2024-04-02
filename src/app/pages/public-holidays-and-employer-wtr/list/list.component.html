@@ -1,8 +1,57 @@
-<h1>
-  Jours fériés et RTT employeur
-</h1>
+<h1>Jours fériés et RTT employeur</h1>
 
-<app-todo>
-  Received public holidays: {{(publicHolidays|async)?.length}}<br />
-  Received employer WTR: {{(employerWtr|async)?.length}}
-</app-todo>
+<div
+  class="calendar-navigation d-flex justify-content-between align-items-center mb-2 mt-2"
+>
+  <button type="button" class="button" (click)="previousMonth()">
+    Mois précédent
+  </button>
+  <p>{{ currentDate | date : "MM YYYY" }}</p>
+  <button type="button" class="button" (click)="nextMonth()">
+    Mois suivant
+  </button>
+</div>
+
+<div class="calendar-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th *ngFor="let day of weekDays" class="text-center header-day p-4">
+          {{ day }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let week of calendar">
+        <td
+          *ngFor="let day of week"
+          class="calendar-cell"
+          [ngClass]="{
+            'week-cell': isWeekend(day),
+            'public-holiday-cell': isPublicHoliday(day)
+          }"
+        >
+          <div class="d-flex flex-column h-100">
+            <div class="flex-grow-1"></div>
+            <p
+              *ngIf="isPublicHoliday(day)"
+              [ngClass]="{
+                'public-holiday-cell-text': isPublicHoliday(day)
+              }"
+            >
+              {{ getPublicHolidayName(day) }}
+            </p>
+            <button
+              *ngIf="isEmployerWtrDay(day)"
+              type="button"
+              class="showButton"
+            >
+              Congés payés
+            </button>
+            <div class="text-right day-number">{{ day }}</div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
