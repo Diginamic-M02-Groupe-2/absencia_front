@@ -74,11 +74,11 @@ export class PublicHolidaysAndEmployerWtrListComponent {
 
     let currentWeek: (number | null)[] = [];
 
-    let startingDay = firstDayOfMonth.getDay();
+    const startingDay = firstDayOfMonth.getDay();
 
     firstDayOfMonth.setDate(firstDayOfMonth.getDate() - startingDay + 1);
 
-    let currentDay = new Date(firstDayOfMonth);
+    const currentDay = new Date(firstDayOfMonth);
 
     while (currentDay <= lastDayOfMonth) {
       if (currentDay.getMonth() === currentMonth) {
