@@ -58,25 +58,25 @@
 
         <td>
           <div class="actions">
-            <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction + '/' + absenceRequest.id + '/approve'" (postSubmit)="postApprove(absenceRequest)">
-              <button type="submit" class="button approveButton">
-                <i class="pi pi-check"></i>
-
-                <span class="label">
-                  Valider
-                </span>
-              </button>
-            </app-form>
-
-            <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction + '/' + absenceRequest.id + '/reject'" (postSubmit)="postReject(absenceRequest)">
-              <button type="submit" class="button rejectButton">
-                <i class="pi pi-times"></i>
-
-                <span class="label">
-                  Refuser
-                </span>
-              </button>
-            </app-form>
+            <ng-container *ngIf="absenceRequest.status !== 'REJECTED'; else rejectedStatus">
+              <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction + '/' + absenceRequest.id + '/approve'" (postSubmit)="postApprove(absenceRequest)">
+                <button type="submit" class="button approveButton">
+                  <i class="pi pi-check"></i>
+                  <span class="label">Valider</span>
+                </button>
+              </app-form>
+            
+              <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction + '/' + absenceRequest.id + '/reject'" (postSubmit)="postReject(absenceRequest)">
+                <button type="submit" class="button rejectButton">
+                  <i class="pi pi-times"></i>
+                  <span class="label">Refuser</span>
+                </button>
+              </app-form>
+            </ng-container>
+            
+            <ng-template #rejectedStatus>
+              <span>Cette demande d'absence a été réfusée.</span>
+            </ng-template>           
           </div>
         </td>
       </tr>
