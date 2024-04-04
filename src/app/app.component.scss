@@ -160,13 +160,6 @@
   flex-grow: 1;
   padding: 16px 0;
   background-color: $light;
-
-  &Login {
-    padding: 0;
-    background-image: url("/assets/login/backgroundBody.svg");
-    background-size: cover;
-    background-position: center;
-  }
 }
 
 .footer {

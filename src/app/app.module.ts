@@ -9,7 +9,6 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app.routes';
-import { LoginModule } from './auth/components/login.module';
 import { ComponentsModule } from './pages/components/components.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
@@ -18,6 +17,7 @@ import { AbsenceRequestNewModule } from './pages/absence-request/new/new.module'
 import { PublicHolidaysAndEmployerWtrListModule } from './pages/public-holidays-and-employer-wtr/list/list.module';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { AbsenceRequestHistogramReportModule } from './pages/absence-request/histogram-report/histogram-report.module';
+import { LoginModule } from './pages/login/login.module';
 import { NotFoundModule } from './pages/not-found/not-found.module';
 
 @NgModule({

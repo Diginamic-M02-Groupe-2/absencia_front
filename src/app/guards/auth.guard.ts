@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AuthentificationService } from '../../services/authentification.service';
+import { AuthentificationService } from '../services/authentification.service';
 import { ActivatedRouteSnapshot, Router } from '@angular/router';
-import { Route } from '../../models/route';
+import { Route } from '../models/route';
 import { NgxPermissionsService } from 'ngx-permissions';
 
 @Injectable({

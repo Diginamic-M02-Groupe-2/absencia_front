@@ -10,6 +10,7 @@ export const GET_USER_API = `${API_URL}/users/current`;
 export const GET_ABSENCE_REQUESTS = `${API_URL}/absence-requests`;
 
 export enum ApiRoute {
+  LOGIN = "/login",
   ABSENCE_REQUEST = "/absence-requests",
   ABSENCE_REQUEST_MANAGER = "/absence-requests/manager",
   ABSENCE_REQUEST_APPROVE = "/absence-requests/approve",
