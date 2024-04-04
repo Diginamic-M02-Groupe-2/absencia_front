@@ -1,5 +1,4 @@
 import {Component} from "@angular/core";
-import {MessageService} from "primeng/api";
 import {firstValueFrom} from "rxjs";
 import {AbsenceRequest} from "../../../entities/absence-request";
 import {absenceTypeOptions} from "../../../entities/absence-type";
@@ -12,9 +11,6 @@ import {ApiRoute, ApiService} from "../../../services/api.service";
   selector: "app-absence-request-list",
   templateUrl: "./list.component.html",
   styleUrl: "./list.component.module.scss",
-  providers: [
-    MessageService,
-  ],
 })
 export class AbsenceRequestListComponent {
   absenceRequests: AbsenceRequest[] = [];
