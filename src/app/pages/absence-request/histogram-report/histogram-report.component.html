@@ -3,7 +3,7 @@
 </h1>
 
 <div class="formContainer">
-  <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction" (postSubmit)="postSubmit($event)">
+  <form [formGroup]="formGroup" [method]="formMethod" [action]="formAction" (ngSubmit)="onSubmit()">
     <app-form-group>
       <app-datepicker
         [formGroup]="formGroup"
@@ -17,11 +17,16 @@
         [formGroup]="formGroup"
         name="service"
         label="Département"
-        placeholder="Département"
+        placeholder="Choisir un département"
         [options]="services"
       />
     </app-form-group>
-  </app-form>
+    <app-form-footer>  
+      <button type="submit" class="button button__submit">
+        Rechercher
+      </button>
+    </app-form-footer>
+  </form>
 </div>
 
-<app-absence-request-histogram [month]="formGroup.get('period')?.value.getMonth()" [year]="formGroup.get('period')?.value.getFullYear()" [datasets]="datasets" />
+<app-absence-request-histogram *ngIf="datasets" [month]="formGroup.get('period')?.value.getMonth()" [year]="formGroup.get('period')?.value.getFullYear()" [datasets]="datasets" />
