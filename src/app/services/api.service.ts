@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 
@@ -15,33 +15,45 @@ export enum ApiRoute {
   ABSENCE_REQUEST_MANAGER = "/absence-requests/manager",
   ABSENCE_REQUEST_APPROVE = "/absence-requests/approve",
   ABSENCE_REQUEST_REJECT = "/absence-requests/reject",
-  GET_ABSENCE_REQUEST_HISTOGRAM = "/absence-requests/histogram",
+  GET_ABSENCE_REQUEST_HISTOGRAM = "/reports/histogram",
   PUBLIC_HOLIDAY = "/public-holidays",
   EMPLOYER_WTR = "/employer-wtr",
   GET_CURRENT_USER = "/users/current",
 }
 
 export enum HttpMethod {
-  GET = "GET",
-  POST = "POST",
-  PUT = "PUT",
-  PATCH = "PATCH",
-  DELETE = "DELETE",
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  PATCH = 'PATCH',
+  DELETE = 'DELETE',
 }
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ApiService {
-  constructor(
-    private http: HttpClient,
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  request(endpoint: string, method: HttpMethod, body?: FormData): Observable<any> {
+  request(
+    endpoint: string,
+    method: HttpMethod,
+    body?: FormData,
+    queryParams?: any
+  ): Observable<any> {
+    let params = new HttpParams();
+    if (queryParams) {
+      for (const key in queryParams) {
+        if (queryParams.hasOwnProperty(key)) {
+          params = params.append(key, queryParams[key]);
+        }
+      }
+    }
     return this.http
       .request(method, `${BASE_URL}${endpoint}`, {
         body,
-        responseType: "json",
+        responseType: 'json',
+        params,
       })
       .pipe(
         catchError((error) => {
@@ -54,7 +66,7 @@ export class ApiService {
       );
   }
 
-  get<T>(endpoint: string): Observable<T> {
-    return this.request(endpoint, HttpMethod.GET);
+  get<T>(endpoint: string, queryParams?: any): Observable<T> {
+    return this.request(endpoint, HttpMethod.GET, undefined, queryParams);
   }
 }
