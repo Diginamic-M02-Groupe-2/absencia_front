@@ -4,6 +4,7 @@ import {ChartModule} from "primeng/chart";
 import {AbsenceRequestHistogramReportComponent} from "./histogram-report.component";
 import {AbsenceRequestHistogramComponent} from "../../../components/absence-request/histogram/histogram.component";
 import {SharedModule} from "../../../shared/shared.module";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import {SharedModule} from "../../../shared/shared.module";
     AbsenceRequestHistogramReportComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     ChartModule,
     CommonModule,
     SharedModule,
