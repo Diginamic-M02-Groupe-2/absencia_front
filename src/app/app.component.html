@@ -50,7 +50,7 @@
   </button>
 </p-sidebar>
 
-<p-toast position="top-right" [showTransformOptions]="'translateY(100px)'"></p-toast>
+<app-toast />
 
 <header *ngIf="isLogged" class="header">
   <button class="header__toggleMenuButton" (click)="toggleSidebar(true)">

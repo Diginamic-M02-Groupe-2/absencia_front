@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
 import { RouterModule } from '@angular/router';
-import { SidebarModule } from 'primeng/sidebar';
 import { CommonModule } from '@angular/common';
 import { MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
+import { SidebarModule } from 'primeng/sidebar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app.routes';
 import { ComponentsModule } from './pages/components/components.module';
@@ -19,26 +16,25 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import { AbsenceRequestHistogramReportModule } from './pages/absence-request/histogram-report/histogram-report.module';
 import { LoginModule } from './pages/login/login.module';
 import { NotFoundModule } from './pages/not-found/not-found.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     CommonModule,
+    SharedModule,
     SidebarModule,
     RouterModule,
-    ButtonModule,
-    InputTextModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    LoginModule,
-    ComponentsModule,
     AbsenceRequestListModule,
     AbsenceRequestHistogramReportModule,
     AbsenceRequestNewModule,
+    ComponentsModule,
+    LoginModule,
     NotFoundModule,
     PublicHolidaysAndEmployerWtrListModule,
-    ToastModule,
     NgxPermissionsModule.forRoot()
   ],
   providers: [
