@@ -71,7 +71,6 @@ export class AuthentificationService {
       .subscribe((logoutStatus: any) => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Session',
           detail: logoutStatus.message,
         });
       })
