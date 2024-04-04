@@ -1,0 +1,42 @@
+<app-dialog [(visible)]="visible">
+  <ng-template #header> Modification </ng-template>
+
+  <ng-template #body>
+    <app-form
+      [formGroup]="formGroup"
+      [method]="formMethod"
+      [action]="formAction"
+      (postSubmit)="postSubmit()"
+    >
+      <app-datepicker
+        [formGroup]="formGroup"
+        name="date"
+        label="Date du jour férié"
+        placeholder="Modifier la date"
+      />
+
+      <app-checkbox
+        [formGroup]="formGroup"
+        [checked]="publicHoliday.worked"
+        name="worked"
+        label="Travailler ce jour :"
+      />
+
+      <app-text-input
+        [formGroup]="formGroup"
+        type="text"
+        name="label"
+        label="Intitulé du jour férié"
+        placeholder="Modifier l'intitulé du jour férié"
+      />
+
+      <app-form-footer>
+        <button type="button" class="cancelButton" (click)="onClose()">
+          Annuler
+        </button>
+
+        <button type="submit" class="saveButton">Enregistrer</button>
+      </app-form-footer>
+    </app-form>
+  </ng-template>
+</app-dialog>

@@ -1,0 +1,12 @@
+<app-form-field
+  [formGroup]="formGroup"
+  [control]="formGroup.get(name)!"
+  [label]="label"
+>
+  <p-checkbox
+    [(ngModel)]="checked"
+    [binary]="true"
+    [formControlName]="name"
+    [value]="value"
+  />
+</app-form-field>
