@@ -40,7 +40,14 @@
               }"
             >
               {{ getPublicHolidayName(day) }}
-              <button type="button" class="showButton" (click)="onClickEditButton(day)">Modifier</button>
+              <button
+                type="button"
+                class="showButton"
+                (click)="onClickEditButton(day)"
+                *ngxPermissionsOnly="['CAN_PATCH_PUBLIC_HOLIDAYS']"
+              >
+                Modifier
+              </button>
             </p>
             <button
               *ngIf="isEmployerWtrDay(day)"
@@ -58,7 +65,7 @@
 </div>
 
 <app-employeur-wtr-edit-dialog
-    *ngIf="currentPublicHoliday"
-    [(visible)]="isDialogVisible"
-    [publicHoliday]="currentPublicHoliday"
+  *ngIf="currentPublicHoliday"
+  [(visible)]="isDialogVisible"
+  [publicHoliday]="currentPublicHoliday"
 />
