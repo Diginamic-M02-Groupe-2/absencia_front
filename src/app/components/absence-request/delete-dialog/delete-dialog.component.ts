@@ -25,7 +25,7 @@ export class AbsenceRequestDeleteDialogComponent {
   absenceRequest?: AbsenceRequest;
 
   @Output()
-  onDelete: EventEmitter<AbsenceRequest> = new EventEmitter<AbsenceRequest>();
+  onDelete: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,7 +51,7 @@ export class AbsenceRequestDeleteDialogComponent {
   }
 
   postSubmit(): void {
-    this.onDelete.emit(this.absenceRequest);
+    this.onDelete.emit();
     this.onClose();
   }
 }

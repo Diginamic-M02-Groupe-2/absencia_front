@@ -29,7 +29,7 @@ export class AbsenceRequestEditDialogComponent {
   absenceTypeOptions!: Option[];
 
   @Output()
-  onEdit: EventEmitter<AbsenceRequest> = new EventEmitter<AbsenceRequest>();
+  onEdit: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -74,7 +74,7 @@ export class AbsenceRequestEditDialogComponent {
     this.absenceRequest!.type = this.formGroup.get("type")?.value;
     this.absenceRequest!.reason = this.formGroup.get("reason")?.value;
 
-    this.onEdit.emit(this.absenceRequest);
+    this.onEdit.emit();
     this.onClose();
   }
 }
