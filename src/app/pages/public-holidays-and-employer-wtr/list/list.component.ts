@@ -30,6 +30,10 @@ export class PublicHolidaysAndEmployerWtrListComponent {
 
   year: number = new Date().getFullYear();
 
+  isDialogVisible: boolean = false;
+
+  currentPublicHoliday: PublicHoliday = new PublicHoliday();
+
   constructor(private apiService: ApiService) {
     this.getPublicHolidays();
     this.getEmployerWtr();
@@ -180,5 +184,32 @@ export class PublicHolidaysAndEmployerWtrListComponent {
         date.getDate() === wtrDate.getDate()
       );
     });
+  }
+
+  onClickEditButton(day: number | null): void {
+    if (day === null) {
+      return;
+    }
+  
+    const currentMonth = this.currentDate.getMonth();
+    const currentYear = this.currentDate.getFullYear();
+    const date = new Date(currentYear, currentMonth, day);
+  
+    // Rechercher le jour férié dans votre liste `publicHolidays`
+    const holiday = this.publicHolidays.find((holiday) => {
+      const holidayDate = new Date(holiday.date);
+      return (
+        date.getFullYear() === holidayDate.getFullYear() &&
+        date.getMonth() === holidayDate.getMonth() &&
+        date.getDate() === holidayDate.getDate()
+      );
+    });
+
+    if(!holiday){
+      return;
+    }
+
+    this.currentPublicHoliday = holiday;
+    this.isDialogVisible = true;
   }
 }
