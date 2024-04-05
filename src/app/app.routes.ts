@@ -8,11 +8,11 @@ import {AbsenceRequestHistogramReportComponent} from "./pages/absence-request/hi
 import {AbsenceRequestNewComponent} from "./pages/absence-request/new/new.component";
 import {CalendarComponent} from "./pages/calendar/calendar.component";
 import {ComponentsComponent} from "./pages/components/components.component";
-import {EmployerWtrAndPublicHolidayListComponent} from "./pages/employer-wtr-and-public-holiday/list/list.component";
+import {EmployerWtrAndPublicHolidayReadComponent} from "./pages/employer-wtr-and-public-holiday/read/read.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
-import {PublicHolidaysAndEmployerWtrListComponent} from "./pages/public-holidays-and-employer-wtr/list/list.component";
 import { TableDayServiceComponent } from './pages/table-day-service/table-day-service.component';
+import { EmployerWtrCreateComponent } from "./pages/employer-wtr/create/create.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: Route.LOGIN, pathMatch: 'full' },
@@ -44,8 +44,13 @@ export const routes: Routes = [
     data: { requiredPermission: 'CAN_VISUALIZE_HISTOGRAM_ABSENCE_REQUEST' }
   },
   {
-    path: Route.EMPLOYER_WTR_AND_PUBLIC_HOLIDAY_LIST,
-    component: EmployerWtrAndPublicHolidayListComponent,
+    path: Route.EMPLOYER_WTR_AND_PUBLIC_HOLIDAY_READ,
+    component: EmployerWtrAndPublicHolidayReadComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: Route.EMPLOYER_WTR_CREATE,
+    component: EmployerWtrCreateComponent,
     canActivate: [AuthGuard],
   },
   {

@@ -6,19 +6,19 @@ import {Sidebar} from "primeng/sidebar";
 import {Route} from "./models/route";
 import {ApiRoute, HttpMethod} from "./services/api.service";
 import {AuthentificationService} from "./services/authentification.service";
-import { MessageResponse } from "./models/message-response";
+import {MessageResponse} from "./models/message-response";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrl: "./app.component.scss",
 })
 export class AppComponent {
   absenceRequestListRoute: string = Route.ABSENCE_REQUEST_LIST;
 
   tableDayServiceRoute: string = Route.TABLE_DAY_SERVICE;
 
-  employerWtrAndPublicHolidayListRoute: string = Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST;
+  employerWtrAndPublicHolidayListRoute: string = Route.EMPLOYER_WTR_AND_PUBLIC_HOLIDAY_READ;
  
   createAbsenceRequestRoute: string = Route.ABSENCE_REQUEST_CREATE;
 

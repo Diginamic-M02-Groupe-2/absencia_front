@@ -19,7 +19,8 @@ import { NotFoundModule } from './pages/not-found/not-found.module';
 import { TableDayServiceModule } from './pages/table-day-service/table-day-service.module';
 import { SharedModule } from './shared/shared.module';
 import { ToastModule } from 'primeng/toast';
-import { EmployerWtrAndPublicHolidayListModule } from './pages/employer-wtr-and-public-holiday/list/list.module';
+import { EmployerWtrAndPublicHolidayReadModule } from './pages/employer-wtr-and-public-holiday/read/read.module';
+import { EmployerWtrCreateModule } from './pages/employer-wtr/create/create.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,8 +41,14 @@ import { EmployerWtrAndPublicHolidayListModule } from './pages/employer-wtr-and-
     NotFoundModule,
     ToastModule,
     NgxPermissionsModule.forRoot(),
-    EmployerWtrAndPublicHolidayListModule,
     CalendarModule,
+    CalendarModule,
+    ComponentsModule,
+    EmployerWtrAndPublicHolidayReadModule,
+    EmployerWtrCreateModule,
+    LoginModule,
+    NgxPermissionsModule.forRoot(),
+    NotFoundModule,
   ],
   providers: [
     {

@@ -7,11 +7,11 @@ import {Route} from "../../../models/route";
 import {ApiRoute, ApiService} from "../../../services/api.service";
 
 @Component({
-  selector: "app-employer-wtr-and-public-holiday-list",
-  templateUrl: "./list.component.html",
-  styleUrl: "./list.component.module.scss",
+  selector: "app-employer-wtr-and-public-holiday-read",
+  templateUrl: "./read.component.html",
+  styleUrl: "./read.component.module.scss",
 })
-export class EmployerWtrAndPublicHolidayListComponent {
+export class EmployerWtrAndPublicHolidayReadComponent {
   createEmployerWtrRoute: string = `/${Route.EMPLOYER_WTR_CREATE}`;
 
   employerWtrAndPublicHolidays: (EmployerWtr|PublicHoliday)[] = [];

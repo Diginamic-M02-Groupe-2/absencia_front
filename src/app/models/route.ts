@@ -9,7 +9,7 @@ export enum Route {
   // Table day service
   TABLE_DAY_SERVICE = "table-day-service",
   // Employer WTR and public holiday
-  EMPLOYER_WTR_AND_PUBLIC_HOLIDAY_LIST = "employer-wtr-and-public-holidays",
+  EMPLOYER_WTR_AND_PUBLIC_HOLIDAY_READ = "employer-wtr-and-public-holidays",
   // Employer WTR
   EMPLOYER_WTR_CREATE = "employer-wtr/create",
   // Calendar
