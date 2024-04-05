@@ -1,19 +1,15 @@
-<ng-container *ngIf="!absenceRequests.length; else table">
+<ng-container *ngIf="!employerWtrAndPublicHolidays.length; else table">
   <div class="noResults">
     Aucun résultat.
   </div>
 </ng-container>
 
 <ng-template #table>
-  <p-table [value]="absenceRequests">
+  <p-table [value]="employerWtrAndPublicHolidays">
     <ng-template pTemplate="header">
       <tr>
         <th>
-          Du
-        </th>
-
-        <th>
-          Au
+          Date
         </th>
 
         <th>
@@ -21,53 +17,42 @@
         </th>
 
         <th>
-          Statut
-        </th>
-
-        <th>
-          Motif
+          Libellé
         </th>
 
         <th></th>
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-absenceRequest>
+    <ng-template pTemplate="body" let-employerWtrOrAbsenceRequest>
       <tr>
         <td>
-          {{absenceRequest.startedAt|date: "dd/MM/yyyy"}}
-        </td>
-
-        <td>
-          {{absenceRequest.endedAt|date: "dd/MM/yyyy"}}
+          {{employerWtrOrAbsenceRequest.date}} ({{getWeekDay(employerWtrOrAbsenceRequest.date)}})
         </td>
 
         <td>
           <app-badge>
-            {{absenceRequest.type|absenceType}}
+            {{getType(employerWtrOrAbsenceRequest)}}
           </app-badge>
         </td>
 
         <td>
-          <app-badge>
-            {{absenceRequest.status|absenceRequestStatus}}
-          </app-badge>
-        </td>
-
-        <td>
-          {{absenceRequest.reason}}
+          {{employerWtrOrAbsenceRequest.label}}
         </td>
 
         <td>
           <div class="actions">
-            <ng-container *ngIf="isStatusEditable(absenceRequest)">
-              <button class="button updateButton" (click)="onClickEditButton(absenceRequest)" *ngxPermissionsOnly="['CAN_PATCH_ABSENCE_REQUEST']">
+            <ng-container *ngIf="isEmployerWtrEditable(employerWtrOrAbsenceRequest)">
+              <button class="button updateButton" (click)="onClickUpdateButton(employerWtrOrAbsenceRequest)" *ngxPermissionsOnly="'CAN_UPDATE_EMPLOYER_WTR'">
                 <i class="pi pi-file-edit"></i>
-                <span class="label">Modifier</span>
+
+                <span class="label">
+                  Modifier
+                </span>
               </button>
             </ng-container>
 
-            <button class="button deleteButton" (click)="onClickDeleteButton(absenceRequest)" *ngxPermissionsOnly="['CAN_DELETE_ABSENCE_REQUEST']">
+            <button class="button deleteButton" (click)="onClickDeleteButton(employerWtrOrAbsenceRequest)" *ngxPermissionsOnly="'CAN_DELETE_EMPLOYER_WTR'">
               <i class="pi pi-trash"></i>
 
               <span class="label">
@@ -80,7 +65,7 @@
     </ng-template>
   </p-table>
 
-  <app-absence-request-edit-dialog
+  <!-- <app-absence-request-edit-dialog
     *ngIf="absenceRequest"
     [(visible)]="editDialogVisible"
     [absenceRequest]="absenceRequest"
@@ -93,5 +78,5 @@
     [(visible)]="deleteDialogVisible"
     [absenceRequest]="absenceRequest"
     (onDelete)="onDelete($event)"
-  />
+  /> -->
 </ng-template>

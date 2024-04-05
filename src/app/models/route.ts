@@ -6,10 +6,12 @@ export enum Route {
   // Absence request
   ABSENCE_REQUEST_LIST = "absence-requests",
   ABSENCE_REQUEST_CREATE = "absence-requests/create",
-  // Public holiday & employer WTR
-  PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST = "public-holidays-and-employer-wtr",
   // Table day service
   TABLE_DAY_SERVICE = "table-day-service",
+  // Employer WTR and public holiday
+  EMPLOYER_WTR_AND_PUBLIC_HOLIDAY_LIST = "employer-wtr-and-public-holidays",
+  // Employer WTR
+  EMPLOYER_WTR_CREATE = "employer-wtr/create",
   // Calendar
   CALENDAR = "calendar",
   // Report

@@ -1,0 +1,26 @@
+@import "../../../../variables.scss";
+
+.createButton {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: $success;
+  color: $white;
+  transition: background-color .2s;
+
+  &:hover {
+    background-color: darken($success, 10%);
+  }
+
+  .pi {
+    font-size: .75rem;
+    font-weight: 900;
+  }
+}
+
+.remaining {
+  margin-top: 8px;
+  text-align: end;
+}

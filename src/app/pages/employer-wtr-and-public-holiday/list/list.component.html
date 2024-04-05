@@ -1,0 +1,15 @@
+<h1>
+  RTT employeurs et jours fériés
+
+  <ng-container *ngxPermissionsOnly="'CAN_CREATE_EMPLOYER_WTR'">
+    <a [routerLink]="createEmployerWtrRoute" class="button createButton">
+      <i class="pi pi-plus"></i>
+
+      <span class="label">
+        Créer une RTT employeur
+      </span>
+    </a>
+  </ng-container>
+</h1>
+
+<app-employer-wtr-and-public-holiday-table [employerWtrAndPublicHolidays]="employerWtrAndPublicHolidays" />

@@ -5,7 +5,7 @@
   <ul class="drawer__list">
     <li class="drawer__list__item">
       <a
-        [routerLink]="absenceRequestRoute"
+        [routerLink]="absenceRequestListRoute"
         routerLinkActive="drawer__list__item__linkActive"
         class="drawer__list__item__link"
         (click)="closeBack($event)"
@@ -18,20 +18,20 @@
 
     <li class="drawer__list__item">
       <a
-        [routerLink]="publicHolidaysAndEmployerWtrRoute"
+        [routerLink]="employerWtrAndPublicHolidayListRoute"
         routerLinkActive="drawer__list__item__linkActive"
         class="drawer__list__item__link"
         (click)="closeBack($event)"
       >
         <i class="pi pi-calendar"></i>
 
-        Jours fériés et RTT employeur
+        RTT employeurs et jours fériés
       </a>
     </li>
 
     <li class="drawer__list__item" *ngxPermissionsOnly="['CAN_VISUALIZE_HISTOGRAM_ABSENCE_REQUEST']">
       <a
-        [routerLink]="histogramRoute"
+        [routerLink]="histogramReportRoute"
         routerLinkActive="drawer__list__item__linkActive"
         class="drawer__list__item__link"
         (click)="closeBack($event)"
@@ -64,13 +64,13 @@
   <nav class="header__navBar">
     <ul class="header__navBar__list">
       <li class="header__navBar__list__item">
-        <a [routerLink]="absenceRequestRoute" class="logoLink">
+        <a [routerLink]="absenceRequestListRoute" class="logoLink">
           Absencia
         </a>
       </li>
 
       <li class="header__navBar__list__item">
-        <a [routerLink]="absenceRequestRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
+        <a [routerLink]="absenceRequestListRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
           <i class="pi pi-briefcase"></i>
 
           Demandes d'absence
@@ -78,15 +78,15 @@
       </li>
 
       <li class="header__navBar__list__item">
-        <a [routerLink]="publicHolidaysAndEmployerWtrRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
+        <a [routerLink]="employerWtrAndPublicHolidayListRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
           <i class="pi pi-calendar"></i>
 
-          Jours fériés et RTT employeur
+          RTT employeurs et jours fériés
         </a>
       </li>
 
       <li class="header__navBar__list__item" *ngxPermissionsOnly="['CAN_VISUALIZE_HISTOGRAM_ABSENCE_REQUEST']">
-        <a [routerLink]="histogramRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
+        <a [routerLink]="histogramReportRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
           <i class="pi pi-chart-bar"></i>
 
           Histogramme

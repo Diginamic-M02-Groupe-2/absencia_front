@@ -2,16 +2,16 @@ import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
 import {ReactiveFormsModule} from "@angular/forms";
 import {CalendarModule} from "primeng/calendar";
+import {CheckboxModule} from "primeng/checkbox";
 import {DialogModule} from "primeng/dialog";
 import {DropdownModule} from "primeng/dropdown";
 import {InputTextModule} from "primeng/inputtext";
 import {SelectButtonModule} from "primeng/selectbutton";
 import {ToastModule} from "primeng/toast";
-import { CheckboxModule } from "primeng/checkbox";
-
 import {AppRoutingModule} from "../app.routes";
 import {BackLinkComponent} from "../components/back-link/back-link.component";
 import {BadgeComponent} from "../components/badge/badge.component";
+import {CheckboxComponent} from "../components/checkbox/checkbox.component";
 import {DatepickerComponent} from "../components/datepicker/datepicker.component";
 import {DialogComponent} from "../components/dialog/dialog.component";
 import {FormComponent} from "../components/form/form.component";
@@ -22,7 +22,6 @@ import {SelectComponent} from "../components/select/select.component";
 import {TextInputComponent} from "../components/text-input/text-input.component";
 import {ToastComponent} from "../components/toast/toast.component";
 import {TodoComponent} from "../components/todo/todo.component";
-import { CheckboxComponent } from "../components/checkbox/checkbox.component";
 
 @NgModule({
   declarations: [

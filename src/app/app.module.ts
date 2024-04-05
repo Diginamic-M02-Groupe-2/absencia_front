@@ -18,9 +18,8 @@ import { LoginModule } from './pages/login/login.module';
 import { NotFoundModule } from './pages/not-found/not-found.module';
 import { TableDayServiceModule } from './pages/table-day-service/table-day-service.module';
 import { SharedModule } from './shared/shared.module';
-import { PublicHolidaysAndEmployerWtrListModule } from './pages/public-holidays-and-employer-wtr/list/list.module';
 import { ToastModule } from 'primeng/toast';
-
+import { EmployerWtrAndPublicHolidayListModule } from './pages/employer-wtr-and-public-holiday/list/list.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,11 +38,10 @@ import { ToastModule } from 'primeng/toast';
     ComponentsModule,
     LoginModule,
     NotFoundModule,
-    PublicHolidaysAndEmployerWtrListModule,
     ToastModule,
     NgxPermissionsModule.forRoot(),
+    EmployerWtrAndPublicHolidayListModule,
     CalendarModule,
-    NgxPermissionsModule.forRoot()
   ],
   providers: [
     {

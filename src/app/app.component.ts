@@ -14,17 +14,15 @@ import { MessageResponse } from "./models/message-response";
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  absenceRequestRoute: string = Route.ABSENCE_REQUEST_LIST;
+  absenceRequestListRoute: string = Route.ABSENCE_REQUEST_LIST;
 
-  loginRoute: string = Route.LOGIN;
-
-  publicHolidaysAndEmployerWtrRoute: string = Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST;
-  
   tableDayServiceRoute: string = Route.TABLE_DAY_SERVICE;
 
+  employerWtrAndPublicHolidayListRoute: string = Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST;
+ 
   createAbsenceRequestRoute: string = Route.ABSENCE_REQUEST_CREATE;
 
-  histogramRoute: string = Route.REPORT_HISTOGRAM;
+  histogramReportRoute: string = Route.REPORT_HISTOGRAM;
 
   firstName: string = '';
 
