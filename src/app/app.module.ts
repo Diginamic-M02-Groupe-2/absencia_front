@@ -16,7 +16,9 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import { AbsenceRequestHistogramReportModule } from './pages/absence-request/histogram-report/histogram-report.module';
 import { LoginModule } from './pages/login/login.module';
 import { NotFoundModule } from './pages/not-found/not-found.module';
+import { TableDayServiceModule } from './pages/table-day-service/table-day-service.module';
 import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +30,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    TableDayServiceModule,
     AbsenceRequestListModule,
     AbsenceRequestHistogramReportModule,
     AbsenceRequestNewModule,
@@ -35,7 +38,8 @@ import { SharedModule } from './shared/shared.module';
     LoginModule,
     NotFoundModule,
     PublicHolidaysAndEmployerWtrListModule,
-    NgxPermissionsModule.forRoot()
+    ToastModule,
+    NgxPermissionsModule.forRoot(),
   ],
   providers: [
     {

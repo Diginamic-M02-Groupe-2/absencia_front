@@ -1,0 +1,38 @@
+<h1>Vue par département et par jour</h1>
+
+<div class="selectors-container">
+    <label for="serviceSelect">Département:</label>
+    <select id="serviceSelect" [(ngModel)]="selectedService">
+      <option [ngValue]="undefined">Tous les services</option>
+      <option *ngFor="let option of serviceOptions" [ngValue]="option.value">{{ option.label }}</option>
+    </select>
+  
+    <label for="monthSelect">Mois:</label>
+    <select id="monthSelect" [(ngModel)]="selectedMonth">
+      <option *ngFor="let month of months" [ngValue]="month">{{ month }}</option>
+    </select>
+  
+    <label for="yearSelect">Année:</label>
+    <select id="yearSelect" [(ngModel)]="selectedYear">
+      <option *ngFor="let year of years" [ngValue]="year">{{ year }}</option>
+    </select>
+  
+    <button><i class="fas fa-search"></i></button>
+  </div>
+  
+  
+
+<p-table [value]="filterCongesByService()" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nom</th>
+      <th *ngFor="let jour of jours">{{ jour }}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-conge>
+    <tr>
+      <td>{{ conge.nom }}</td>
+      <td *ngFor="let jour of jours">{{ getCongeValue(conge, jour) }}</td>
+    </tr>
+  </ng-template>
+</p-table>
