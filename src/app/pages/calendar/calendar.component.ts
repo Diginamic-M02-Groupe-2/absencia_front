@@ -1,27 +1,27 @@
 import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { EmployerWtr } from '../../../entities/employer-wtr';
-import { PublicHoliday } from '../../../entities/public-holiday';
-import { ApiRoute, ApiService } from '../../../services/api.service';
+import { EmployerWtr } from '../../entities/employer-wtr';
+import { PublicHoliday } from '../../entities/public-holiday';
+import { ApiRoute, ApiService } from '../../services/api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../../services/user.service';
-import { Service } from '../../../entities/user/service';
-import { AbsenceRequest } from '../../../entities/absence-request';
+import { UserService } from '../../services/user.service';
+import { Service } from '../../entities/user/service';
+import { AbsenceRequest } from '../../entities/absence-request';
 
 @Component({
-  selector: 'app-public-holidays-and-employer-wtr-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.module.scss'],
+  selector: "app-absence-request-calendar",
+  templateUrl: "./calendar.component.html",
+  styleUrl: "./calendar.component.module.scss",
 })
-export class PublicHolidaysAndEmployerWtrListComponent {
+export class CalendarComponent {
   weekDays: string[] = [
-    'Lundi',
-    'Mardi',
-    'Mercredi',
-    'Jeudi',
-    'Vendredi',
-    'Samedi',
-    'Dimanche',
+    "Lundi",
+    "Mardi",
+    "Mercredi",
+    "Jeudi",
+    "Vendredi",
+    "Samedi",
+    "Dimanche",
   ];
 
   currentDate: Date = new Date();

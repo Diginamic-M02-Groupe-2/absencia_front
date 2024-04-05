@@ -11,13 +11,15 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
 import { AbsenceRequestListModule } from './pages/absence-request/list/list.module';
 import { AbsenceRequestNewModule } from './pages/absence-request/new/new.module';
-import { PublicHolidaysAndEmployerWtrListModule } from './pages/public-holidays-and-employer-wtr/list/list.module';
+import { CalendarModule } from './pages/calendar/calendar.module';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { AbsenceRequestHistogramReportModule } from './pages/absence-request/histogram-report/histogram-report.module';
 import { LoginModule } from './pages/login/login.module';
 import { NotFoundModule } from './pages/not-found/not-found.module';
 import { TableDayServiceModule } from './pages/table-day-service/table-day-service.module';
 import { SharedModule } from './shared/shared.module';
+import { PublicHolidaysAndEmployerWtrListModule } from './pages/public-holidays-and-employer-wtr/list/list.module';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -40,6 +42,8 @@ import { SharedModule } from './shared/shared.module';
     PublicHolidaysAndEmployerWtrListModule,
     ToastModule,
     NgxPermissionsModule.forRoot(),
+    CalendarModule,
+    NgxPermissionsModule.forRoot()
   ],
   providers: [
     {

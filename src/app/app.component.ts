@@ -24,7 +24,7 @@ export class AppComponent {
 
   createAbsenceRequestRoute: string = Route.ABSENCE_REQUEST_CREATE;
 
-  histogramRoute: string = Route.HISTOGRAM;
+  histogramRoute: string = Route.REPORT_HISTOGRAM;
 
   firstName: string = '';
 

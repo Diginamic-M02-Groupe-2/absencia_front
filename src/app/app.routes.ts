@@ -7,6 +7,7 @@ import { Route } from './models/route';
 import {AbsenceRequestListComponent} from "./pages/absence-request/list/list.component";
 import {AbsenceRequestHistogramReportComponent} from "./pages/absence-request/histogram-report/histogram-report.component";
 import {AbsenceRequestNewComponent} from "./pages/absence-request/new/new.component";
+import {CalendarComponent} from "./pages/calendar/calendar.component";
 import {ComponentsComponent} from "./pages/components/components.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {PublicHolidaysAndEmployerWtrListComponent} from "./pages/public-holidays-and-employer-wtr/list/list.component";
@@ -36,14 +37,19 @@ export const routes: Routes = [
     data: { requiredPermission: 'CAN_ROUTE_TO_POST_ABSENCE_REQUEST' }
   },
   {
-    path: Route.HISTOGRAM,
+    path: Route.REPORT_HISTOGRAM,
     component: AbsenceRequestHistogramReportComponent,
     canActivate: [AuthGuard],
     data: { requiredPermission: 'CAN_VISUALIZE_HISTOGRAM_ABSENCE_REQUEST' }
   },
-  {
+  /* {
     path: Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST,
     component: PublicHolidaysAndEmployerWtrListComponent,
+    canActivate: [AuthGuard],
+  }, */
+  {
+    path: Route.CALENDAR,
+    component: CalendarComponent,
     canActivate: [AuthGuard],
   },
    {
