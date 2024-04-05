@@ -1,10 +1,10 @@
 import {Component, Input} from "@angular/core";
+import {MessageService} from "primeng/api";
 import {AbsenceRequest} from "../../../entities/absence-request";
+import {AbsenceRequestStatus} from "../../../entities/absence-request-status";
 import {absenceTypeOptions} from "../../../entities/absence-type";
+import {MessageResponse} from "../../../models/message-response";
 import {Option} from "../../../models/option";
-import { AbsenceRequestStatus } from "../../../entities/absence-request-status";
-import { MessageService } from "primeng/api";
-import { MessageResponse } from "../../../models/message-response";
 
 @Component({
   selector: "app-absence-request-table",
