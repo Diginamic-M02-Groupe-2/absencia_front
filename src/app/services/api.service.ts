@@ -18,7 +18,7 @@ export enum ApiRoute {
   GET_ABSENCE_REQUEST_HISTOGRAM = "/reports/histogram",
   PUBLIC_HOLIDAY = "/public-holidays",
   EMPLOYER_WTR = "/employer-wtr",
-  PLANNING = "/reports/planning",
+  REPORT_PLANNING = "/reports/planning",
   GET_CURRENT_USER = "/users/current",
 }
 

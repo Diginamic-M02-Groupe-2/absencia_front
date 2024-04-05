@@ -82,7 +82,7 @@ export class PublicHolidaysAndEmployerWtrListComponent {
         remainingPaidLeaves: number;
         remainingEmployeeWtr: number;
         publicHolidays: PublicHoliday[];
-      }>(`${ApiRoute.PLANNING}`, queryParams)
+      }>(`${ApiRoute.REPORT_PLANNING}`, queryParams)
     );
   }
 
