@@ -20,10 +20,68 @@
   }
 }
 
-.form {
+.form-group {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  column-gap: 8px;
+}
+
+.form-field {
   display: flex;
   flex-direction: column;
-  max-width: 700px;
-  margin: 0 auto;
-  row-gap: 8px;
+  row-gap: 4px;
+  color: $tertiary;
+
+  &:not(&Invalid):focus-within {
+    color: $primary;
+  }
+
+  &Invalid {
+    color: $error;
+  }
+
+  &__label {
+    padding: 0 10px;
+    font-size: .75rem;
+    font-weight: 700;
+    transition: color .2s;
+  }
+
+  &__error {
+    padding: 0 10px;
+    font-size: .75rem;
+    font-weight: 700;
+  }
+}
+
+:host::ng-deep p-dropdown {
+  .p-dropdown {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid $tertiary;
+    border-radius: 4px;
+
+    &:is(.fieldInvalid .p-dropdown) {
+      border-color: $error;
+    }
+
+    .p-inputtext {
+      color: inherit;
+    }
+
+    .p-placeholder {
+      opacity: .5;
+      color: inherit;
+    }
+  }
+
+  .p-focus {
+    border-color: $primary;
+    box-shadow: none;
+  }
+
+  .p-dropdown-trigger .pi {
+    display: block;
+  }
 }

@@ -39,7 +39,10 @@ export class AbsenceRequestHistogramReportComponent {
 
     this.userService.getCurrentUser().subscribe(async (user) => {
       const userService = user.service;
-      const selectedOption = serviceOptions.find(option => option.value.toLowerCase() === userService.toLocaleLowerCase());
+      const selectedOption = serviceOptions.find(
+        (option) =>
+          option.value.toLowerCase() === userService.toLocaleLowerCase()
+      );
       this.formGroup.patchValue({
         service: selectedOption!.value,
       });
@@ -48,7 +51,9 @@ export class AbsenceRequestHistogramReportComponent {
   }
 
   async getHistogramDatasets(): Promise<void> {
-    const serviceNumber = this.getServiceNumberByLabel(this.formGroup.value.service);
+    const serviceNumber = this.getServiceNumberByLabel(
+      this.formGroup.value.service
+    );
     const date = new Date();
     const queryParams = {
       month: date.getMonth() + 1,
@@ -77,6 +82,16 @@ export class AbsenceRequestHistogramReportComponent {
     );
 
     this.datasets = response;
+  }
+
+  onDateChanged(newDate: any) {
+    this.formGroup.get("dateControl")?.setValue(newDate);
+    this.onSubmit();
+  }
+
+  onSelectionChanged(newSelection: any) {
+    this.formGroup.get("selectControl")?.setValue(newSelection);
+    this.onSubmit();
   }
 
   getServiceNumberByLabel(label: string): number | undefined {

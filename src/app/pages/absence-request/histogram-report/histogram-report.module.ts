@@ -5,6 +5,8 @@ import {AbsenceRequestHistogramReportComponent} from "./histogram-report.compone
 import {AbsenceRequestHistogramComponent} from "../../../components/absence-request/histogram/histogram.component";
 import {SharedModule} from "../../../shared/shared.module";
 import { ReactiveFormsModule } from "@angular/forms";
+import { DropdownModule } from "primeng/dropdown";
+import { CalendarModule } from "primeng/calendar";
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     ChartModule,
     CommonModule,
     SharedModule,
+    DropdownModule,
+    CalendarModule,
   ],
 })
 export class AbsenceRequestHistogramReportModule {}
