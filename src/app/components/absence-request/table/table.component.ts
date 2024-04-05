@@ -3,6 +3,8 @@ import {AbsenceRequest} from "../../../entities/absence-request";
 import {absenceTypeOptions} from "../../../entities/absence-type";
 import {Option} from "../../../models/option";
 import { AbsenceRequestStatus } from "../../../entities/absence-request-status";
+import { MessageService } from "primeng/api";
+import { MessageResponse } from "../../../models/message-response";
 
 @Component({
   selector: "app-absence-request-table",
@@ -21,6 +23,10 @@ export class AbsenceRequestTableComponent {
 
   deleteDialogVisible: boolean = false;
 
+  constructor(
+    private messageService: MessageService,
+  ) {}
+
   isStatusEditable(absenceRequest: AbsenceRequest) {
     return !(absenceRequest.status === AbsenceRequestStatus.APPROVED || absenceRequest.status === AbsenceRequestStatus.PENDING);
   }
@@ -35,15 +41,19 @@ export class AbsenceRequestTableComponent {
     this.deleteDialogVisible = true;
   }
 
-  onEdit(absenceRequest: AbsenceRequest): void {
-    const index = this.absenceRequests.findIndex(item => item.id === absenceRequest.id);
-
-    this.absenceRequests[index] = absenceRequest;
+  onEdit(response: MessageResponse): void {
+    this.messageService.add({
+      severity: "success",
+      detail: response.message,
+      life: 5000,
+    });
   }
 
-  onDelete(absenceRequest: AbsenceRequest): void {
-    const index = this.absenceRequests.findIndex(item => item.id === absenceRequest.id);
-
-    this.absenceRequests.splice(index, 1);
+  onDelete(response: MessageResponse): void {
+    this.messageService.add({
+      severity: "success",
+      detail: response.message,
+      life: 5000,
+    });
   }
 }

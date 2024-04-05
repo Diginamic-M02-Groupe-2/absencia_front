@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output, SimpleChanges} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {AbsenceRequest} from "../../../entities/absence-request";
+import {MessageResponse} from "../../../models/message-response";
 import {ApiRoute, HttpMethod} from "../../../services/api.service";
 
 @Component({
@@ -25,7 +26,7 @@ export class AbsenceRequestDeleteDialogComponent {
   absenceRequest?: AbsenceRequest;
 
   @Output()
-  onDelete: EventEmitter<AbsenceRequest> = new EventEmitter<AbsenceRequest>();
+  onDelete: EventEmitter<MessageResponse> = new EventEmitter<MessageResponse>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,8 +51,8 @@ export class AbsenceRequestDeleteDialogComponent {
     this.visibleChange.emit(this.visible);
   }
 
-  postSubmit(): void {
-    this.onDelete.emit(this.absenceRequest);
+  postSubmit(response: MessageResponse): void {
+    this.onDelete.emit(response);
     this.onClose();
   }
 }

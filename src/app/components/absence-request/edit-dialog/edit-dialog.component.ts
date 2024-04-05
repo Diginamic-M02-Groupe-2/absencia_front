@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output, SimpleChanges} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AbsenceRequest} from "../../../entities/absence-request";
+import {MessageResponse} from "../../../models/message-response";
 import {Option} from "../../../models/option";
 import {ApiRoute, HttpMethod} from "../../../services/api.service";
 
@@ -29,7 +30,7 @@ export class AbsenceRequestEditDialogComponent {
   absenceTypeOptions!: Option[];
 
   @Output()
-  onEdit: EventEmitter<AbsenceRequest> = new EventEmitter<AbsenceRequest>();
+  onEdit: EventEmitter<MessageResponse> = new EventEmitter<MessageResponse>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -65,16 +66,8 @@ export class AbsenceRequestEditDialogComponent {
     this.visibleChange.emit(this.visible);
   }
 
-  postSubmit(): void {
-    /**
-     * @todo ugly, see with formGroup.getRawValue
-     */
-    this.absenceRequest!.startedAt = this.formGroup.get("startedAt")?.value;
-    this.absenceRequest!.endedAt = this.formGroup.get("endedAt")?.value;
-    this.absenceRequest!.type = this.formGroup.get("type")?.value;
-    this.absenceRequest!.reason = this.formGroup.get("reason")?.value;
-
-    this.onEdit.emit(this.absenceRequest);
+  postSubmit(response: MessageResponse): void {
+    this.onEdit.emit(response);
     this.onClose();
   }
 }
