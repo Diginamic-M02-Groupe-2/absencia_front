@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
-import { LoginGuard } from './auth/guards/login.guard';
-import { AuthGuard } from './auth/guards/auth.guard';
-import { LoginComponent } from './auth/components/login/login.component';
+import { LoginGuard } from './guards/login.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { LoginComponent } from './pages/login/login.component';
 import { NgModule } from '@angular/core';
 import { Route } from './models/route';
 import {AbsenceRequestListComponent} from "./pages/absence-request/list/list.component";

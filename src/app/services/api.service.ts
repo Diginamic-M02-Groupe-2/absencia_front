@@ -10,14 +10,15 @@ export const GET_USER_API = `${API_URL}/users/current`;
 export const GET_ABSENCE_REQUESTS = `${API_URL}/absence-requests`;
 
 export enum ApiRoute {
-  ABSENCE_REQUEST = '/absence-requests',
-  ABSENCE_REQUEST_MANAGER = '/absence-requests/manager',
-  ABSENCE_REQUEST_APPROVE = '/absence-requests/approve',
-  ABSENCE_REQUEST_REJECT = '/absence-requests/reject',
-  GET_ABSENCE_REQUEST_HISTOGRAM = '/reports/histogram',
-  PUBLIC_HOLIDAY = '/public-holidays',
-  EMPLOYER_WTR = '/employer-wtr',
-  GET_CURRENT_USER = '/users/current',
+  LOGIN = "/login",
+  ABSENCE_REQUEST = "/absence-requests",
+  ABSENCE_REQUEST_MANAGER = "/absence-requests/manager",
+  ABSENCE_REQUEST_APPROVE = "/absence-requests/approve",
+  ABSENCE_REQUEST_REJECT = "/absence-requests/reject",
+  GET_ABSENCE_REQUEST_HISTOGRAM = "/reports/histogram",
+  PUBLIC_HOLIDAY = "/public-holidays",
+  EMPLOYER_WTR = "/employer-wtr",
+  GET_CURRENT_USER = "/users/current",
 }
 
 export enum HttpMethod {

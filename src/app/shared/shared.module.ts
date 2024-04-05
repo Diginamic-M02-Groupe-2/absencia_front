@@ -18,6 +18,7 @@ import {FormFooterComponent} from "../components/form-footer/form-footer.compone
 import {FormGroupComponent} from "../components/form-group/form-group.component";
 import {SelectComponent} from "../components/select/select.component";
 import {TextInputComponent} from "../components/text-input/text-input.component";
+import {ToastComponent} from "../components/toast/toast.component";
 import {TodoComponent} from "../components/todo/todo.component";
 
 @NgModule({
@@ -32,6 +33,7 @@ import {TodoComponent} from "../components/todo/todo.component";
     FormGroupComponent,
     SelectComponent,
     TextInputComponent,
+    ToastComponent,
     TodoComponent,
   ],
   imports: [
@@ -56,6 +58,7 @@ import {TodoComponent} from "../components/todo/todo.component";
     FormGroupComponent,
     SelectComponent,
     TextInputComponent,
+    ToastComponent,
     TodoComponent,
   ],
   bootstrap: [],

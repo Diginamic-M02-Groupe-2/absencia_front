@@ -1,0 +1,47 @@
+@import "../../../variables.scss";
+
+:host::ng-deep p-toast {
+  .p-toast-message {
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px $shadow;
+    backdrop-filter: none;
+
+    &-danger {
+      background-color: $error;
+      color: $white;
+    }
+
+    &-info {
+      background-color: $white;
+      color: $tertiary;
+    }
+
+    &-success {
+      background-color: $success;
+      color: $white;
+    }
+
+    &-warning {
+      background-color: $secondary;
+      color: darken($secondary, 90%);
+    }
+  }
+
+  .p-toast-message-icon {
+    display: none;
+  }
+
+  .p-toast-message-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .p-toast-message-text {
+    padding: 0 8px;
+  }
+
+  .p-toast-icon-close {
+    color: inherit;
+  }
+}
