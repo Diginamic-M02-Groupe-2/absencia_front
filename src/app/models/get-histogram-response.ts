@@ -4,5 +4,5 @@ export interface HistogramDataset {
   id: number;
   firstName: string;
   lastName: string;
-  data: number[]; // One number for each day of the month
+  dataset: number[]; // One number for each day of the month
 }

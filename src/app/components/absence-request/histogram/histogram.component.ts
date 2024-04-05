@@ -104,7 +104,7 @@ export class AbsenceRequestHistogramComponent implements OnChanges  {
       datasets: this.datasets.map((dataset: HistogramDataset, i: number) => ({
         label: `${dataset.firstName} ${dataset.lastName}`,
         backgroundColor: this.colors[i],
-        data: dataset.data,
+        data: dataset.dataset,
       })),
     };
   }
