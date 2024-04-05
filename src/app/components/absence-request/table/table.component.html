@@ -85,13 +85,13 @@
     [(visible)]="editDialogVisible"
     [absenceRequest]="absenceRequest"
     [absenceTypeOptions]="absenceTypeOptions"
-    (onEdit)="onEdit()"
+    (onEdit)="onEdit($event)"
   />
 
   <app-absence-request-delete-dialog
     *ngIf="absenceRequest"
     [(visible)]="deleteDialogVisible"
     [absenceRequest]="absenceRequest"
-    (onDelete)="onEdit()"
+    (onDelete)="onDelete($event)"
   />
 </ng-template>
