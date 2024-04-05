@@ -3,6 +3,7 @@ import { firstValueFrom } from 'rxjs';
 import { EmployerWtr } from '../../../entities/employer-wtr';
 import { PublicHoliday } from '../../../entities/public-holiday';
 import { ApiRoute, ApiService } from '../../../services/api.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-public-holidays-and-employer-wtr-list',
@@ -34,7 +35,15 @@ export class PublicHolidaysAndEmployerWtrListComponent {
 
   currentPublicHoliday: PublicHoliday = new PublicHoliday();
 
-  constructor(private apiService: ApiService) {
+  formGroup: FormGroup;
+
+  constructor(
+    private apiService: ApiService,
+    private formBuilder: FormBuilder
+  ) {
+    this.formGroup = this.formBuilder.group({
+      period: [new Date(), [Validators.required]],
+    });
     this.getPublicHolidays();
     this.getEmployerWtr();
     this.generateCalendar();
@@ -56,15 +65,8 @@ export class PublicHolidaysAndEmployerWtrListComponent {
     );
   }
 
-  previousMonth(): void {
-    const newMonth = this.currentDate.getMonth() - 1;
-    this.currentDate = new Date(this.currentDate.getFullYear(), newMonth, 1);
-    this.generateCalendar();
-  }
-
-  nextMonth(): void {
-    const newMonth = this.currentDate.getMonth() + 1;
-    this.currentDate = new Date(this.currentDate.getFullYear(), newMonth, 1);
+  onDateChanged() {
+    this.currentDate = new Date(this.formGroup.value.period);
     this.generateCalendar();
   }
 
@@ -190,11 +192,11 @@ export class PublicHolidaysAndEmployerWtrListComponent {
     if (day === null) {
       return;
     }
-  
+
     const currentMonth = this.currentDate.getMonth();
     const currentYear = this.currentDate.getFullYear();
     const date = new Date(currentYear, currentMonth, day);
-  
+
     // Rechercher le jour férié dans votre liste `publicHolidays`
     const holiday = this.publicHolidays.find((holiday) => {
       const holidayDate = new Date(holiday.date);
@@ -205,7 +207,7 @@ export class PublicHolidaysAndEmployerWtrListComponent {
       );
     });
 
-    if(!holiday){
+    if (!holiday) {
       return;
     }
 
