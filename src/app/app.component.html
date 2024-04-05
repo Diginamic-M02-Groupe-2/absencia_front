@@ -5,7 +5,7 @@
   <ul class="drawer__list">
     <li class="drawer__list__item">
       <a
-        [routerLink]="absenceRequestListRoute"
+        [routerLink]="absenceRequestReadRoute"
         routerLinkActive="drawer__list__item__linkActive"
         class="drawer__list__item__link"
         (click)="closeBack($event)"
@@ -18,7 +18,7 @@
 
     <li class="drawer__list__item">
       <a
-        [routerLink]="employerWtrAndPublicHolidayListRoute"
+        [routerLink]="employerWtrAndPublicHolidayReadRoute"
         routerLinkActive="drawer__list__item__linkActive"
         class="drawer__list__item__link"
         (click)="closeBack($event)"
@@ -26,6 +26,19 @@
         <i class="pi pi-calendar-minus"></i>
 
         RTT employeurs et jours fériés
+      </a>
+    </li>
+
+    <li class="drawer__list__item">
+      <a
+        [routerLink]="calendarRoute"
+        routerLinkActive="drawer__list__item__linkActive"
+        class="drawer__list__item__link"
+        (click)="closeBack($event)"
+      >
+        <i class="pi pi-calendar"></i>
+
+        Calendrier
       </a>
     </li>
 
@@ -64,13 +77,13 @@
   <nav class="header__navBar">
     <ul class="header__navBar__list">
       <li class="header__navBar__list__item">
-        <a [routerLink]="absenceRequestListRoute" class="logoLink">
+        <a [routerLink]="absenceRequestReadRoute" class="logoLink">
           Absencia
         </a>
       </li>
 
       <li class="header__navBar__list__item">
-        <a [routerLink]="absenceRequestListRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
+        <a [routerLink]="absenceRequestReadRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
           <i class="pi pi-home"></i>
 
           Demandes d'absence
@@ -78,10 +91,18 @@
       </li>
 
       <li class="header__navBar__list__item">
-        <a [routerLink]="employerWtrAndPublicHolidayListRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
+        <a [routerLink]="employerWtrAndPublicHolidayReadRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
           <i class="pi pi-calendar-minus"></i>
 
           RTT employeurs et jours fériés
+        </a>
+      </li>
+
+      <li class="header__navBar__list__item">
+        <a [routerLink]="calendarRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
+          <i class="pi pi-calendar"></i>
+
+          Calendrier
         </a>
       </li>
 
