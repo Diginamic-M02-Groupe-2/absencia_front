@@ -56,7 +56,7 @@
     </li>
   </ul>
 
-  <app-form [formGroup]="logoutFormGroup" [method]="logoutFormMethod" [action]="logoutFormAction" (postSubmit)="postLogout();closeBack($event)">
+  <app-form [formGroup]="logoutFormGroup" [method]="logoutFormMethod" [action]="logoutFormAction" (postSubmit)="postLogout($event); closeBack($event)">
     <button class="drawer__logOutLink">
       <i class="pi pi-sign-out drawer__logOutLink__icon"></i>
 
@@ -64,8 +64,6 @@
     </button>
   </app-form>
 </p-sidebar>
-
-<app-toast />
 
 <header *ngIf="isLogged" class="header">
   <button class="header__toggleMenuButton" (click)="toggleSidebar(true)">
@@ -116,7 +114,7 @@
     </ul>
   </nav>
 
-  <app-form [formGroup]="logoutFormGroup" [method]="logoutFormMethod" [action]="logoutFormAction" (postSubmit)="postLogout()">
+  <app-form [formGroup]="logoutFormGroup" [method]="logoutFormMethod" [action]="logoutFormAction" (postSubmit)="postLogout($event)">
     <button class="header__logOutLink">
       <i class="pi pi-sign-out header__logOutLink__icon"></i>
 
@@ -146,3 +144,5 @@
     </p>
   </div>
 </footer>
+
+<app-toast />

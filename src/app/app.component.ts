@@ -54,7 +54,13 @@ export class AppComponent {
     this.sidebarVisible = isVisible;
   }
 
-  postLogout(): void {
+  postLogout(response: MessageResponse): void {
+    this.messageService.add({
+      severity: "success",
+      detail: response.message,
+      life: 5000,
+    });
+
     this.authentificationService.logout();
 
     this.router.navigateByUrl(Route.LOGIN);
