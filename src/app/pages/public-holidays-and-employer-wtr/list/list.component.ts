@@ -4,6 +4,9 @@ import { EmployerWtr } from '../../../entities/employer-wtr';
 import { PublicHoliday } from '../../../entities/public-holiday';
 import { ApiRoute, ApiService } from '../../../services/api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../../../services/user.service';
+import { Service } from '../../../entities/user/service';
+import { AbsenceRequest } from '../../../entities/absence-request';
 
 @Component({
   selector: 'app-public-holidays-and-employer-wtr-list',
@@ -27,7 +30,17 @@ export class PublicHolidaysAndEmployerWtrListComponent {
 
   publicHolidays: PublicHoliday[] = [];
 
-  employerWtr: EmployerWtr[] = [];
+  data: {
+    employerWtr: EmployerWtr[];
+    absenceRequests: AbsenceRequest[];
+    remainingPaidLeaves: number;
+    remainingEmployeeWtr: number;
+  } = {
+    employerWtr: [],
+    absenceRequests: [],
+    remainingPaidLeaves: 0,
+    remainingEmployeeWtr: 0,
+  };
 
   year: number = new Date().getFullYear();
 
@@ -37,16 +50,22 @@ export class PublicHolidaysAndEmployerWtrListComponent {
 
   formGroup: FormGroup;
 
+  service: Service = Service.DEVELOPMENT;
+
   constructor(
     private apiService: ApiService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private userService: UserService
   ) {
     this.formGroup = this.formBuilder.group({
       period: [new Date(), [Validators.required]],
     });
-    this.getPublicHolidays();
-    this.getEmployerWtr();
-    this.generateCalendar();
+    this.userService.getCurrentUser().subscribe(async (user) => {
+      this.service = user.service;
+      this.getPublicHolidays();
+      this.getEmployerWtrAndAbsenceRequest();
+      this.generateCalendar();
+    });
   }
 
   async getPublicHolidays(): Promise<void> {
@@ -57,11 +76,22 @@ export class PublicHolidaysAndEmployerWtrListComponent {
     );
   }
 
-  async getEmployerWtr(): Promise<void> {
-    const url = `${ApiRoute.EMPLOYER_WTR}/${this.year}`;
+  async getEmployerWtrAndAbsenceRequest(): Promise<void> {
+    const serviceNumber = this.getServiceNumberByLabel(this.service);
+    const date = new Date();
+    const queryParams = {
+      month: date.getMonth() + 1,
+      year: date.getFullYear(),
+      service: serviceNumber,
+    };
 
-    this.employerWtr = await firstValueFrom(
-      this.apiService.get<EmployerWtr[]>(url)
+    this.data = await firstValueFrom(
+      this.apiService.get<{
+        employerWtr: EmployerWtr[];
+        absenceRequests: AbsenceRequest[];
+        remainingPaidLeaves: number;
+        remainingEmployeeWtr: number;
+      }>(`${ApiRoute.PLANNING}`, queryParams)
     );
   }
 
@@ -170,16 +200,31 @@ export class PublicHolidaysAndEmployerWtrListComponent {
       return false;
     }
 
-    // Convertir la date du jour en objet Date
     const currentMonth = this.currentDate.getMonth();
     const currentYear = this.currentDate.getFullYear();
     const date = new Date(currentYear, currentMonth, day);
 
-    // Vérifier si la date correspond à un jour de RTT employeur dans votre liste `employerWtrs`
-    return this.employerWtr.some((wtr) => {
-      // Convertir la date du jour de RTT employeur en objet Date
+    return this.data.employerWtr.some((wtr) => {
       const wtrDate = new Date(wtr.date);
-      // Comparer les années, mois et jours des dates
+      return (
+        date.getFullYear() === wtrDate.getFullYear() &&
+        date.getMonth() === wtrDate.getMonth() &&
+        date.getDate() === wtrDate.getDate()
+      );
+    });
+  }
+
+  isAbsenceDay(day: number | null): boolean {
+    if (day === null) {
+      return false;
+    }
+
+    const currentMonth = this.currentDate.getMonth();
+    const currentYear = this.currentDate.getFullYear();
+    const date = new Date(currentYear, currentMonth, day);
+
+    return this.data.absenceRequests.some((abs) => {
+      const wtrDate = new Date(abs.startedAt);
       return (
         date.getFullYear() === wtrDate.getFullYear() &&
         date.getMonth() === wtrDate.getMonth() &&
@@ -213,5 +258,15 @@ export class PublicHolidaysAndEmployerWtrListComponent {
 
     this.currentPublicHoliday = holiday;
     this.isDialogVisible = true;
+  }
+
+  getServiceNumberByLabel(label: string): number | undefined {
+    const serviceKeys = Object.keys(Service);
+    for (let i = 0; i < serviceKeys.length; i++) {
+      if (Service[serviceKeys[i] as keyof typeof Service] === label) {
+        return i;
+      }
+    }
+    return undefined;
   }
 }

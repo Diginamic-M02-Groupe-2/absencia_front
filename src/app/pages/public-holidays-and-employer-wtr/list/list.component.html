@@ -58,7 +58,14 @@
               type="button"
               class="showButton"
             >
-              Congés payés
+              RTT Employeur
+            </button>
+            <button
+              *ngIf="isAbsenceDay(day)"
+              type="button"
+              class="showButtonAbsence"
+            >
+              Demande d'absence
             </button>
             <div class="text-right day-number">{{ day }}</div>
           </div>
@@ -67,6 +74,11 @@
     </tbody>
   </table>
 </div>
+
+<p class="remaining">
+  {{data.remainingPaidLeaves}} congés payés restants<br />
+  {{data.remainingEmployeeWtr}} RTT employé restantes
+</p>
 
 <app-employeur-wtr-edit-dialog
   *ngIf="currentPublicHoliday"
