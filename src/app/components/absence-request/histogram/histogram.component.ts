@@ -6,7 +6,7 @@ import {GetHistogramResponse, HistogramDataset} from "../../../models/get-histog
   selector: "app-absence-request-histogram",
   templateUrl: "./histogram.component.html",
 })
-export class AbsenceRequestHistogramComponent implements OnChanges  {
+export class HistogramComponent implements OnChanges {
   private colors: string[] = [
     "#2979ff",
     "#ff8a65",

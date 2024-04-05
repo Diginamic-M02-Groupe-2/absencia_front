@@ -13,7 +13,6 @@ import { AbsenceRequestListModule } from './pages/absence-request/list/list.modu
 import { AbsenceRequestNewModule } from './pages/absence-request/new/new.module';
 import { CalendarModule } from './pages/calendar/calendar.module';
 import { NgxPermissionsModule } from 'ngx-permissions';
-import { AbsenceRequestHistogramReportModule } from './pages/absence-request/histogram-report/histogram-report.module';
 import { LoginModule } from './pages/login/login.module';
 import { NotFoundModule } from './pages/not-found/not-found.module';
 import { TableDayServiceModule } from './pages/table-day-service/table-day-service.module';
@@ -21,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
 import { ToastModule } from 'primeng/toast';
 import { EmployerWtrAndPublicHolidayReadModule } from './pages/employer-wtr-and-public-holiday/read/read.module';
 import { EmployerWtrCreateModule } from './pages/employer-wtr/create/create.module';
+import { HistogramReportModule } from './pages/report/histogram/histogram.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +34,6 @@ import { EmployerWtrCreateModule } from './pages/employer-wtr/create/create.modu
     HttpClientModule,
     TableDayServiceModule,
     AbsenceRequestListModule,
-    AbsenceRequestHistogramReportModule,
     AbsenceRequestNewModule,
     ComponentsModule,
     LoginModule,
@@ -46,6 +45,7 @@ import { EmployerWtrCreateModule } from './pages/employer-wtr/create/create.modu
     ComponentsModule,
     EmployerWtrAndPublicHolidayReadModule,
     EmployerWtrCreateModule,
+    HistogramReportModule,
     LoginModule,
     NgxPermissionsModule.forRoot(),
     NotFoundModule,
