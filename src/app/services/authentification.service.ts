@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { ApiRoute, LOGOUT_API } from './api.service';
+import { ApiRoute } from './api.service';
 import { firstValueFrom } from 'rxjs';
 import { User } from '../entities/user/user';
 import { UserService } from './user.service';
-import { MessageService } from 'primeng/api';
-import { Route } from '../models/route';
 import { NgxPermissionsService } from 'ngx-permissions';
 import { Role } from '../entities/user/role';
 import { ALLOWED_PERMISSIONS } from '../models/permission-role';
+
 const CURRENT_USER = 'currentUser';
 export const TOKEN = 'token';
 
@@ -18,11 +16,9 @@ export const TOKEN = 'token';
 })
 export class AuthentificationService {
   constructor(
-    private router: Router,
     private http: HttpClient,
+    private permissionsService: NgxPermissionsService,
     private userService: UserService,
-    private messageService: MessageService,
-    private permissionsService: NgxPermissionsService
   ) {
     this.loadSession();
   }
@@ -65,20 +61,9 @@ export class AuthentificationService {
     this.permissionsService.loadPermissions(rolePermissions);
   }
 
-  logOut(): void {
-    this.http
-      .post(LOGOUT_API, {})
-      .subscribe((logoutStatus: any) => {
-        this.messageService.add({
-          severity: 'success',
-          detail: logoutStatus.message,
-        });
-      })
-      .add(() => {
-        sessionStorage.removeItem(CURRENT_USER);
-        sessionStorage.removeItem(TOKEN);
-        this.router.navigateByUrl(Route.LOGIN);
-      });
+  logout(): void {
+    sessionStorage.removeItem(CURRENT_USER);
+    sessionStorage.removeItem(TOKEN);
   }
 
   getPseudo(): string {
