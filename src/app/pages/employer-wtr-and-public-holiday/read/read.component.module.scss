@@ -1,5 +1,16 @@
 @import "../../../../variables.scss";
 
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.formContainer {
+  display: flex;
+  margin-bottom: 8px;
+}
+
 .createButton {
   display: flex;
   align-items: center;

@@ -1,14 +1,18 @@
-<h1>
-  Mes demandes d'absence
+<div class="titleContainer">
+  <h1>
+    Mes demandes d'absence
+  </h1>
 
-  <a routerLink="create" class="button createButton" *ngxPermissionsOnly="'CAN_POST_ABSENCE_REQUEST'">
-    <i class="pi pi-plus"></i>
+  <ng-container *ngxPermissionsOnly="'CAN_POST_ABSENCE_REQUEST'">
+    <a routerLink="create" class="button createButton">
+      <i class="pi pi-plus"></i>
 
-    <span class="label">
-      Créer une demande d'absence
-    </span>
-  </a>
-</h1>
+      <span class="label">
+        Créer une demande d'absence
+      </span>
+    </a>
+  </ng-container>
+</div>
 
 <app-absence-request-table [absenceRequests]="absenceRequests" (openEditDialog)="openEditDialog()" (openDeleteDialog)="openDeleteDialog()" (onLoad)="getAbsenceRequests()" />
 
