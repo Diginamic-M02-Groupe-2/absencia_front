@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {MessageService} from "primeng/api";
 import {AbsenceRequest} from "../../../entities/absence-request";
 import {AbsenceRequestStatus} from "../../../entities/absence-request-status";
@@ -12,9 +12,6 @@ import {Option} from "../../../models/option";
   styleUrl: "./table.component.module.scss",
 })
 export class AbsenceRequestTableComponent {
-  @Input()
-  absenceRequests!: AbsenceRequest[];
-
   absenceRequest?: AbsenceRequest;
 
   absenceTypeOptions: Option[] = absenceTypeOptions;
@@ -22,6 +19,12 @@ export class AbsenceRequestTableComponent {
   editDialogVisible: boolean = false;
 
   deleteDialogVisible: boolean = false;
+
+  @Input()
+  absenceRequests!: AbsenceRequest[];
+
+  @Output()
+  onLoadData: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private messageService: MessageService,
@@ -42,6 +45,8 @@ export class AbsenceRequestTableComponent {
   }
 
   onEdit(response: MessageResponse): void {
+    this.onLoadData.emit();
+
     this.messageService.add({
       severity: "success",
       detail: response.message,
