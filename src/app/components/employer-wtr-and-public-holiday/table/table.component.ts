@@ -13,7 +13,7 @@ import {MessageResponse} from "../../../models/message-response";
 export class EmployerWtrAndPublicHolidayTableComponent {
   employerWtr?: EmployerWtr;
 
-  editDialogVisible: boolean = false;
+  updateDialogVisible: boolean = false;
 
   deleteDialogVisible: boolean = false;
 
@@ -45,7 +45,7 @@ export class EmployerWtrAndPublicHolidayTableComponent {
 
   onClickUpdateButton(employerWtr: EmployerWtr): void {
     this.employerWtr = employerWtr;
-    this.editDialogVisible = true;
+    this.updateDialogVisible = true;
   }
 
   onClickDeleteButton(employerWtr: EmployerWtr): void {

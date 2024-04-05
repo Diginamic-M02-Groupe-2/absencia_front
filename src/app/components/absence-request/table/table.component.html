@@ -61,9 +61,12 @@
         <td>
           <div class="actions">
             <ng-container *ngIf="isStatusEditable(absenceRequest)">
-              <button class="button updateButton" (click)="onClickEditButton(absenceRequest)" *ngxPermissionsOnly="['CAN_PATCH_ABSENCE_REQUEST']">
+              <button class="button updateButton" (click)="onClickUpdateButton(absenceRequest)" *ngxPermissionsOnly="['CAN_PATCH_ABSENCE_REQUEST']">
                 <i class="pi pi-file-edit"></i>
-                <span class="label">Modifier</span>
+
+                <span class="label">
+                  Modifier
+                </span>
               </button>
             </ng-container>
 
@@ -80,11 +83,11 @@
     </ng-template>
   </p-table>
 
-  <app-absence-request-edit-dialog
-    [(visible)]="editDialogVisible"
+  <app-absence-request-update-dialog
+    [(visible)]="updateDialogVisible"
     [absenceRequest]="absenceRequest"
     [absenceTypeOptions]="absenceTypeOptions"
-    (onEdit)="onEdit($event)"
+    (onUpdate)="onUpdate($event)"
   />
 
   <app-absence-request-delete-dialog [(visible)]="deleteDialogVisible" [absenceRequest]="absenceRequest" (onDelete)="onDelete($event)" />

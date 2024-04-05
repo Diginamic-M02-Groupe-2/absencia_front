@@ -6,6 +6,7 @@ import {EmployerWtrAndPublicHolidayReadComponent} from "./read.component";
 import {AppRoutingModule} from "../../../app.routes";
 import {EmployerWtrAndPublicHolidayTableComponent} from "../../../components/employer-wtr-and-public-holiday/table/table.component";
 import {EmployerWtrDeleteDialogComponent} from "../../../components/employer-wtr-and-public-holiday/delete-dialog/delete-dialog.component";
+import {EmployerWtrUpdateDialogComponent} from "../../../components/employer-wtr-and-public-holiday/update-dialog/update-dialog.component";
 import {SharedModule} from "../../../shared/shared.module";
 
 @NgModule({
@@ -13,7 +14,7 @@ import {SharedModule} from "../../../shared/shared.module";
     EmployerWtrAndPublicHolidayReadComponent,
     EmployerWtrAndPublicHolidayTableComponent,
     EmployerWtrDeleteDialogComponent,
-    // EmployerWtrEditDialogComponent,
+    EmployerWtrUpdateDialogComponent,
   ],
   imports: [
     AppRoutingModule,

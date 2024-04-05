@@ -67,12 +67,7 @@
     </ng-template>
   </p-table>
 
-  <!-- <app-absence-request-edit-dialog
-    [(visible)]="editDialogVisible"
-    [absenceRequest]="absenceRequest"
-    [absenceTypeOptions]="absenceTypeOptions"
-    (onEdit)="onEdit($event)"
-  /> -->
+  <app-employer-wtr-update-dialog [(visible)]="updateDialogVisible" [employerWtr]="employerWtr" (onUpdate)="onUpdate($event)" />
 
   <app-employer-wtr-delete-dialog [(visible)]="deleteDialogVisible" [employerWtr]="employerWtr" (onDelete)="onDelete($event)" />
 </ng-template>

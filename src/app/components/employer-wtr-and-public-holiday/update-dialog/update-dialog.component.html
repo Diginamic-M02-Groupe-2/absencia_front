@@ -1,0 +1,34 @@
+<app-dialog [(visible)]="visible">
+  <ng-template #header>
+    Modification
+  </ng-template>
+
+  <ng-template #body>
+    <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction" (postSubmit)="postSubmit($event)">
+      <app-datepicker
+        [formGroup]="formGroup"
+        name="date"
+        label="Date"
+        placeholder="Sélectionnez une date"
+      />
+
+      <app-text-input
+        [formGroup]="formGroup"
+        type="text"
+        name="label"
+        label="Libellé"
+        placeholder="Saisissez un libellé"
+      />
+
+      <app-form-footer>
+        <button type="button" class="cancelButton" (click)="onClose()">
+          Annuler
+        </button>
+
+        <button type="submit" class="saveButton">
+          Enregistrer
+        </button>
+      </app-form-footer>
+    </app-form>
+  </ng-template>
+</app-dialog>

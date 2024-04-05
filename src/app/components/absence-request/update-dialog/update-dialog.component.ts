@@ -6,11 +6,11 @@ import {Option} from "../../../models/option";
 import {ApiRoute, HttpMethod} from "../../../services/api.service";
 
 @Component({
-  selector: "app-absence-request-edit-dialog",
-  templateUrl: "./edit-dialog.component.html",
-  styleUrl: "./edit-dialog.component.module.scss",
+  selector: "app-absence-request-update-dialog",
+  templateUrl: "./update-dialog.component.html",
+  styleUrl: "./update-dialog.component.module.scss",
 })
-export class AbsenceRequestEditDialogComponent {
+export class AbsenceRequestUpdateDialogComponent {
   formGroup: FormGroup;
 
   formMethod: HttpMethod = HttpMethod.PATCH;
@@ -30,7 +30,7 @@ export class AbsenceRequestEditDialogComponent {
   absenceTypeOptions!: Option[];
 
   @Output()
-  onEdit: EventEmitter<MessageResponse> = new EventEmitter<MessageResponse>();
+  onUpdate: EventEmitter<MessageResponse> = new EventEmitter<MessageResponse>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,7 +67,7 @@ export class AbsenceRequestEditDialogComponent {
   }
 
   postSubmit(response: MessageResponse): void {
-    this.onEdit.emit(response);
+    this.onUpdate.emit(response);
 
     this.onClose();
   }

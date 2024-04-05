@@ -27,7 +27,7 @@ export class EmployerWtrCreateComponent {
   ) {
     this.formGroup = this.formBuilder.group({
       date: [null, Validators.required],
-      label: ["", Validators.required, Validators.maxLength(255)],
+      label: ["", [Validators.required, Validators.maxLength(255)]],
     });
   }
 
