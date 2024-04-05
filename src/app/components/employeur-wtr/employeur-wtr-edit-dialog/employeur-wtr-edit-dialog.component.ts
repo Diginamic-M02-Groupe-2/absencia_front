@@ -35,8 +35,6 @@ export class EmployeurWtrEditDialogComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
-      date: [new Date(), Validators.required],
-      label: ['', Validators.required],
       worked: [null, Validators.required],
     });
   }
@@ -55,8 +53,6 @@ export class EmployeurWtrEditDialogComponent {
       this.publicHoliday?.id ?? ''
     }`;
     this.formGroup.patchValue({
-      date: new Date(this.publicHoliday.date),
-      label: this.publicHoliday.label,
       worked: this.publicHoliday.worked,
     });
   }
@@ -71,8 +67,6 @@ export class EmployeurWtrEditDialogComponent {
     /**
      * @todo ugly, see with formGroup.getRawValue
      */
-    this.publicHoliday!.date = this.formGroup.get('date')?.value;
-    this.publicHoliday!.label = this.formGroup.get('label')?.value;
     this.publicHoliday!.worked = this.formGroup.get('worked')?.value;
 
     this.onEdit.emit(this.publicHoliday);
