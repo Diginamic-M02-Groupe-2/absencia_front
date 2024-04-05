@@ -1,8 +1,9 @@
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {MessageService} from "primeng/api";
 import {EmployerWtr} from "../../../entities/employer-wtr";
 import {EmployerWtrStatus} from "../../../entities/employer-wtr-status";
 import {PublicHoliday} from "../../../entities/public-holiday";
+import {MessageResponse} from "../../../models/message-response";
 
 @Component({
   selector: "app-employer-wtr-and-public-holiday-table",
@@ -19,8 +20,8 @@ export class EmployerWtrAndPublicHolidayTableComponent {
   @Input()
   employerWtrAndPublicHolidays!: (EmployerWtr|PublicHoliday)[];
 
-  // @Output()
-  // onLoadData: EventEmitter<void> = new EventEmitter<void>();
+  @Output()
+  onLoad: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private messageService: MessageService,
@@ -31,7 +32,11 @@ export class EmployerWtrAndPublicHolidayTableComponent {
   }
 
   getType(employerWtrOrPublicHoliday: EmployerWtr|PublicHoliday): string {
-    return "status" in employerWtrOrPublicHoliday ? "RTT employeur" : "Jour férié";
+    return this.isEmployerWtr(employerWtrOrPublicHoliday) ? "RTT employeur" : "Jour férié";
+  }
+
+  isEmployerWtr(employerWtrOrPublicHoliday: EmployerWtr|PublicHoliday): boolean {
+    return "status" in employerWtrOrPublicHoliday;
   }
 
   isEmployerWtrEditable(employerWtr: EmployerWtr): boolean {
@@ -48,8 +53,8 @@ export class EmployerWtrAndPublicHolidayTableComponent {
     this.deleteDialogVisible = true;
   }
 
-  /* onUpdate(response: MessageResponse): void {
-    // this.onLoadData.emit();
+  onUpdate(response: MessageResponse): void {
+    this.onLoad.emit();
 
     this.messageService.add({
       severity: "success",
@@ -59,10 +64,12 @@ export class EmployerWtrAndPublicHolidayTableComponent {
   }
 
   onDelete(response: MessageResponse): void {
+    this.onLoad.emit();
+
     this.messageService.add({
       severity: "success",
       detail: response.message,
       life: 5000,
     });
-  } */
+  }
 }

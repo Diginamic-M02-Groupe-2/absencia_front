@@ -81,17 +81,11 @@
   </p-table>
 
   <app-absence-request-edit-dialog
-    *ngIf="absenceRequest"
     [(visible)]="editDialogVisible"
     [absenceRequest]="absenceRequest"
     [absenceTypeOptions]="absenceTypeOptions"
     (onEdit)="onEdit($event)"
   />
 
-  <app-absence-request-delete-dialog
-    *ngIf="absenceRequest"
-    [(visible)]="deleteDialogVisible"
-    [absenceRequest]="absenceRequest"
-    (onDelete)="onDelete($event)"
-  />
+  <app-absence-request-delete-dialog [(visible)]="deleteDialogVisible" [absenceRequest]="absenceRequest" (onDelete)="onDelete($event)" />
 </ng-template>

@@ -51,7 +51,7 @@ export class AbsenceRequestEditDialogComponent {
     }
 
     this.absenceRequest = absenceRequest;
-    this.formAction = `${ApiRoute.ABSENCE_REQUEST}/${this.absenceRequest?.id ?? ""}`;
+    this.formAction = `${ApiRoute.ABSENCE_REQUEST}/${this.absenceRequest?.id}`;
     this.formGroup.patchValue({
       startedAt: new Date(this.absenceRequest.startedAt),
       endedAt: new Date(this.absenceRequest.endedAt),
@@ -68,6 +68,7 @@ export class AbsenceRequestEditDialogComponent {
 
   postSubmit(response: MessageResponse): void {
     this.onEdit.emit(response);
+
     this.onClose();
   }
 }

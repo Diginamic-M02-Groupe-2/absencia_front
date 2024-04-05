@@ -10,7 +10,7 @@
   </a>
 </h1>
 
-<app-absence-request-table [absenceRequests]="absenceRequests" (openEditDialog)="openEditDialog()" (openDeleteDialog)="openDeleteDialog()" (onLoadData)="getAbsenceRequests()"/>
+<app-absence-request-table [absenceRequests]="absenceRequests" (openEditDialog)="openEditDialog()" (openDeleteDialog)="openDeleteDialog()" (onLoad)="getAbsenceRequests()" />
 
 <p class="remaining">
   {{remainingPaidLeaves}} congés payés restants<br />

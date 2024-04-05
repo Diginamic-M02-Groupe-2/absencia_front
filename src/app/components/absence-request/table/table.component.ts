@@ -24,7 +24,7 @@ export class AbsenceRequestTableComponent {
   absenceRequests!: AbsenceRequest[];
 
   @Output()
-  onLoadData: EventEmitter<void> = new EventEmitter<void>();
+  onLoad: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private messageService: MessageService,
@@ -45,7 +45,7 @@ export class AbsenceRequestTableComponent {
   }
 
   onEdit(response: MessageResponse): void {
-    this.onLoadData.emit();
+    this.onLoad.emit();
 
     this.messageService.add({
       severity: "success",
@@ -55,6 +55,8 @@ export class AbsenceRequestTableComponent {
   }
 
   onDelete(response: MessageResponse): void {
+    this.onLoad.emit();
+
     this.messageService.add({
       severity: "success",
       detail: response.message,

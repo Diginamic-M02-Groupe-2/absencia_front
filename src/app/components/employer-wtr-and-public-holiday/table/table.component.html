@@ -52,13 +52,15 @@
               </button>
             </ng-container>
 
-            <button class="button deleteButton" (click)="onClickDeleteButton(employerWtrOrAbsenceRequest)" *ngxPermissionsOnly="'CAN_DELETE_EMPLOYER_WTR'">
-              <i class="pi pi-trash"></i>
+            <ng-container *ngIf="isEmployerWtr(employerWtrOrAbsenceRequest)">
+              <button class="button deleteButton" (click)="onClickDeleteButton(employerWtrOrAbsenceRequest)" *ngxPermissionsOnly="'CAN_DELETE_EMPLOYER_WTR'">
+                <i class="pi pi-trash"></i>
 
-              <span class="label">
-                Supprimer
-              </span>
-            </button>
+                <span class="label">
+                  Supprimer
+                </span>
+              </button>
+            </ng-container>
           </div>
         </td>
       </tr>
@@ -66,17 +68,11 @@
   </p-table>
 
   <!-- <app-absence-request-edit-dialog
-    *ngIf="absenceRequest"
     [(visible)]="editDialogVisible"
     [absenceRequest]="absenceRequest"
     [absenceTypeOptions]="absenceTypeOptions"
     (onEdit)="onEdit($event)"
-  />
-
-  <app-absence-request-delete-dialog
-    *ngIf="absenceRequest"
-    [(visible)]="deleteDialogVisible"
-    [absenceRequest]="absenceRequest"
-    (onDelete)="onDelete($event)"
   /> -->
+
+  <app-employer-wtr-delete-dialog [(visible)]="deleteDialogVisible" [employerWtr]="employerWtr" (onDelete)="onDelete($event)" />
 </ng-template>

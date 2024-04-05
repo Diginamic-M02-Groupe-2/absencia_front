@@ -1,15 +1,15 @@
 import {Component, EventEmitter, Input, Output, SimpleChanges} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {AbsenceRequest} from "../../../entities/absence-request";
+import {EmployerWtr} from "../../../entities/employer-wtr";
 import {MessageResponse} from "../../../models/message-response";
 import {ApiRoute, HttpMethod} from "../../../services/api.service";
 
 @Component({
-  selector: "app-absence-request-delete-dialog",
+  selector: "app-employer-wtr-delete-dialog",
   templateUrl: "./delete-dialog.component.html",
   styleUrl: "./delete-dialog.component.module.scss",
 })
-export class AbsenceRequestDeleteDialogComponent {
+export class EmployerWtrDeleteDialogComponent {
   formGroup: FormGroup;
 
   formMethod: HttpMethod = HttpMethod.DELETE;
@@ -23,7 +23,7 @@ export class AbsenceRequestDeleteDialogComponent {
   visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @Input()
-  absenceRequest?: AbsenceRequest;
+  employerWtr?: EmployerWtr;
 
   @Output()
   onDelete: EventEmitter<MessageResponse> = new EventEmitter<MessageResponse>();
@@ -35,14 +35,14 @@ export class AbsenceRequestDeleteDialogComponent {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const absenceRequest = changes["absenceRequest"]?.currentValue as undefined|AbsenceRequest;
+    const employerWtr = changes["employerWtr"]?.currentValue as undefined|EmployerWtr;
 
-    if (!absenceRequest) {
+    if (!employerWtr) {
       return;
     }
 
-    this.absenceRequest = absenceRequest;
-    this.formAction = `${ApiRoute.ABSENCE_REQUEST}/${this.absenceRequest.id}`;
+    this.employerWtr = employerWtr;
+    this.formAction = `${ApiRoute.EMPLOYER_WTR}/${this.employerWtr.id}`;
   }
 
   onClose(): void {
