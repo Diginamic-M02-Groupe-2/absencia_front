@@ -15,7 +15,9 @@ export class AppComponent {
   loginRoute: string = Route.LOGIN;
 
   publicHolidaysAndEmployerWtrRoute: string = Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST;
- 
+  
+  tableDayServiceRoute: string = Route.TABLE_DAY_SERVICE;
+
   createAbsenceRequestRoute: string = Route.ABSENCE_REQUEST_CREATE;
 
   histogramRoute: string = Route.HISTOGRAM;

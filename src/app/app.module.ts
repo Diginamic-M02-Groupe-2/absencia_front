@@ -19,6 +19,7 @@ import { PublicHolidaysAndEmployerWtrListModule } from './pages/public-holidays-
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { AbsenceRequestHistogramReportModule } from './pages/absence-request/histogram-report/histogram-report.module';
 import { NotFoundModule } from './pages/not-found/not-found.module';
+import { TableDayServiceModule } from './pages/table-day-service/table-day-service.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,7 @@ import { NotFoundModule } from './pages/not-found/not-found.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    TableDayServiceModule,
     LoginModule,
     ComponentsModule,
     AbsenceRequestListModule,
@@ -39,7 +41,7 @@ import { NotFoundModule } from './pages/not-found/not-found.module';
     NotFoundModule,
     PublicHolidaysAndEmployerWtrListModule,
     ToastModule,
-    NgxPermissionsModule.forRoot()
+    NgxPermissionsModule.forRoot(),
   ],
   providers: [
     {

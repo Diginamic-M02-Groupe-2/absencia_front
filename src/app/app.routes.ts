@@ -10,6 +10,7 @@ import {AbsenceRequestNewComponent} from "./pages/absence-request/new/new.compon
 import {ComponentsComponent} from "./pages/components/components.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {PublicHolidaysAndEmployerWtrListComponent} from "./pages/public-holidays-and-employer-wtr/list/list.component";
+import { TableDayServiceComponent } from './pages/table-day-service/table-day-service.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: Route.LOGIN, pathMatch: 'full' },
@@ -43,6 +44,11 @@ export const routes: Routes = [
   {
     path: Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST,
     component: PublicHolidaysAndEmployerWtrListComponent,
+    canActivate: [AuthGuard],
+  },
+   {
+    path: Route.TABLE_DAY_SERVICE,
+    component: TableDayServiceComponent,
     canActivate: [AuthGuard],
   },
   {
