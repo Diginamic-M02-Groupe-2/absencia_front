@@ -1,0 +1,28 @@
+<app-dialog [(visible)]="visible">
+  <ng-template #header> Modification </ng-template>
+
+  <ng-template #body>
+    <app-form
+      [formGroup]="formGroup"
+      [method]="formMethod"
+      [action]="formAction"
+      (postSubmit)="postSubmit()"
+    >
+
+      <app-checkbox
+        [formGroup]="formGroup"
+        [checked]="publicHoliday.worked"
+        name="worked"
+        label="Travailler ce jour :"
+      />
+
+      <app-form-footer>
+        <button type="button" class="cancelButton" (click)="onClose()">
+          Annuler
+        </button>
+
+        <button type="submit" class="saveButton">Enregistrer</button>
+      </app-form-footer>
+    </app-form>
+  </ng-template>
+</app-dialog>

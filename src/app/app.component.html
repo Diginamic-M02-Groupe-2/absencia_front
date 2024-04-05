@@ -43,14 +43,16 @@
     </li>
   </ul>
 
-  <button class="drawer__logOutLink" (click)="onLogOut();closeBack($event)">
-    <i class="pi pi-sign-out drawer__logOutLink__icon"></i>
+  <app-form [formGroup]="logoutFormGroup" [method]="logoutFormMethod" [action]="logoutFormAction" (postSubmit)="postLogout($event);closeBack($event)">
+    <button class="drawer__logOutLink">
+      <i class="pi pi-sign-out drawer__logOutLink__icon"></i>
 
-    Se déconnecter
-  </button>
+      Se déconnecter
+    </button>
+  </app-form>
 </p-sidebar>
 
-<p-toast position="top-right" [showTransformOptions]="'translateY(100px)'"></p-toast>
+<app-toast />
 
 <header *ngIf="isLogged" class="header">
   <button class="header__toggleMenuButton" (click)="toggleSidebar(true)">
@@ -93,20 +95,22 @@
     </ul>
   </nav>
 
-  <button class="header__logOutLink" (click)="onLogOut()">
-    <i class="pi pi-sign-out header__logOutLink__icon"></i>
+  <app-form [formGroup]="logoutFormGroup" [method]="logoutFormMethod" [action]="logoutFormAction" (postSubmit)="postLogout($event)">
+    <button class="header__logOutLink">
+      <i class="pi pi-sign-out header__logOutLink__icon"></i>
 
-    Se déconnecter
-  </button>
+      Se déconnecter
+    </button>
+  </app-form>
 </header>
 
-<main class="main" [class.mainLogin]="isActive(loginRoute)">
+<main class="main">
   <div class="container">
-    <router-outlet></router-outlet>
+    <router-outlet />
   </div>
 </main>
 
-<footer class="footer">
+<footer *ngIf="isLogged" class="footer">
   <div class="container">
     <p class="footer__copyright">
       &copy; 2024 Absencia. Tous droits réservés.

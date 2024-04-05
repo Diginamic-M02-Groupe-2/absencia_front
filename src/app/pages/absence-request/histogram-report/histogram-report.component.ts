@@ -1,15 +1,20 @@
-import {Component} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {serviceOptions} from "../../../entities/user/service";
-import {GetHistogramResponse} from "../../../models/get-histogram-response";
-import {Option} from "../../../models/option";
-import {ApiRoute, HttpMethod} from "../../../services/api.service";
-import {UserService} from "../../../services/user.service";
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Service, serviceOptions } from '../../../entities/user/service';
+import { GetHistogramResponse } from '../../../models/get-histogram-response';
+import { Option } from '../../../models/option';
+import {
+  ApiRoute,
+  ApiService,
+  HttpMethod,
+} from '../../../services/api.service';
+import { UserService } from '../../../services/user.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
-  selector: "app-absence-request-histogram-report",
-  styleUrl: "./histogram-report.component.module.scss",
-  templateUrl: "./histogram-report.component.html",
+  selector: 'app-absence-request-histogram-report',
+  styleUrl: './histogram-report.component.module.scss',
+  templateUrl: './histogram-report.component.html',
 })
 export class AbsenceRequestHistogramReportComponent {
   formGroup: FormGroup;
@@ -25,46 +30,77 @@ export class AbsenceRequestHistogramReportComponent {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private apiService: ApiService
   ) {
     this.formGroup = this.formBuilder.group({
       period: [new Date(), [Validators.required]],
       service: [null, [Validators.required]],
     });
 
-    this.userService.getCurrentUser().subscribe(user => {
+    this.userService.getCurrentUser().subscribe(async (user) => {
+      const userService = user.service;
+      const selectedOption = serviceOptions.find(
+        (option) =>
+          option.value.toLowerCase() === userService.toLocaleLowerCase()
+      );
       this.formGroup.patchValue({
-        service: user.service,
+        service: selectedOption!.value,
       });
+      await this.getHistogramDatasets();
     });
-
-    this.getHistogramDatasets();
   }
 
   async getHistogramDatasets(): Promise<void> {
-    const response: GetHistogramResponse = [
-      {
-        id: 1,
-        firstName: "John",
-        lastName: "Doe",
-        data: Array.from({length: 31}, () => Math.random() * 2 | 0),
-      }, {
-        id: 2,
-        firstName: "Jane",
-        lastName: "Doe",
-        data: Array.from({length: 31}, () => Math.random() * 2 | 0),
-      }, {
-        id: 3,
-        firstName: "Johnny",
-        lastName: "Doe",
-        data: Array.from({length: 31}, () => Math.random() * 2 | 0),
-      },
-    ];
+    const serviceNumber = this.getServiceNumberByLabel(
+      this.formGroup.value.service
+    );
+    const date = new Date();
+    const queryParams = {
+      month: date.getMonth() + 1,
+      year: date.getFullYear(),
+      service: serviceNumber,
+    };
+    const response = await firstValueFrom(
+      this.apiService.get<GetHistogramResponse>(this.formAction, queryParams)
+    );
 
     this.datasets = response;
   }
 
-  /**
-   * @todo
-   */
-  postSubmit(response: any): void {}
+  async onSubmit(): Promise<void> {
+    const formData = this.formGroup.value;
+    const serviceNumber = this.getServiceNumberByLabel(formData.service);
+
+    const queryParams = {
+      month: formData.period.getMonth() + 1,
+      year: formData.period.getFullYear(),
+      service: serviceNumber,
+    };
+
+    const response = await firstValueFrom(
+      this.apiService.get<GetHistogramResponse>(this.formAction, queryParams)
+    );
+
+    this.datasets = response;
+  }
+
+  onDateChanged(newDate: any) {
+    this.formGroup.get("dateControl")?.setValue(newDate);
+    this.onSubmit();
+  }
+
+  onSelectionChanged(newSelection: any) {
+    this.formGroup.get("selectControl")?.setValue(newSelection);
+    this.onSubmit();
+  }
+
+  getServiceNumberByLabel(label: string): number | undefined {
+    const serviceKeys = Object.keys(Service);
+    for (let i = 0; i < serviceKeys.length; i++) {
+      if (Service[serviceKeys[i] as keyof typeof Service] === label) {
+        return i;
+      }
+    }
+    return undefined;
+  }
 }

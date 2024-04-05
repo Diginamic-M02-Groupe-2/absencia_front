@@ -1,15 +1,19 @@
 <h1>Jours fériés et RTT employeur</h1>
 
-<div
-  class="calendar-navigation d-flex justify-content-between align-items-center mb-2 mt-2"
->
-  <button type="button" class="button" (click)="previousMonth()">
-    Mois précédent
-  </button>
-  <p>{{ currentDate | date : "MM YYYY" }}</p>
-  <button type="button" class="button" (click)="nextMonth()">
-    Mois suivant
-  </button>
+<div class="formContainer">
+  <form [formGroup]="formGroup">
+    <div class="form-field">
+      <label for="period">Période</label>
+      <p-calendar
+        [formControlName]="'period'"
+        view="month"
+        dateFormat="mm/yy"
+        appendTo="body"
+        placeholder="Période"
+        (onSelect)="onDateChanged()"
+      ></p-calendar>
+    </div>
+  </form>
 </div>
 
 <div class="calendar-container">
@@ -40,13 +44,28 @@
               }"
             >
               {{ getPublicHolidayName(day) }}
+              <button
+                type="button"
+                class="showButton"
+                (click)="onClickEditButton(day)"
+                *ngxPermissionsOnly="['CAN_PATCH_PUBLIC_HOLIDAYS']"
+              >
+                Modifier
+              </button>
             </p>
             <button
               *ngIf="isEmployerWtrDay(day)"
               type="button"
               class="showButton"
             >
-              Congés payés
+              RTT Employeur
+            </button>
+            <button
+              *ngIf="isAbsenceDay(day)"
+              type="button"
+              class="showButtonAbsence"
+            >
+              Demande d'absence
             </button>
             <div class="text-right day-number">{{ day }}</div>
           </div>
@@ -55,3 +74,14 @@
     </tbody>
   </table>
 </div>
+
+<p class="remaining">
+  {{data.remainingPaidLeaves}} congés payés restants<br />
+  {{data.remainingEmployeeWtr}} RTT employé restantes
+</p>
+
+<app-employeur-wtr-edit-dialog
+  *ngIf="currentPublicHoliday"
+  [(visible)]="isDialogVisible"
+  [publicHoliday]="currentPublicHoliday"
+/>

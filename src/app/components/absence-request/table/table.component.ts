@@ -1,8 +1,10 @@
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {MessageService} from "primeng/api";
 import {AbsenceRequest} from "../../../entities/absence-request";
+import {AbsenceRequestStatus} from "../../../entities/absence-request-status";
 import {absenceTypeOptions} from "../../../entities/absence-type";
+import {MessageResponse} from "../../../models/message-response";
 import {Option} from "../../../models/option";
-import { AbsenceRequestStatus } from "../../../entities/absence-request-status";
 
 @Component({
   selector: "app-absence-request-table",
@@ -10,9 +12,6 @@ import { AbsenceRequestStatus } from "../../../entities/absence-request-status";
   styleUrl: "./table.component.module.scss",
 })
 export class AbsenceRequestTableComponent {
-  @Input()
-  absenceRequests!: AbsenceRequest[];
-
   absenceRequest?: AbsenceRequest;
 
   absenceTypeOptions: Option[] = absenceTypeOptions;
@@ -20,6 +19,16 @@ export class AbsenceRequestTableComponent {
   editDialogVisible: boolean = false;
 
   deleteDialogVisible: boolean = false;
+
+  @Input()
+  absenceRequests!: AbsenceRequest[];
+
+  @Output()
+  onLoadData: EventEmitter<void> = new EventEmitter<void>();
+
+  constructor(
+    private messageService: MessageService,
+  ) {}
 
   isStatusEditable(absenceRequest: AbsenceRequest) {
     return !(absenceRequest.status === AbsenceRequestStatus.APPROVED || absenceRequest.status === AbsenceRequestStatus.PENDING);
@@ -35,15 +44,21 @@ export class AbsenceRequestTableComponent {
     this.deleteDialogVisible = true;
   }
 
-  onEdit(absenceRequest: AbsenceRequest): void {
-    const index = this.absenceRequests.findIndex(item => item.id === absenceRequest.id);
+  onEdit(response: MessageResponse): void {
+    this.onLoadData.emit();
 
-    this.absenceRequests[index] = absenceRequest;
+    this.messageService.add({
+      severity: "success",
+      detail: response.message,
+      life: 5000,
+    });
   }
 
-  onDelete(absenceRequest: AbsenceRequest): void {
-    const index = this.absenceRequests.findIndex(item => item.id === absenceRequest.id);
-
-    this.absenceRequests.splice(index, 1);
+  onDelete(response: MessageResponse): void {
+    this.messageService.add({
+      severity: "success",
+      detail: response.message,
+      life: 5000,
+    });
   }
 }

@@ -1,8 +1,12 @@
-import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthentificationService } from './services/authentification.service';
-import { Sidebar } from 'primeng/sidebar';
-import { Route } from './models/route';
+import {Component, ViewChild} from "@angular/core";
+import {FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
+import {MessageService} from "primeng/api";
+import {Sidebar} from "primeng/sidebar";
+import {Route} from "./models/route";
+import {ApiRoute, HttpMethod} from "./services/api.service";
+import {AuthentificationService} from "./services/authentification.service";
+import { MessageResponse } from "./models/message-response";
 
 @Component({
   selector: 'app-root',
@@ -26,27 +30,36 @@ export class AppComponent {
 
   sidebarVisible: boolean = false;
 
+  logoutFormGroup: FormGroup = new FormGroup({});
+
+  logoutFormMethod: HttpMethod = HttpMethod.POST;
+
+  logoutFormAction: string = ApiRoute.LOGOUT;
+
   @ViewChild('sidebarRef') sidebarRef!: Sidebar;
 
   constructor(
+    private router: Router,
+    private messageService: MessageService,
     private authentificationService: AuthentificationService,
-    private router: Router
   ) {}
 
   isActive = (path: string) => {
     return path === this.router.url;
   };
 
-  closeBack(e: Event): void {
-    this.sidebarRef.close(e);
+  closeBack(event: Event): void {
+    this.sidebarRef.close(event);
   }
 
   toggleSidebar(isVisible: boolean) {
     this.sidebarVisible = isVisible;
   }
 
-  onLogOut(): void {
-    this.authentificationService.logOut();
+  postLogout(response: MessageResponse): void {
+    this.authentificationService.logout();
+
+    this.router.navigateByUrl(Route.LOGIN);
   }
 
   get isLogged() {

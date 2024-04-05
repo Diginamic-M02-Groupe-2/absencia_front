@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input, OnChanges } from "@angular/core";
 import {DateService} from "../../../services/date.service";
 import {GetHistogramResponse, HistogramDataset} from "../../../models/get-histogram-response";
 
@@ -6,7 +6,7 @@ import {GetHistogramResponse, HistogramDataset} from "../../../models/get-histog
   selector: "app-absence-request-histogram",
   templateUrl: "./histogram.component.html",
 })
-export class AbsenceRequestHistogramComponent implements OnInit {
+export class AbsenceRequestHistogramComponent implements OnChanges  {
   private colors: string[] = [
     "#2979ff",
     "#ff8a65",
@@ -94,15 +94,17 @@ export class AbsenceRequestHistogramComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    if (!this.datasets) {
+      return;
+    }
     const days = this.dateService.getDaysInMonth(this.month, this.year);
-
     this.data = {
       labels: days.map(day => day.toLocaleDateString("fr-FR")),
       datasets: this.datasets.map((dataset: HistogramDataset, i: number) => ({
         label: `${dataset.firstName} ${dataset.lastName}`,
         backgroundColor: this.colors[i],
-        data: dataset.data,
+        data: dataset.dataset,
       })),
     };
   }

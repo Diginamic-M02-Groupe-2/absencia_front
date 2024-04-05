@@ -1,17 +1,19 @@
-<div class="login-main-body">
-  <img src="/assets/login/leftSideLogin.svg" alt="Logo" class="logo-login" />
+<div class="login">
+  <span class="login__logo">
+    Absencia
+  </span>
 
-  <div class="login-container">
-    <h1>
-      Connexion
-    </h1>
-
+  <div class="login__formContainer">
     <app-form
       [formGroup]="formGroup"
       [method]="formMethod"
       [action]="formAction"
       (postSubmit)="onPostSubmit($event)"
     >
+      <h1>
+        Connexion
+      </h1>
+
       <app-text-input
         [formGroup]="formGroup"
         type="text"

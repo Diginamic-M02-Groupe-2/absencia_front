@@ -1,20 +1,22 @@
 import {Component} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {Route} from "../../../models/route";
-import {LoginResponse} from "../../../models/login-response";
-import {HttpMethod} from "../../../services/api.service";
-import {AuthentificationService} from "../../../services/authentification.service";
+import {Route} from "../../models/route";
+import {LoginResponse} from "../../models/login-response";
+import {ApiRoute, HttpMethod} from "../../services/api.service";
+import {AuthentificationService} from "../../services/authentification.service";
 
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"],
+  styleUrl: "./login.component.module.scss",
 })
 export class LoginComponent {
   formGroup: FormGroup;
+
   formMethod: HttpMethod = HttpMethod.POST;
-  formAction: string = "/login";
+
+  formAction: string = ApiRoute.LOGIN;
 
   constructor(
     private formBuilder: FormBuilder,

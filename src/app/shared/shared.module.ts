@@ -7,6 +7,8 @@ import {DropdownModule} from "primeng/dropdown";
 import {InputTextModule} from "primeng/inputtext";
 import {SelectButtonModule} from "primeng/selectbutton";
 import {ToastModule} from "primeng/toast";
+import { CheckboxModule } from "primeng/checkbox";
+
 import {AppRoutingModule} from "../app.routes";
 import {BackLinkComponent} from "../components/back-link/back-link.component";
 import {BadgeComponent} from "../components/badge/badge.component";
@@ -18,7 +20,9 @@ import {FormFooterComponent} from "../components/form-footer/form-footer.compone
 import {FormGroupComponent} from "../components/form-group/form-group.component";
 import {SelectComponent} from "../components/select/select.component";
 import {TextInputComponent} from "../components/text-input/text-input.component";
+import {ToastComponent} from "../components/toast/toast.component";
 import {TodoComponent} from "../components/todo/todo.component";
+import { CheckboxComponent } from "../components/checkbox/checkbox.component";
 
 @NgModule({
   declarations: [
@@ -32,7 +36,9 @@ import {TodoComponent} from "../components/todo/todo.component";
     FormGroupComponent,
     SelectComponent,
     TextInputComponent,
+    ToastComponent,
     TodoComponent,
+    CheckboxComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -44,6 +50,7 @@ import {TodoComponent} from "../components/todo/todo.component";
     ReactiveFormsModule,
     SelectButtonModule,
     ToastModule,
+    CheckboxModule,
   ],
   exports: [
     BackLinkComponent,
@@ -56,7 +63,9 @@ import {TodoComponent} from "../components/todo/todo.component";
     FormGroupComponent,
     SelectComponent,
     TextInputComponent,
+    ToastComponent,
     TodoComponent,
+    CheckboxComponent,
   ],
   bootstrap: [],
 })

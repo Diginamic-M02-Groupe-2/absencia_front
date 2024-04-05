@@ -54,7 +54,6 @@ export class FormComponent {
       .subscribe((response: { message: string }) => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Action validée',
           detail: response.message,
           life: 5000,
         });
