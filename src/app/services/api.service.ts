@@ -5,12 +5,12 @@ import { Observable, catchError, throwError } from 'rxjs';
 const API_URL = 'http://localhost:8080/api';
 const BASE_URL = API_URL;
 export const AUTH_API = `${API_URL}/login`;
-export const LOGOUT_API = `${API_URL}/logout`;
 export const GET_USER_API = `${API_URL}/users/current`;
 export const GET_ABSENCE_REQUESTS = `${API_URL}/absence-requests`;
 
 export enum ApiRoute {
   LOGIN = "/login",
+  LOGOUT = "/logout",
   ABSENCE_REQUEST = "/absence-requests",
   ABSENCE_REQUEST_MANAGER = "/absence-requests/manager",
   ABSENCE_REQUEST_APPROVE = "/absence-requests/approve",

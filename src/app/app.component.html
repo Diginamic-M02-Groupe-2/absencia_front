@@ -43,11 +43,13 @@
     </li>
   </ul>
 
-  <button class="drawer__logOutLink" (click)="onLogOut();closeBack($event)">
-    <i class="pi pi-sign-out drawer__logOutLink__icon"></i>
+  <app-form [formGroup]="logoutFormGroup" [method]="logoutFormMethod" [action]="logoutFormAction" (postSubmit)="postLogout($event);closeBack($event)">
+    <button class="drawer__logOutLink">
+      <i class="pi pi-sign-out drawer__logOutLink__icon"></i>
 
-    Se déconnecter
-  </button>
+      Se déconnecter
+    </button>
+  </app-form>
 </p-sidebar>
 
 <app-toast />
@@ -93,11 +95,13 @@
     </ul>
   </nav>
 
-  <button class="header__logOutLink" (click)="onLogOut()">
-    <i class="pi pi-sign-out header__logOutLink__icon"></i>
+  <app-form [formGroup]="logoutFormGroup" [method]="logoutFormMethod" [action]="logoutFormAction" (postSubmit)="postLogout($event)">
+    <button class="header__logOutLink">
+      <i class="pi pi-sign-out header__logOutLink__icon"></i>
 
-    Se déconnecter
-  </button>
+      Se déconnecter
+    </button>
+  </app-form>
 </header>
 
 <main class="main">
