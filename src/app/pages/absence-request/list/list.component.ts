@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {firstValueFrom} from "rxjs";
 import {AbsenceRequest} from "../../../entities/absence-request";
 import {absenceTypeOptions} from "../../../entities/absence-type";
-import {GetAbsenceRequestResponse} from "../../../models/get-absence-request-response";
+import {GetAbsenceRequestsResponse} from "../../../models/get-absence-requests-response";
 import {Option} from "../../../models/option";
 import {Route} from "../../../models/route";
 import {ApiRoute, ApiService} from "../../../services/api.service";
@@ -36,7 +36,7 @@ export class AbsenceRequestListComponent {
   }
 
   async getAbsenceRequests(): Promise<void> {
-    const response = await firstValueFrom(this.apiService.get<GetAbsenceRequestResponse>(ApiRoute.ABSENCE_REQUEST));
+    const response = await firstValueFrom(this.apiService.get<GetAbsenceRequestsResponse>(ApiRoute.ABSENCE_REQUEST));
 
     this.absenceRequests = response.absenceRequests;
     this.remainingPaidLeaves = response.remainingPaidLeaves;

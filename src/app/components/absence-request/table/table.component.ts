@@ -16,7 +16,7 @@ export class AbsenceRequestTableComponent {
 
   absenceTypeOptions: Option[] = absenceTypeOptions;
 
-  editDialogVisible: boolean = false;
+  updateDialogVisible: boolean = false;
 
   deleteDialogVisible: boolean = false;
 
@@ -24,7 +24,7 @@ export class AbsenceRequestTableComponent {
   absenceRequests!: AbsenceRequest[];
 
   @Output()
-  onLoadData: EventEmitter<void> = new EventEmitter<void>();
+  onLoad: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private messageService: MessageService,
@@ -34,9 +34,9 @@ export class AbsenceRequestTableComponent {
     return !(absenceRequest.status === AbsenceRequestStatus.APPROVED || absenceRequest.status === AbsenceRequestStatus.PENDING);
   }
 
-  onClickEditButton(absenceRequest: AbsenceRequest): void {
+  onClickUpdateButton(absenceRequest: AbsenceRequest): void {
     this.absenceRequest = absenceRequest;
-    this.editDialogVisible = true;
+    this.updateDialogVisible = true;
   }
 
   onClickDeleteButton(absenceRequest: AbsenceRequest): void {
@@ -44,8 +44,8 @@ export class AbsenceRequestTableComponent {
     this.deleteDialogVisible = true;
   }
 
-  onEdit(response: MessageResponse): void {
-    this.onLoadData.emit();
+  onUpdate(response: MessageResponse): void {
+    this.onLoad.emit();
 
     this.messageService.add({
       severity: "success",
@@ -55,6 +55,8 @@ export class AbsenceRequestTableComponent {
   }
 
   onDelete(response: MessageResponse): void {
+    this.onLoad.emit();
+
     this.messageService.add({
       severity: "success",
       detail: response.message,

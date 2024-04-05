@@ -9,16 +9,25 @@ export const GET_USER_API = `${API_URL}/users/current`;
 export const GET_ABSENCE_REQUESTS = `${API_URL}/absence-requests`;
 
 export enum ApiRoute {
+  // Authentication
   LOGIN = "/login",
   LOGOUT = "/logout",
+  // Absence request
   ABSENCE_REQUEST = "/absence-requests",
   ABSENCE_REQUEST_MANAGER = "/absence-requests/manager",
   ABSENCE_REQUEST_APPROVE = "/absence-requests/approve",
   ABSENCE_REQUEST_REJECT = "/absence-requests/reject",
-  GET_ABSENCE_REQUEST_HISTOGRAM = "/reports/histogram",
-  PUBLIC_HOLIDAY = "/public-holidays",
+  // Employer WTR and public holiday
+  GET_EMPLOYER_WTR_AND_PUBLIC_HOLIDAYS = "/employer-wtr-and-public-holidays",
+  // Employer WTR
   EMPLOYER_WTR = "/employer-wtr",
+  // Report
   REPORT_PLANNING = "/reports/planning",
+  REPORT_HISTOGRAM = "/reports/histogram",
+  // Public holiday
+  PUBLIC_HOLIDAY = "/public-holidays",
+  // Report
+  // User
   GET_CURRENT_USER = "/users/current",
 }
 

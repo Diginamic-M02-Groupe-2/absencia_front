@@ -1,17 +1,19 @@
-<h1>Jours fériés et RTT employeur</h1>
+<h1>
+  Planning
+</h1>
 
 <div class="formContainer">
   <form [formGroup]="formGroup">
     <div class="form-field">
       <label for="period">Période</label>
       <p-calendar
-        [formControlName]="'period'"
+        formControlName="period"
         view="month"
         dateFormat="mm/yy"
         appendTo="body"
         placeholder="Période"
         (onSelect)="onDateChanged()"
-      ></p-calendar>
+      />
     </div>
   </form>
 </div>

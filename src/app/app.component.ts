@@ -6,25 +6,23 @@ import {Sidebar} from "primeng/sidebar";
 import {Route} from "./models/route";
 import {ApiRoute, HttpMethod} from "./services/api.service";
 import {AuthentificationService} from "./services/authentification.service";
-import { MessageResponse } from "./models/message-response";
+import {MessageResponse} from "./models/message-response";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrl: "./app.component.scss",
 })
 export class AppComponent {
-  absenceRequestRoute: string = Route.ABSENCE_REQUEST_LIST;
+  absenceRequestReadRoute: string = Route.ABSENCE_REQUEST_LIST;
 
-  loginRoute: string = Route.LOGIN;
-
-  publicHolidaysAndEmployerWtrRoute: string = Route.PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST;
-  
   tableDayServiceRoute: string = Route.TABLE_DAY_SERVICE;
 
-  createAbsenceRequestRoute: string = Route.ABSENCE_REQUEST_CREATE;
+  employerWtrAndPublicHolidayReadRoute: string = Route.EMPLOYER_WTR_AND_PUBLIC_HOLIDAY_READ;
+ 
+  histogramReportRoute: string = Route.REPORT_HISTOGRAM;
 
-  histogramRoute: string = Route.HISTOGRAM;
+  planningReportRoute: string = Route.REPORT_PLANNING;
 
   firstName: string = '';
 
@@ -57,6 +55,12 @@ export class AppComponent {
   }
 
   postLogout(response: MessageResponse): void {
+    this.messageService.add({
+      severity: "success",
+      detail: response.message,
+      life: 5000,
+    });
+
     this.authentificationService.logout();
 
     this.router.navigateByUrl(Route.LOGIN);

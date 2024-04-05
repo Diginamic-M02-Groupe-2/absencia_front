@@ -1,15 +1,17 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ApiService, HttpMethod } from '../../services/api.service';
-import { catchError, throwError } from 'rxjs';
-import { MessageService } from 'primeng/api';
+import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {FormGroup} from "@angular/forms";
+import {MessageService} from "primeng/api";
+import {catchError, throwError} from "rxjs";
+import {MessageResponse} from "../../models/message-response";
+import {ApiService, HttpMethod} from "../../services/api.service";
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrl: './form.component.module.scss',
-  providers: [MessageService],
+  selector: "app-form",
+  templateUrl: "./form.component.html",
+  styleUrl: "./form.component.module.scss",
+  providers: [
+    MessageService,
+  ],
 })
 export class FormComponent {
   @Input()
@@ -25,7 +27,6 @@ export class FormComponent {
   postSubmit: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
-    private router: Router,
     private apiService: ApiService,
     private messageService: MessageService
   ) {}
@@ -51,9 +52,29 @@ export class FormComponent {
           return throwError(() => error);
         })
       )
-      .subscribe((response: { message: string }) => {
+      .subscribe((response: MessageResponse) => {
         this.messageService.add({
-          severity: 'success',
+          severity: "success",
+          detail: response.message,
+          life: 5000,
+        });
+        this.messageService.add({
+          severity: "success",
+          detail: response.message,
+          life: 5000,
+        });
+        this.messageService.add({
+          severity: "success",
+          detail: response.message,
+          life: 5000,
+        });
+        this.messageService.add({
+          severity: "success",
+          detail: response.message,
+          life: 5000,
+        });
+        this.messageService.add({
+          severity: "success",
           detail: response.message,
           life: 5000,
         });

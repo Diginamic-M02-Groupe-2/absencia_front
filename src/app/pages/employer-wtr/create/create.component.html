@@ -1,0 +1,40 @@
+<app-form
+  [formGroup]="formGroup"
+  [method]="formMethod"
+  [action]="formAction"
+  (postSubmit)="postSubmit($event)"
+  *ngxPermissionsOnly="'CAN_CREATE_EMPLOYER_WTR'"
+>
+  <div>
+    <app-back-link [routerLink]="employerWtrAndPublicHolidayRead" />
+
+    <h1>
+      Nouvelle RTT employeur
+    </h1>
+  </div>
+
+  <app-datepicker
+    [formGroup]="formGroup"
+    name="date"
+    label="Date"
+    placeholder="Sélectionnez une date"
+  />
+
+  <app-text-input
+    [formGroup]="formGroup"
+    type="text"
+    name="label"
+    label="Libellé"
+    placeholder="Saisissez un libellé"
+  />
+
+  <app-form-footer>
+    <a [routerLink]="employerWtrAndPublicHolidayRead" class="button cancelButton">
+      Annuler
+    </a>
+
+    <button type="submit" class="button submitButton">
+      Créer
+    </button>
+  </app-form-footer>
+</app-form>

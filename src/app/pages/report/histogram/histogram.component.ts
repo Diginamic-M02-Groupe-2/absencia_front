@@ -1,27 +1,23 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Service, serviceOptions } from '../../../entities/user/service';
-import { GetHistogramResponse } from '../../../models/get-histogram-response';
-import { Option } from '../../../models/option';
-import {
-  ApiRoute,
-  ApiService,
-  HttpMethod,
-} from '../../../services/api.service';
-import { UserService } from '../../../services/user.service';
-import { firstValueFrom } from 'rxjs';
+import {Component} from "@angular/core";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {firstValueFrom} from "rxjs";
+import {Service, serviceOptions} from "../../../entities/user/service";
+import {GetHistogramResponse} from "../../../models/get-histogram-response";
+import {Option} from "../../../models/option";
+import {ApiRoute, ApiService, HttpMethod} from "../../../services/api.service";
+import {UserService} from "../../../services/user.service";
 
 @Component({
-  selector: 'app-absence-request-histogram-report',
-  styleUrl: './histogram-report.component.module.scss',
-  templateUrl: './histogram-report.component.html',
+  selector: "app-histogram-report",
+  templateUrl: "./histogram.component.html",
+  styleUrl: "./histogram.component.module.scss",
 })
-export class AbsenceRequestHistogramReportComponent {
+export class HistogramReportComponent {
   formGroup: FormGroup;
 
   formMethod: HttpMethod = HttpMethod.GET;
 
-  formAction: string = ApiRoute.GET_ABSENCE_REQUEST_HISTOGRAM;
+  formAction: string = ApiRoute.REPORT_HISTOGRAM;
 
   services: Option[] = serviceOptions;
 

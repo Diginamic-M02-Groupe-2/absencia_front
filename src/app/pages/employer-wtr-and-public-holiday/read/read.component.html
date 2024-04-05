@@ -1,0 +1,27 @@
+<div class="titleContainer">
+  <h1>
+    RTT employeur et jours fériés
+  </h1>
+
+  <ng-container *ngxPermissionsOnly="'CAN_CREATE_EMPLOYER_WTR'">
+    <a [routerLink]="createEmployerWtrRoute" class="button createButton">
+      <i class="pi pi-plus"></i>
+
+      <span class="label">
+        Créer une RTT employeur
+      </span>
+    </a>
+  </ng-container>
+</div>
+
+<div class="formContainer">
+  <app-datepicker
+    [formGroup]="formGroup"
+    view="year"
+    name="year"
+    label="Année"
+    placeholder="Sélectionnez une année"
+  />
+</div>
+
+<app-employer-wtr-and-public-holiday-table [employerWtrAndPublicHolidays]="employerWtrAndPublicHolidays" (onLoad)="getEmployerWtrAndPublicHolidays()" />

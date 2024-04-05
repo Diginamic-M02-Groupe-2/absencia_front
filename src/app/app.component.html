@@ -5,12 +5,12 @@
   <ul class="drawer__list">
     <li class="drawer__list__item">
       <a
-        [routerLink]="absenceRequestRoute"
+        [routerLink]="absenceRequestReadRoute"
         routerLinkActive="drawer__list__item__linkActive"
         class="drawer__list__item__link"
         (click)="closeBack($event)"
       >
-        <i class="pi pi-briefcase"></i>
+        <i class="pi pi-home"></i>
 
         Demandes d'absence
       </a>
@@ -18,20 +18,33 @@
 
     <li class="drawer__list__item">
       <a
-        [routerLink]="publicHolidaysAndEmployerWtrRoute"
+        [routerLink]="employerWtrAndPublicHolidayReadRoute"
+        routerLinkActive="drawer__list__item__linkActive"
+        class="drawer__list__item__link"
+        (click)="closeBack($event)"
+      >
+        <i class="pi pi-calendar-minus"></i>
+
+        RTT employeur et jours fériés
+      </a>
+    </li>
+
+    <li class="drawer__list__item">
+      <a
+        [routerLink]="planningReportRoute"
         routerLinkActive="drawer__list__item__linkActive"
         class="drawer__list__item__link"
         (click)="closeBack($event)"
       >
         <i class="pi pi-calendar"></i>
 
-        Jours fériés et RTT employeur
+        Planning
       </a>
     </li>
 
     <li class="drawer__list__item" *ngxPermissionsOnly="['CAN_VISUALIZE_HISTOGRAM_ABSENCE_REQUEST']">
       <a
-        [routerLink]="histogramRoute"
+        [routerLink]="histogramReportRoute"
         routerLinkActive="drawer__list__item__linkActive"
         class="drawer__list__item__link"
         (click)="closeBack($event)"
@@ -43,7 +56,7 @@
     </li>
   </ul>
 
-  <app-form [formGroup]="logoutFormGroup" [method]="logoutFormMethod" [action]="logoutFormAction" (postSubmit)="postLogout($event);closeBack($event)">
+  <app-form [formGroup]="logoutFormGroup" [method]="logoutFormMethod" [action]="logoutFormAction" (postSubmit)="postLogout($event); closeBack($event)">
     <button class="drawer__logOutLink">
       <i class="pi pi-sign-out drawer__logOutLink__icon"></i>
 
@@ -51,8 +64,6 @@
     </button>
   </app-form>
 </p-sidebar>
-
-<app-toast />
 
 <header *ngIf="isLogged" class="header">
   <button class="header__toggleMenuButton" (click)="toggleSidebar(true)">
@@ -64,29 +75,37 @@
   <nav class="header__navBar">
     <ul class="header__navBar__list">
       <li class="header__navBar__list__item">
-        <a [routerLink]="absenceRequestRoute" class="logoLink">
+        <a [routerLink]="absenceRequestReadRoute" class="logoLink">
           Absencia
         </a>
       </li>
 
       <li class="header__navBar__list__item">
-        <a [routerLink]="absenceRequestRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
-          <i class="pi pi-briefcase"></i>
+        <a [routerLink]="absenceRequestReadRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
+          <i class="pi pi-home"></i>
 
           Demandes d'absence
         </a>
       </li>
 
       <li class="header__navBar__list__item">
-        <a [routerLink]="publicHolidaysAndEmployerWtrRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
+        <a [routerLink]="employerWtrAndPublicHolidayReadRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
+          <i class="pi pi-calendar-minus"></i>
+
+          RTT employeur et jours fériés
+        </a>
+      </li>
+
+      <li class="header__navBar__list__item">
+        <a [routerLink]="planningReportRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
           <i class="pi pi-calendar"></i>
 
-          Jours fériés et RTT employeur
+          Planning
         </a>
       </li>
 
       <li class="header__navBar__list__item" *ngxPermissionsOnly="['CAN_VISUALIZE_HISTOGRAM_ABSENCE_REQUEST']">
-        <a [routerLink]="histogramRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
+        <a [routerLink]="histogramReportRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
           <i class="pi pi-chart-bar"></i>
 
           Histogramme
@@ -125,3 +144,5 @@
     </p>
   </div>
 </footer>
+
+<app-toast />

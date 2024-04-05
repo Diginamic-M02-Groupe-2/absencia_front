@@ -1,14 +1,18 @@
 export enum Route {
-  // Component development page
+  // Development
   COMPONENTS = "components",
   // Authentication
   LOGIN = "login",
-  // Absence requests
+  // Absence request
   ABSENCE_REQUEST_LIST = "absence-requests",
   ABSENCE_REQUEST_CREATE = "absence-requests/create",
-  HISTOGRAM = "histogram",
-  // Public holidays & employer WTR
-  PUBLIC_HOLIDAYS_AND_EMPLOYER_WTR_LIST = "public-holidays-and-employer-wtr",
   // Table day service
-  TABLE_DAY_SERVICE = "table-day-service"
+  TABLE_DAY_SERVICE = "table-day-service",
+  // Employer WTR and public holiday
+  EMPLOYER_WTR_AND_PUBLIC_HOLIDAY_READ = "employer-wtr-and-public-holidays",
+  // Employer WTR
+  EMPLOYER_WTR_CREATE = "employer-wtr/create",
+  // Report
+  REPORT_HISTOGRAM = "reports/histogram",
+  REPORT_PLANNING = "reports/planning",
 }

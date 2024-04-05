@@ -1,0 +1,73 @@
+<ng-container *ngIf="!employerWtrAndPublicHolidays.length; else table">
+  <div class="noResults">
+    Aucun résultat.
+  </div>
+</ng-container>
+
+<ng-template #table>
+  <p-table [value]="employerWtrAndPublicHolidays">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          Date
+        </th>
+
+        <th>
+          Type
+        </th>
+
+        <th>
+          Libellé
+        </th>
+
+        <th></th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-employerWtrOrAbsenceRequest>
+      <tr>
+        <td>
+          {{employerWtrOrAbsenceRequest.date}} ({{getWeekDay(employerWtrOrAbsenceRequest.date)}})
+        </td>
+
+        <td>
+          <app-badge>
+            {{getType(employerWtrOrAbsenceRequest)}}
+          </app-badge>
+        </td>
+
+        <td>
+          {{employerWtrOrAbsenceRequest.label}}
+        </td>
+
+        <td>
+          <div class="actions">
+            <ng-container *ngIf="isEmployerWtrEditable(employerWtrOrAbsenceRequest)">
+              <button class="button updateButton" (click)="onClickUpdateButton(employerWtrOrAbsenceRequest)" *ngxPermissionsOnly="'CAN_UPDATE_EMPLOYER_WTR'">
+                <i class="pi pi-file-edit"></i>
+
+                <span class="label">
+                  Modifier
+                </span>
+              </button>
+            </ng-container>
+
+            <ng-container *ngIf="isEmployerWtr(employerWtrOrAbsenceRequest)">
+              <button class="button deleteButton" (click)="onClickDeleteButton(employerWtrOrAbsenceRequest)" *ngxPermissionsOnly="'CAN_DELETE_EMPLOYER_WTR'">
+                <i class="pi pi-trash"></i>
+
+                <span class="label">
+                  Supprimer
+                </span>
+              </button>
+            </ng-container>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <app-employer-wtr-update-dialog [(visible)]="updateDialogVisible" [employerWtr]="employerWtr" (onUpdate)="onUpdate($event)" />
+
+  <app-employer-wtr-delete-dialog [(visible)]="deleteDialogVisible" [employerWtr]="employerWtr" (onDelete)="onDelete($event)" />
+</ng-template>

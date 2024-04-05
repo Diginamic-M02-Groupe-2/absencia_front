@@ -1,0 +1,24 @@
+<app-dialog [(visible)]="visible">
+  <ng-template #header>
+    Suppression
+  </ng-template>
+
+  <ng-template #body>
+    <p>
+      Etes-vous sûr(e) de vouloir supprimer cette RTT employeur ?<br />
+      Cette action est irréversible.
+    </p>
+
+    <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction" (postSubmit)="postSubmit($event)">
+      <app-form-footer>
+        <button type="button" class="cancelButton" (click)="onClose()">
+          Annuler
+        </button>
+
+        <button type="submit" class="deleteButton">
+          Supprimer
+        </button>
+      </app-form-footer>
+    </app-form>
+  </ng-template>
+</app-dialog>
