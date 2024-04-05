@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {AbsenceRequest} from "../../../entities/absence-request";
 import {absenceTypeOptions} from "../../../entities/absence-type";
 import {Option} from "../../../models/option";
@@ -21,6 +21,9 @@ export class AbsenceRequestTableComponent {
 
   deleteDialogVisible: boolean = false;
 
+  @Output()
+  onLoadData: EventEmitter<void> = new EventEmitter<void>();
+
   isStatusEditable(absenceRequest: AbsenceRequest) {
     return !(absenceRequest.status === AbsenceRequestStatus.APPROVED || absenceRequest.status === AbsenceRequestStatus.PENDING);
   }
@@ -35,15 +38,7 @@ export class AbsenceRequestTableComponent {
     this.deleteDialogVisible = true;
   }
 
-  onEdit(absenceRequest: AbsenceRequest): void {
-    const index = this.absenceRequests.findIndex(item => item.id === absenceRequest.id);
-
-    this.absenceRequests[index] = absenceRequest;
-  }
-
-  onDelete(absenceRequest: AbsenceRequest): void {
-    const index = this.absenceRequests.findIndex(item => item.id === absenceRequest.id);
-
-    this.absenceRequests.splice(index, 1);
+  onEdit(): void {
+    this.onLoadData.emit();
   }
 }
