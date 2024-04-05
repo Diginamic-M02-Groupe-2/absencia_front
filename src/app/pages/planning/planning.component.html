@@ -1,5 +1,5 @@
 <h1>
-  Calendrier
+  Planning
 </h1>
 
 <div class="formContainer">
@@ -7,13 +7,13 @@
     <div class="form-field">
       <label for="period">Période</label>
       <p-calendar
-        [formControlName]="'period'"
+        formControlName="period"
         view="month"
         dateFormat="mm/yy"
         appendTo="body"
         placeholder="Période"
         (onSelect)="onDateChanged()"
-      ></p-calendar>
+      />
     </div>
   </form>
 </div>

@@ -12,8 +12,7 @@ export enum Route {
   EMPLOYER_WTR_AND_PUBLIC_HOLIDAY_READ = "employer-wtr-and-public-holidays",
   // Employer WTR
   EMPLOYER_WTR_CREATE = "employer-wtr/create",
-  // Calendar
-  CALENDAR = "calendar",
   // Report
   REPORT_HISTOGRAM = "reports/histogram",
+  REPORT_PLANNING = "reports/planning",
 }

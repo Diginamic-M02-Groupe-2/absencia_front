@@ -11,7 +11,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
 import { AbsenceRequestListModule } from './pages/absence-request/list/list.module';
 import { AbsenceRequestNewModule } from './pages/absence-request/new/new.module';
-import { CalendarModule } from './pages/calendar/calendar.module';
+import { PlanningModule } from './pages/planning/planning.module';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { LoginModule } from './pages/login/login.module';
 import { NotFoundModule } from './pages/not-found/not-found.module';
@@ -37,16 +37,11 @@ import { HistogramReportModule } from './pages/report/histogram/histogram.module
     AbsenceRequestNewModule,
     ComponentsModule,
     LoginModule,
-    NotFoundModule,
     ToastModule,
-    NgxPermissionsModule.forRoot(),
-    CalendarModule,
-    CalendarModule,
-    ComponentsModule,
+    PlanningModule,
     EmployerWtrAndPublicHolidayReadModule,
     EmployerWtrCreateModule,
     HistogramReportModule,
-    LoginModule,
     NgxPermissionsModule.forRoot(),
     NotFoundModule,
   ],

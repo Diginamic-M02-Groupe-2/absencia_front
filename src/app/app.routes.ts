@@ -5,14 +5,14 @@ import {LoginGuard} from "./guards/login.guard";
 import {Route} from "./models/route";
 import {AbsenceRequestListComponent} from "./pages/absence-request/list/list.component";
 import {AbsenceRequestNewComponent} from "./pages/absence-request/new/new.component";
-import {CalendarComponent} from "./pages/calendar/calendar.component";
 import {ComponentsComponent} from "./pages/components/components.component";
 import {EmployerWtrCreateComponent} from "./pages/employer-wtr/create/create.component";
 import {EmployerWtrAndPublicHolidayReadComponent} from "./pages/employer-wtr-and-public-holiday/read/read.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
-import { TableDayServiceComponent } from './pages/table-day-service/table-day-service.component';
+import {PlanningComponent} from "./pages/planning/planning.component";
 import {HistogramReportComponent} from "./pages/report/histogram/histogram.component";
+import {TableDayServiceComponent} from "./pages/table-day-service/table-day-service.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: Route.LOGIN, pathMatch: 'full' },
@@ -38,12 +38,6 @@ export const routes: Routes = [
     data: { requiredPermission: 'CAN_ROUTE_TO_POST_ABSENCE_REQUEST' }
   },
   {
-    path: Route.REPORT_HISTOGRAM,
-    component: HistogramReportComponent,
-    canActivate: [AuthGuard],
-    data: { requiredPermission: 'CAN_VISUALIZE_HISTOGRAM_ABSENCE_REQUEST' }
-  },
-  {
     path: Route.EMPLOYER_WTR_AND_PUBLIC_HOLIDAY_READ,
     component: EmployerWtrAndPublicHolidayReadComponent,
     canActivate: [AuthGuard],
@@ -54,11 +48,17 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: Route.CALENDAR,
-    component: CalendarComponent,
+    path: Route.REPORT_PLANNING,
+    component: PlanningComponent,
     canActivate: [AuthGuard],
   },
-   {
+  {
+    path: Route.REPORT_HISTOGRAM,
+    component: HistogramReportComponent,
+    canActivate: [AuthGuard],
+    data: { requiredPermission: 'CAN_VISUALIZE_HISTOGRAM_ABSENCE_REQUEST' }
+  },
+  {
     path: Route.TABLE_DAY_SERVICE,
     component: TableDayServiceComponent,
     canActivate: [AuthGuard],

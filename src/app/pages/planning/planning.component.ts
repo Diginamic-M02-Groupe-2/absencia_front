@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { EmployerWtr } from '../../entities/employer-wtr';
 import { PublicHoliday } from '../../entities/public-holiday';
 import { ApiRoute, ApiService } from '../../services/api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Service } from '../../entities/user/service';
-import { AbsenceRequest } from '../../entities/absence-request';
+import {GetPlanningReportResponse} from "../../models/get-planning-report-response";
 
 @Component({
-  selector: "app-absence-request-calendar",
-  templateUrl: "./calendar.component.html",
-  styleUrl: "./calendar.component.module.scss",
+  selector: "app-absence-request-planning",
+  templateUrl: "./planning.component.html",
+  styleUrl: "./planning.component.module.scss",
 })
-export class CalendarComponent {
+export class PlanningComponent {
   weekDays: string[] = [
     "Lundi",
     "Mardi",
@@ -28,18 +27,12 @@ export class CalendarComponent {
 
   calendar: (number | null)[][] = [];
 
-  data: {
-    employerWtr: EmployerWtr[];
-    absenceRequests: AbsenceRequest[];
-    remainingPaidLeaves: number;
-    remainingEmployeeWtr: number;
-    publicHolidays: PublicHoliday[];
-  } = {
-    employerWtr: [],
+  data: GetPlanningReportResponse = {
     absenceRequests: [],
+    employerWtr: [],
+    publicHolidays: [],
     remainingPaidLeaves: 0,
     remainingEmployeeWtr: 0,
-    publicHolidays: [],
   };
 
   year: number = new Date().getFullYear();
@@ -62,12 +55,12 @@ export class CalendarComponent {
     });
     this.userService.getCurrentUser().subscribe(async (user) => {
       this.service = user.service;
-      this.getEmployerWtrAndAbsenceRequest();
+      this.getPlanning();
       this.generateCalendar();
     });
   }
 
-  async getEmployerWtrAndAbsenceRequest(): Promise<void> {
+  async getPlanning(): Promise<void> {
     const serviceNumber = this.getServiceNumberByLabel(this.service);
     const queryParams = {
       month: this.currentDate.getMonth() + 1,
@@ -76,19 +69,13 @@ export class CalendarComponent {
     };
 
     this.data = await firstValueFrom(
-      this.apiService.get<{
-        employerWtr: EmployerWtr[];
-        absenceRequests: AbsenceRequest[];
-        remainingPaidLeaves: number;
-        remainingEmployeeWtr: number;
-        publicHolidays: PublicHoliday[];
-      }>(`${ApiRoute.REPORT_PLANNING}`, queryParams)
+      this.apiService.get<GetPlanningReportResponse>(`${ApiRoute.REPORT_PLANNING}`, queryParams)
     );
   }
 
   async onDateChanged() {
     this.currentDate = new Date(this.formGroup.value.period);
-    await this.getEmployerWtrAndAbsenceRequest();
+    await this.getPlanning();
     this.generateCalendar();
   }
 

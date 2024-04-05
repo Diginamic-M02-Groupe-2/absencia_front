@@ -23,10 +23,10 @@ export enum ApiRoute {
   EMPLOYER_WTR = "/employer-wtr",
   // Report
   REPORT_PLANNING = "/reports/planning",
+  REPORT_HISTOGRAM = "/reports/histogram",
   // Public holiday
   PUBLIC_HOLIDAY = "/public-holidays",
   // Report
-  GET_ABSENCE_REQUEST_HISTOGRAM = "/reports/histogram",
   // User
   GET_CURRENT_USER = "/users/current",
 }

@@ -25,20 +25,20 @@
       >
         <i class="pi pi-calendar-minus"></i>
 
-        RTT employeurs et jours fériés
+        RTT employeur et jours fériés
       </a>
     </li>
 
     <li class="drawer__list__item">
       <a
-        [routerLink]="calendarRoute"
+        [routerLink]="planningReportRoute"
         routerLinkActive="drawer__list__item__linkActive"
         class="drawer__list__item__link"
         (click)="closeBack($event)"
       >
         <i class="pi pi-calendar"></i>
 
-        Calendrier
+        Planning
       </a>
     </li>
 
@@ -56,7 +56,7 @@
     </li>
   </ul>
 
-  <app-form [formGroup]="logoutFormGroup" [method]="logoutFormMethod" [action]="logoutFormAction" (postSubmit)="postLogout($event);closeBack($event)">
+  <app-form [formGroup]="logoutFormGroup" [method]="logoutFormMethod" [action]="logoutFormAction" (postSubmit)="postLogout();closeBack($event)">
     <button class="drawer__logOutLink">
       <i class="pi pi-sign-out drawer__logOutLink__icon"></i>
 
@@ -94,15 +94,15 @@
         <a [routerLink]="employerWtrAndPublicHolidayReadRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
           <i class="pi pi-calendar-minus"></i>
 
-          RTT employeurs et jours fériés
+          RTT employeur et jours fériés
         </a>
       </li>
 
       <li class="header__navBar__list__item">
-        <a [routerLink]="calendarRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
+        <a [routerLink]="planningReportRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
           <i class="pi pi-calendar"></i>
 
-          Calendrier
+          Planning
         </a>
       </li>
 
@@ -116,7 +116,7 @@
     </ul>
   </nav>
 
-  <app-form [formGroup]="logoutFormGroup" [method]="logoutFormMethod" [action]="logoutFormAction" (postSubmit)="postLogout($event)">
+  <app-form [formGroup]="logoutFormGroup" [method]="logoutFormMethod" [action]="logoutFormAction" (postSubmit)="postLogout()">
     <button class="header__logOutLink">
       <i class="pi pi-sign-out header__logOutLink__icon"></i>
 

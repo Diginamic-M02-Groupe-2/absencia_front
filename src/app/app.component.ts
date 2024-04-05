@@ -19,10 +19,10 @@ export class AppComponent {
   tableDayServiceRoute: string = Route.TABLE_DAY_SERVICE;
 
   employerWtrAndPublicHolidayReadRoute: string = Route.EMPLOYER_WTR_AND_PUBLIC_HOLIDAY_READ;
-
-  calendarRoute: string = Route.CALENDAR;
  
   histogramReportRoute: string = Route.REPORT_HISTOGRAM;
+
+  planningReportRoute: string = Route.REPORT_PLANNING;
 
   firstName: string = '';
 
@@ -54,7 +54,7 @@ export class AppComponent {
     this.sidebarVisible = isVisible;
   }
 
-  postLogout(response: MessageResponse): void {
+  postLogout(): void {
     this.authentificationService.logout();
 
     this.router.navigateByUrl(Route.LOGIN);

@@ -17,7 +17,7 @@ export class HistogramReportComponent {
 
   formMethod: HttpMethod = HttpMethod.GET;
 
-  formAction: string = ApiRoute.GET_ABSENCE_REQUEST_HISTOGRAM;
+  formAction: string = ApiRoute.REPORT_HISTOGRAM;
 
   services: Option[] = serviceOptions;
 
