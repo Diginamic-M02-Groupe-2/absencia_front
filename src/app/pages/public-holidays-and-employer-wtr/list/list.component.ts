@@ -28,18 +28,18 @@ export class PublicHolidaysAndEmployerWtrListComponent {
 
   calendar: (number | null)[][] = [];
 
-  publicHolidays: PublicHoliday[] = [];
-
   data: {
     employerWtr: EmployerWtr[];
     absenceRequests: AbsenceRequest[];
     remainingPaidLeaves: number;
     remainingEmployeeWtr: number;
+    publicHolidays: PublicHoliday[];
   } = {
     employerWtr: [],
     absenceRequests: [],
     remainingPaidLeaves: 0,
     remainingEmployeeWtr: 0,
+    publicHolidays: [],
   };
 
   year: number = new Date().getFullYear();
@@ -62,26 +62,16 @@ export class PublicHolidaysAndEmployerWtrListComponent {
     });
     this.userService.getCurrentUser().subscribe(async (user) => {
       this.service = user.service;
-      this.getPublicHolidays();
       this.getEmployerWtrAndAbsenceRequest();
       this.generateCalendar();
     });
   }
 
-  async getPublicHolidays(): Promise<void> {
-    const url = `${ApiRoute.PUBLIC_HOLIDAY}/${this.year}`;
-
-    this.publicHolidays = await firstValueFrom(
-      this.apiService.get<PublicHoliday[]>(url)
-    );
-  }
-
   async getEmployerWtrAndAbsenceRequest(): Promise<void> {
     const serviceNumber = this.getServiceNumberByLabel(this.service);
-    const date = new Date();
     const queryParams = {
-      month: date.getMonth() + 1,
-      year: date.getFullYear(),
+      month: this.currentDate.getMonth() + 1,
+      year: this.currentDate.getFullYear(),
       service: serviceNumber,
     };
 
@@ -91,12 +81,14 @@ export class PublicHolidaysAndEmployerWtrListComponent {
         absenceRequests: AbsenceRequest[];
         remainingPaidLeaves: number;
         remainingEmployeeWtr: number;
+        publicHolidays: PublicHoliday[];
       }>(`${ApiRoute.PLANNING}`, queryParams)
     );
   }
 
-  onDateChanged() {
+  async onDateChanged() {
     this.currentDate = new Date(this.formGroup.value.period);
+    await this.getEmployerWtrAndAbsenceRequest();
     this.generateCalendar();
   }
 
@@ -151,7 +143,7 @@ export class PublicHolidaysAndEmployerWtrListComponent {
     const currentYear = this.currentDate.getFullYear();
     const date = new Date(currentYear, currentMonth, day);
 
-    const publicHoliday = this.publicHolidays.find((holiday) => {
+    const publicHoliday = this.data.publicHolidays.find((holiday) => {
       const holidayDate = new Date(holiday.date);
       return (
         date.getFullYear() === holidayDate.getFullYear() &&
@@ -183,7 +175,7 @@ export class PublicHolidaysAndEmployerWtrListComponent {
     const date = new Date(currentYear, currentMonth, day);
 
     // Vérifier si la date correspond à un jour férié dans votre liste `publicHolidays`
-    return this.publicHolidays.some((holiday) => {
+    return this.data.publicHolidays.some((holiday) => {
       // Convertir la date du jour férié en objet Date
       const holidayDate = new Date(holiday.date);
       // Comparer les années, mois et jours des dates
@@ -243,7 +235,7 @@ export class PublicHolidaysAndEmployerWtrListComponent {
     const date = new Date(currentYear, currentMonth, day);
 
     // Rechercher le jour férié dans votre liste `publicHolidays`
-    const holiday = this.publicHolidays.find((holiday) => {
+    const holiday = this.data.publicHolidays.find((holiday) => {
       const holidayDate = new Date(holiday.date);
       return (
         date.getFullYear() === holidayDate.getFullYear() &&
