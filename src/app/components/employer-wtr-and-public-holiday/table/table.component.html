@@ -42,7 +42,7 @@
 
         <td>
           <div class="actions">
-            <ng-container *ngIf="isEmployerWtrEditable(employerWtrOrAbsenceRequest)">
+            <ng-container *ngIf="isUpdatable(employerWtrOrAbsenceRequest)">
               <button class="button updateButton" (click)="onClickUpdateButton(employerWtrOrAbsenceRequest)" *ngxPermissionsOnly="'CAN_UPDATE_EMPLOYER_WTR'">
                 <i class="pi pi-file-edit"></i>
 
@@ -52,7 +52,7 @@
               </button>
             </ng-container>
 
-            <ng-container *ngIf="isEmployerWtr(employerWtrOrAbsenceRequest)">
+            <ng-container *ngIf="isDeletable(employerWtrOrAbsenceRequest)">
               <button class="button deleteButton" (click)="onClickDeleteButton(employerWtrOrAbsenceRequest)" *ngxPermissionsOnly="'CAN_DELETE_EMPLOYER_WTR'">
                 <i class="pi pi-trash"></i>
 

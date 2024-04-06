@@ -39,8 +39,30 @@ export class EmployerWtrAndPublicHolidayTableComponent {
     return "status" in employerWtrOrPublicHoliday;
   }
 
-  isEmployerWtrEditable(employerWtr: EmployerWtr): boolean {
-    return employerWtr.status === EmployerWtrStatus.INITIAL;
+  isUpdatable(employerWtrOrPublicHoliday: EmployerWtr|PublicHoliday): boolean {
+    if (new Date(employerWtrOrPublicHoliday.date).getTime() < new Date().getTime()) {
+      return false;
+    }
+
+    if (this.isEmployerWtr(employerWtrOrPublicHoliday)) {
+      const employerWtr = employerWtrOrPublicHoliday as EmployerWtr;
+
+      return employerWtr.status === EmployerWtrStatus.INITIAL;
+    }
+
+    return true;
+  }
+
+  isDeletable(employerWtrOrPublicHoliday: EmployerWtr|PublicHoliday): boolean {
+    if (new Date(employerWtrOrPublicHoliday.date).getTime() < new Date().getTime()) {
+      return false;
+    }
+
+    if (!this.isEmployerWtr(employerWtrOrPublicHoliday)) {
+      return false;
+    }
+
+    return true;
   }
 
   onClickUpdateButton(employerWtr: EmployerWtr): void {
