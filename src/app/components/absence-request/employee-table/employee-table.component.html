@@ -1,4 +1,4 @@
-<ng-container *ngIf="!employees.length; else table">
+<ng-container *ngIf="isEmpty(); else table">
   <div class="noResults">
     Aucun résultat.
   </div>
@@ -69,17 +69,23 @@
         <td>
           <div class="actions">
             <ng-container *ngIf="absenceRequest.status !== 'REJECTED'">
-              <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction + '/' + absenceRequest.id + '/approve'" (postSubmit)="postApprove(absenceRequest)">
+              <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction + '/' + absenceRequest.id + '/approve'" (postSubmit)="postApproveOrReject($event)">
                 <button type="submit" class="button approveButton">
                   <i class="pi pi-check"></i>
-                  <span class="label">Valider</span>
+
+                  <span class="label">
+                    Valider
+                  </span>
                 </button>
               </app-form>
 
-              <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction + '/' + absenceRequest.id + '/reject'" (postSubmit)="postReject(absenceRequest)">
+              <app-form [formGroup]="formGroup" [method]="formMethod" [action]="formAction + '/' + absenceRequest.id + '/reject'" (postSubmit)="postApproveOrReject($event)">
                 <button type="submit" class="button rejectButton">
                   <i class="pi pi-times"></i>
-                  <span class="label">Refuser</span>
+
+                  <span class="label">
+                    Refuser
+                  </span>
                 </button>
               </app-form>
             </ng-container>
@@ -88,4 +94,6 @@
       </tr>
     </ng-template>
   </p-table>
+
+  <app-toast />
 </ng-template>

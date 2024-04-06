@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { PublicHoliday } from '../../entities/public-holiday';
 import { ApiRoute, ApiService } from '../../services/api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
@@ -36,10 +35,6 @@ export class PlanningComponent {
   };
 
   year: number = new Date().getFullYear();
-
-  isDialogVisible: boolean = false;
-
-  currentPublicHoliday: PublicHoliday = new PublicHoliday();
 
   formGroup: FormGroup;
 
@@ -210,33 +205,6 @@ export class PlanningComponent {
         date.getDate() === wtrDate.getDate()
       );
     });
-  }
-
-  onClickEditButton(day: number | null): void {
-    if (day === null) {
-      return;
-    }
-
-    const currentMonth = this.currentDate.getMonth();
-    const currentYear = this.currentDate.getFullYear();
-    const date = new Date(currentYear, currentMonth, day);
-
-    // Rechercher le jour férié dans votre liste `publicHolidays`
-    const holiday = this.data.publicHolidays.find((holiday) => {
-      const holidayDate = new Date(holiday.date);
-      return (
-        date.getFullYear() === holidayDate.getFullYear() &&
-        date.getMonth() === holidayDate.getMonth() &&
-        date.getDate() === holidayDate.getDate()
-      );
-    });
-
-    if (!holiday) {
-      return;
-    }
-
-    this.currentPublicHoliday = holiday;
-    this.isDialogVisible = true;
   }
 
   getServiceNumberByLabel(label: string): number | undefined {
