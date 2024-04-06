@@ -1,0 +1,15 @@
+@import "../../../variables.scss";
+
+:host::ng-deep p-checkbox {
+  padding: 0 10px;
+
+  .p-checkbox-box {
+    box-shadow: none;
+    border-radius: 4px;
+    border-color: $tertiary;
+
+    &.p-highlight {
+      background-color: $tertiary;
+    }
+  }
+}

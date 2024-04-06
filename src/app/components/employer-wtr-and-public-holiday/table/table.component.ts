@@ -13,9 +13,13 @@ import {MessageResponse} from "../../../models/message-response";
 export class EmployerWtrAndPublicHolidayTableComponent {
   employerWtr?: EmployerWtr;
 
-  updateDialogVisible: boolean = false;
+  publicHoliday?: PublicHoliday;
 
-  deleteDialogVisible: boolean = false;
+  employerWtrUpdateDialogVisible: boolean = false;
+
+  publicHolidayUpdateDialogVisible: boolean = false;
+
+  employerWtrDeleteDialogVisible: boolean = false;
 
   @Input()
   employerWtrAndPublicHolidays!: (EmployerWtr|PublicHoliday)[];
@@ -39,40 +43,56 @@ export class EmployerWtrAndPublicHolidayTableComponent {
     return "status" in employerWtrOrPublicHoliday;
   }
 
-  isUpdatable(employerWtrOrPublicHoliday: EmployerWtr|PublicHoliday): boolean {
-    if (new Date(employerWtrOrPublicHoliday.date).getTime() < new Date().getTime()) {
-      return false;
-    }
-
-    if (this.isEmployerWtr(employerWtrOrPublicHoliday)) {
-      const employerWtr = employerWtrOrPublicHoliday as EmployerWtr;
-
-      return employerWtr.status === EmployerWtrStatus.INITIAL;
-    }
-
-    return true;
-  }
-
-  isDeletable(employerWtrOrPublicHoliday: EmployerWtr|PublicHoliday): boolean {
-    if (new Date(employerWtrOrPublicHoliday.date).getTime() < new Date().getTime()) {
-      return false;
-    }
-
+  isEmployerWtrUpdatable(employerWtrOrPublicHoliday: EmployerWtr|PublicHoliday): boolean {
     if (!this.isEmployerWtr(employerWtrOrPublicHoliday)) {
       return false;
     }
 
+    if (new Date(employerWtrOrPublicHoliday.date).getTime() < new Date().getTime()) {
+      return false;
+    }
+
+    return (employerWtrOrPublicHoliday as EmployerWtr).status === EmployerWtrStatus.INITIAL;
+  }
+
+  isPublicHolidayUpdatable(employerWtrOrPublicHoliday: EmployerWtr|PublicHoliday): boolean {
+    if (this.isEmployerWtr(employerWtrOrPublicHoliday)) {
+      return false;
+    }
+
+    if (new Date(employerWtrOrPublicHoliday.date).getTime() < new Date().getTime()) {
+      return false;
+    }
+
     return true;
   }
 
-  onClickUpdateButton(employerWtr: EmployerWtr): void {
-    this.employerWtr = employerWtr;
-    this.updateDialogVisible = true;
+  isEmployerWtrDeletable(employerWtrOrPublicHoliday: EmployerWtr): boolean {
+    console.log("ok")
+    if (!this.isEmployerWtr(employerWtrOrPublicHoliday)) {
+      return false;
+    }
+
+    if (new Date(employerWtrOrPublicHoliday.date).getTime() < new Date().getTime()) {
+      return false;
+    }
+
+    return true;
   }
 
-  onClickDeleteButton(employerWtr: EmployerWtr): void {
+  onClickUpdateEmployerWtrButton(employerWtr: EmployerWtr): void {
     this.employerWtr = employerWtr;
-    this.deleteDialogVisible = true;
+    this.employerWtrUpdateDialogVisible = true;
+  }
+
+  onClickUpdatePublicHolidayButton(publicHoliday: PublicHoliday): void {
+    this.publicHoliday = publicHoliday;
+    this.publicHolidayUpdateDialogVisible = true;
+  }
+
+  onClickDeleteEmployerWtrButton(employerWtr: EmployerWtr): void {
+    this.employerWtr = employerWtr;
+    this.employerWtrDeleteDialogVisible = true;
   }
 
   onUpdate(response: MessageResponse): void {
