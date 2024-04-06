@@ -39,6 +39,6 @@ export class EmployerWtrAndPublicHolidayReadComponent {
     this.employerWtrAndPublicHolidays = [
       ...response.employerWtr,
       ...response.publicHolidays,
-    ];
+    ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   }
 }
