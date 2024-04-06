@@ -68,7 +68,6 @@ export class EmployerWtrAndPublicHolidayTableComponent {
   }
 
   isEmployerWtrDeletable(employerWtrOrPublicHoliday: EmployerWtr): boolean {
-    console.log("ok")
     if (!this.isEmployerWtr(employerWtrOrPublicHoliday)) {
       return false;
     }
