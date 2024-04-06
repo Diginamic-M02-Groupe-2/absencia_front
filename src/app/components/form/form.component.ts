@@ -58,26 +58,6 @@ export class FormComponent {
           detail: response.message,
           life: 5000,
         });
-        this.messageService.add({
-          severity: "success",
-          detail: response.message,
-          life: 5000,
-        });
-        this.messageService.add({
-          severity: "success",
-          detail: response.message,
-          life: 5000,
-        });
-        this.messageService.add({
-          severity: "success",
-          detail: response.message,
-          life: 5000,
-        });
-        this.messageService.add({
-          severity: "success",
-          detail: response.message,
-          life: 5000,
-        });
 
         if (!this.postSubmit) {
           return;
