@@ -34,6 +34,10 @@ export class AbsenceRequestEmployeeTableComponent {
     this.employees = response;
   }
 
+  isEmpty(): boolean {
+    return this.employees.every(employee => !employee.absenceRequests.length);
+  }
+
   /**
    * @todo
    */
