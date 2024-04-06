@@ -34,6 +34,8 @@ export class FormComponent {
   async onSubmit(event: SubmitEvent): Promise<void> {
     event.preventDefault();
 
+    this.formGroup.markAllAsTouched();
+
     const formData = this.getFormData();
 
     this.apiService
