@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
-import { ApiRoute, ApiService } from '../../services/api.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../services/user.service';
-import { Service } from '../../entities/user/service';
+import {Component} from "@angular/core";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {firstValueFrom} from "rxjs";
+import {PublicHoliday} from "../../entities/public-holiday";
+import {User} from "../../entities/user/user";
+import {Service} from "../../entities/user/service";
 import {GetPlanningReportResponse} from "../../models/get-planning-report-response";
+import {ApiRoute, ApiService} from "../../services/api.service";
+import {UserService} from "../../services/user.service";
+import { AbsenceRequest } from "../../entities/absence-request";
+import { EmployerWtr } from "../../entities/employer-wtr";
 
 @Component({
   selector: "app-absence-request-planning",
@@ -46,10 +50,14 @@ export class PlanningComponent {
     private userService: UserService
   ) {
     this.formGroup = this.formBuilder.group({
-      period: [new Date(), [Validators.required]],
+      month: [new Date()],
     });
-    this.userService.getCurrentUser().subscribe(async (user) => {
+
+    this.formGroup.get("month")!.valueChanges.subscribe((value: Date) => this.onChangeMonth(value));
+
+    this.userService.getCurrentUser().subscribe(async (user: User) => {
       this.service = user.service;
+
       this.getPlanning();
       this.generateCalendar();
     });
@@ -68,13 +76,96 @@ export class PlanningComponent {
     );
   }
 
-  async onDateChanged() {
-    this.currentDate = new Date(this.formGroup.value.period);
+  async onChangeMonth(value: Date) {
+    this.currentDate = value;
+
     await this.getPlanning();
+
     this.generateCalendar();
   }
 
-  generateCalendar(): void {
+  isAbsenceRequest(day: null|number): boolean {
+    if (day === null) {
+      return false;
+    }
+
+    return this.getAbsenceRequest(day) !== undefined;
+  }
+
+  isEmployerWtr(day: null|number): boolean {
+    if (day === null) {
+      return false;
+    }
+
+    return this.getEmployerWtr(day) !== undefined;
+  }
+
+  isNone(day: null|number): boolean {
+    if (day === null) {
+      return false;
+    }
+
+    return (
+      !this.isAbsenceRequest(day) &&
+      !this.isEmployerWtr(day) &&
+      !this.isPublicHoliday(day) &&
+      !this.isWeekEnd(day)
+    );
+  }
+
+  isPublicHoliday(day: null|number): boolean {
+    if (day === null) {
+      return false;
+    }
+
+    return this.getPublicHoliday(day) !== undefined;
+  }
+
+  isWeekEnd(day: null|number): boolean {
+    if (day === null) {
+      return false;
+    }
+
+    const dayOfWeek = this.getCurrentDate(day).getDay();
+
+    return dayOfWeek === 0 || dayOfWeek === 6;
+  }
+
+  getAbsenceRequest(day: number): undefined|AbsenceRequest {
+    const date = this.getCurrentDate(day);
+
+    return this.data.absenceRequests.find((absenceRequest: AbsenceRequest) => {
+      const absenceRequestStartedAt = new Date(absenceRequest.startedAt);
+      const absenceRequestEndedAt = new Date(absenceRequest.endedAt);
+
+      return (
+        date.getTime() >= absenceRequestStartedAt.getTime() &&
+        date.getTime() <= absenceRequestEndedAt.getTime()
+      );
+    });
+  }
+
+  getEmployerWtr(day: number): undefined|EmployerWtr {
+    const date = this.getCurrentDate(day);
+
+    return this.data.employerWtr.find((employerWtr: EmployerWtr) => {
+      const employerWtrDate = new Date(employerWtr.date);
+
+      return employerWtrDate.getTime() === date.getTime();
+    });
+  }
+
+  getPublicHoliday(day: number): undefined|PublicHoliday {
+    const date = this.getCurrentDate(day);
+
+    return this.data.publicHolidays.find((publicHoliday: PublicHoliday) => {
+      const publicHolidayDate = new Date(publicHoliday.date);
+
+      return publicHolidayDate.getTime() === date.getTime();
+    });
+  }
+
+  private generateCalendar(): void {
     const currentMonth = this.currentDate.getMonth();
     const currentYear = this.currentDate.getFullYear();
     this.calendar = [];
@@ -117,97 +208,20 @@ export class PlanningComponent {
     }
   }
 
-  getPublicHolidayName(day: number | null): string | null {
-    if (day === null) {
-      return null;
-    }
-    const currentMonth = this.currentDate.getMonth();
-    const currentYear = this.currentDate.getFullYear();
-    const date = new Date(currentYear, currentMonth, day);
+  /**
+   * Returns a date created from the day of the month, without the timezone offset
+   */
+  private getCurrentDate(day: number): Date {
+    const date = new Date(
+      this.currentDate.getFullYear(),
+      this.currentDate.getMonth(),
+      day,
+    );
 
-    const publicHoliday = this.data.publicHolidays.find((holiday) => {
-      const holidayDate = new Date(holiday.date);
-      return (
-        date.getFullYear() === holidayDate.getFullYear() &&
-        date.getMonth() === holidayDate.getMonth() &&
-        date.getDate() === holidayDate.getDate()
-      );
-    });
-    return publicHoliday ? publicHoliday.label : null;
+    return new Date(date.getTime() - date.getTimezoneOffset() * 60000);
   }
 
-  isWeekend(day: number | null): boolean {
-    if (day === null) {
-      return false;
-    }
-    const currentMonth = this.currentDate.getMonth();
-    const currentYear = this.currentDate.getFullYear();
-    const date = new Date(currentYear, currentMonth, day);
-    const dayOfWeek = date.getDay();
-    return dayOfWeek === 0 || dayOfWeek === 6;
-  }
-
-  isPublicHoliday(day: number | null): boolean {
-    if (day === null) {
-      return false;
-    }
-
-    const currentMonth = this.currentDate.getMonth();
-    const currentYear = this.currentDate.getFullYear();
-    const date = new Date(currentYear, currentMonth, day);
-
-    // Vérifier si la date correspond à un jour férié dans votre liste `publicHolidays`
-    return this.data.publicHolidays.some((holiday) => {
-      // Convertir la date du jour férié en objet Date
-      const holidayDate = new Date(holiday.date);
-      // Comparer les années, mois et jours des dates
-      return (
-        date.getFullYear() === holidayDate.getFullYear() &&
-        date.getMonth() === holidayDate.getMonth() &&
-        date.getDate() === holidayDate.getDate()
-      );
-    });
-  }
-
-  isEmployerWtrDay(day: number | null): boolean {
-    if (day === null) {
-      return false;
-    }
-
-    const currentMonth = this.currentDate.getMonth();
-    const currentYear = this.currentDate.getFullYear();
-    const date = new Date(currentYear, currentMonth, day);
-
-    return this.data.employerWtr.some((wtr) => {
-      const wtrDate = new Date(wtr.date);
-      return (
-        date.getFullYear() === wtrDate.getFullYear() &&
-        date.getMonth() === wtrDate.getMonth() &&
-        date.getDate() === wtrDate.getDate()
-      );
-    });
-  }
-
-  isAbsenceDay(day: number | null): boolean {
-    if (day === null) {
-      return false;
-    }
-
-    const currentMonth = this.currentDate.getMonth();
-    const currentYear = this.currentDate.getFullYear();
-    const date = new Date(currentYear, currentMonth, day);
-
-    return this.data.absenceRequests.some((abs) => {
-      const wtrDate = new Date(abs.startedAt);
-      return (
-        date.getFullYear() === wtrDate.getFullYear() &&
-        date.getMonth() === wtrDate.getMonth() &&
-        date.getDate() === wtrDate.getDate()
-      );
-    });
-  }
-
-  getServiceNumberByLabel(label: string): number | undefined {
+  private getServiceNumberByLabel(label: string): number | undefined {
     const serviceKeys = Object.keys(Service);
     for (let i = 0; i < serviceKeys.length; i++) {
       if (Service[serviceKeys[i] as keyof typeof Service] === label) {

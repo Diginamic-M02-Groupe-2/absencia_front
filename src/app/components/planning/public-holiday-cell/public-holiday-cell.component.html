@@ -1,0 +1,13 @@
+<div class="cell">
+  <div class="cell__description">
+    {{publicHoliday.label}}
+
+    <app-badge *ngIf="publicHoliday.worked">
+      Ouvré
+    </app-badge>
+  </div>
+
+  <span class="cell__dayOfMonth">
+    {{dayOfMonth}}
+  </span>
+</div>

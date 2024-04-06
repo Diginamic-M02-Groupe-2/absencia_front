@@ -1,0 +1,30 @@
+@import "../../../../variables.scss";
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 150px;
+  line-height: 1;
+  padding: 8px;
+  background-color: $secondary;
+  color: darken($secondary, 40%);
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+
+    ::ng-deep .badge {
+      background-color: darken($secondary, 40%);
+      color: $secondary;
+    }
+  }
+
+  &__dayOfMonth {
+    line-height: 1;
+    text-align: right;
+    font-size: 1.25rem;
+    font-weight: 900;
+  }
+}

@@ -24,7 +24,7 @@ export class EmployerWtrAndPublicHolidayReadComponent {
     private apiService: ApiService,
   ) {
     this.formGroup = this.formBuilder.group({
-      year: [new Date(new Date().getFullYear().toString())],
+      year: [new Date()],
     });
 
     this.formGroup.get("year")!.valueChanges.subscribe((value: Date) => this.getEmployerWtrAndPublicHolidays());
