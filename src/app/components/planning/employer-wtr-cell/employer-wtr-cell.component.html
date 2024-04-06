@@ -1,0 +1,19 @@
+<div class="cell">
+  <div class="cell__description">
+    {{employerWtr.label}}
+
+    <div class="cell__description__badges">
+      <app-badge>
+        RTT employeur
+      </app-badge>
+
+      <app-badge>
+        {{employerWtr.status|employerWtrStatus}}
+      </app-badge>
+    </div>
+  </div>
+
+  <span class="cell__dayOfMonth">
+    {{dayOfMonth}}
+  </span>
+</div>

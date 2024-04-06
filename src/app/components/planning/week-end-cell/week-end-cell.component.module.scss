@@ -1,0 +1,15 @@
+@import "../../../../variables.scss";
+
+.cell {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 150px;
+  line-height: 1;
+  padding: 8px;
+  border-right: 1px solid darken($light, 5%);
+  background-color: $light;
+  color: darken($light, 40%);
+  font-size: 1.25rem;
+  font-weight: 900;
+}

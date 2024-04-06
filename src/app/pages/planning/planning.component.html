@@ -3,66 +3,33 @@
 </h1>
 
 <div class="formContainer">
-  <form [formGroup]="formGroup">
-    <div class="form-field">
-      <label for="period">Période</label>
-      <p-calendar
-        formControlName="period"
-        view="month"
-        dateFormat="mm/yy"
-        appendTo="body"
-        placeholder="Période"
-        (onSelect)="onDateChanged()"
-      />
-    </div>
-  </form>
+  <app-datepicker
+    [formGroup]="formGroup"
+    view="month"
+    name="month"
+    label="Mois"
+    placeholder="Sélectionnez un mois"
+  />
 </div>
 
 <div class="calendar-container">
   <table class="table">
     <thead>
       <tr>
-        <th *ngFor="let day of weekDays" class="text-center header-day p-4">
-          {{ day }}
+        <th *ngFor="let weekDay of weekDays">
+          {{weekDay}}
         </th>
       </tr>
     </thead>
+
     <tbody>
       <tr *ngFor="let week of calendar">
-        <td
-          *ngFor="let day of week"
-          class="calendar-cell"
-          [ngClass]="{
-            'week-cell': isWeekend(day),
-            'public-holiday-cell': isPublicHoliday(day)
-          }"
-        >
-          <div class="d-flex flex-column h-100">
-            <div class="flex-grow-1"></div>
-            <p
-              *ngIf="isPublicHoliday(day)"
-              [ngClass]="{
-                'public-holiday-cell-text': isPublicHoliday(day)
-              }"
-            >
-              {{ getPublicHolidayName(day) }}
-            </p>
-            <button
-              *ngIf="isEmployerWtrDay(day)"
-              type="button"
-              class="showButton"
-            >
-              RTT Employeur
-            </button>
-            <button
-              *ngIf="isAbsenceDay(day)"
-              type="button"
-              class="showButtonAbsence"
-            >
-              Demande d'absence
-            </button>
-            <div class="text-right day-number">{{ day }}</div>
-          </div>
+        <td *ngFor="let day of week">
+          <app-planning-absence-request-cell *ngIf="isAbsenceRequest(day)" [absenceRequest]="getAbsenceRequest(day!)!" [dayOfMonth]="day!" />
+          <app-planning-employer-wtr-cell *ngIf="isEmployerWtr(day)" [employerWtr]="getEmployerWtr(day!)!" [dayOfMonth]="day!" />
+          <app-planning-public-holiday-cell *ngIf="isPublicHoliday(day)" [publicHoliday]="getPublicHoliday(day!)!" [dayOfMonth]="day!" />
+          <app-planning-week-end-cell *ngIf="isWeekEnd(day)" [dayOfMonth]="day!" />
+          <app-planning-cell *ngIf="isNone(day)" [dayOfMonth]="day!" />
         </td>
       </tr>
     </tbody>

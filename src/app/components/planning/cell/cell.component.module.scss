@@ -1,0 +1,13 @@
+@import "../../../../variables.scss";
+
+.cell {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 150px;
+  line-height: 1;
+  padding: 8px;
+  color: $tertiary;
+  font-size: 1.25rem;
+  font-weight: 900;
+}

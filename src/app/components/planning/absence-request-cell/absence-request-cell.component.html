@@ -1,0 +1,19 @@
+<div class="cell">
+  <div class="cell__description">
+    {{absenceRequest.reason}}
+
+    <div class="cell__description__badges">
+      <app-badge>
+        {{absenceRequest.type|absenceType}}
+      </app-badge>
+
+      <app-badge>
+        {{absenceRequest.status|absenceRequestStatus}}
+      </app-badge>
+    </div>
+  </div>
+
+  <span class="cell__dayOfMonth">
+    {{dayOfMonth}}
+  </span>
+</div>
