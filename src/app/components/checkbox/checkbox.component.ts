@@ -15,10 +15,4 @@ export class CheckboxComponent {
 
   @Input()
   label!: string;
-
-  @Input()
-  checked!: boolean;
-
-  @Input()
-  value?: string = "";
 }
