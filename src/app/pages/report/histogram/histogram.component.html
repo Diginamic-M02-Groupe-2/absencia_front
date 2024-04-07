@@ -3,36 +3,22 @@
 </h1>
 
 <div class="formContainer">
-  <form [formGroup]="formGroup" [method]="formMethod" [action]="formAction" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <div class="form-field">
-        <label for="period">Période</label>
-        <p-calendar
-          [formControlName]="'period'"
-          view="month"
-          dateFormat="mm/yy"
-          appendTo="body"
-          placeholder="Période"
-          (onSelect)="onDateChanged($event)"
-        ></p-calendar>
-      </div>
+  <app-select
+    *ngIf="defaultService"
+    [formGroup]="formGroup"
+    name="service"
+    label="Département"
+    placeholder="Sélectionnez un département"
+    [options]="services"
+  />
 
-      <div class="form-field">
-        <label for="service">Département</label>
-        <p-dropdown
-          [formControlName]="'service'"
-          appendTo="body"
-          placeholder="Choisir un département"
-          [options]="services"
-          (onChange)="onSelectionChanged($event)"
-        >
-          <ng-template let-option pTemplate="item">
-            {{ option.label }}
-          </ng-template>
-        </p-dropdown>
-      </div>
-    </div>
-  </form>
+  <app-datepicker
+    [formGroup]="formGroup"
+    view="month"
+    name="month"
+    label="Mois"
+    placeholder="Sélectionnez un mois"
+  />
 </div>
 
-<app-absence-request-histogram *ngIf="datasets" [month]="formGroup.get('period')?.value.getMonth()" [year]="formGroup.get('period')?.value.getFullYear()" [datasets]="datasets" />
+<app-absence-request-histogram [month]="formGroup.get('month')!.value.getMonth()" [year]="formGroup.get('month')!.value.getFullYear()" [datasets]="datasets" />
