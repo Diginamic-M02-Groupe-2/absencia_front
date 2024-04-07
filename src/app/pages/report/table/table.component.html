@@ -21,28 +21,12 @@
   />
 </div>
 
-<p-table [value]="filterCongesByService()" [tableStyle]="{'min-width': '50rem'}">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>
-        Nom
-      </th>
-
-      <th *ngFor="let jour of jours">
-        {{jour}}
-      </th>
-    </tr>
-  </ng-template>
-
-  <ng-template pTemplate="body" let-conge>
-    <tr>
-      <td>
-        {{conge.nom}}
-      </td>
-
-      <td *ngFor="let jour of jours">
-        {{getCongeValue(conge, jour)}}
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+<app-report-table
+  *ngIf="table"
+  [month]="formGroup.get('month')!.value.getMonth()"
+  [year]="formGroup.get('month')!.value.getFullYear()"
+  [calendar]="calendar"
+  [rows]="table!.table"
+  [employerWtr]="table!.employerWtr"
+  [publicHolidays]="table!.publicHolidays"
+/>

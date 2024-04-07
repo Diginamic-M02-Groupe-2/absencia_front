@@ -1,12 +1,12 @@
 import {Component, Input} from "@angular/core";
-import {PublicHoliday} from "../../../entities/public-holiday";
+import {PublicHoliday} from "../../../../entities/public-holiday";
 
 @Component({
-  selector: "app-planning-public-holiday-cell",
+  selector: "app-report-planning-public-holiday-cell",
   templateUrl: "./public-holiday-cell.component.html",
   styleUrl: "./public-holiday-cell.component.module.scss",
 })
-export class PlanningPublicHolidayCellComponent {
+export class ReportPlanningPublicHolidayCellComponent {
   @Input()
   publicHoliday!: PublicHoliday;
 

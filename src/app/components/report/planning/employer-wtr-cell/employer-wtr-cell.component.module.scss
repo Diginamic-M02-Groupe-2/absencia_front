@@ -1,4 +1,4 @@
-@import "../../../../variables.scss";
+@import "../../../../../variables.scss";
 
 .cell {
   display: flex;
@@ -7,17 +7,22 @@
   height: 150px;
   line-height: 1;
   padding: 8px;
-  background-color: $secondary;
-  color: darken($secondary, 40%);
+  background-color: $tertiary;
+  color: $white;
 
   &__description {
     display: flex;
     flex-direction: column;
     row-gap: 8px;
 
-    ::ng-deep .badge {
-      background-color: darken($secondary, 40%);
-      color: $secondary;
+    &__badges {
+      display: flex;
+      column-gap: 8px;
+
+      ::ng-deep .badge {
+        background-color: $white;
+        color: $tertiary;
+      }
     }
   }
 

@@ -2,11 +2,11 @@ import {Component} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {firstValueFrom} from "rxjs";
 import {Service, serviceOptions} from "../../../entities/user/service";
-import {GetHistogramResponse, HistogramDataset} from "../../../models/get-histogram-response";
+import {User} from "../../../entities/user/user";
+import {GetHistogramReportResponse, HistogramDataset} from "../../../models/get-histogram-report-response";
 import {Option} from "../../../models/option";
 import {ApiRoute, ApiService, HttpMethod} from "../../../services/api.service";
 import {UserService} from "../../../services/user.service";
-import { User } from "../../../entities/user/user";
 
 @Component({
   selector: "app-histogram-report",
@@ -44,15 +44,13 @@ export class HistogramReportComponent {
   }
 
   async getHistogram(): Promise<void> {
-    const queryParams = {
+    const queryParameters = {
       month: this.formGroup.get("month")!.value.getMonth() + 1,
       year: this.formGroup.get("month")!.value.getFullYear(),
       service: this.getServiceNumberByLabel(this.formGroup.get("service")!.value),
     };
 
-    const response = await firstValueFrom(this.apiService.get<GetHistogramResponse>(this.formAction, queryParams));
-
-    this.datasets = response;
+    this.datasets = await firstValueFrom(this.apiService.get<GetHistogramReportResponse>(this.formAction, queryParameters));
   }
 
   private getServiceNumberByLabel(label: string): undefined|number {

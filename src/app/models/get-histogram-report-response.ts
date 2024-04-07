@@ -1,4 +1,4 @@
-export type GetHistogramResponse = HistogramDataset[];
+export type GetHistogramReportResponse = HistogramDataset[];
 
 export interface HistogramDataset {
   id: number;
