@@ -1,6 +1,6 @@
-import {Component, Input, OnChanges } from "@angular/core";
+import {Component, Input, OnChanges} from "@angular/core";
+import {HistogramDataset} from "../../models/get-histogram-report-response";
 import {DateService} from "../../services/date.service";
-import {GetHistogramResponse, HistogramDataset} from "../../models/get-histogram-response";
 
 @Component({
   selector: "app-histogram",
@@ -39,7 +39,7 @@ export class HistogramComponent implements OnChanges {
   year!: number;
 
   @Input()
-  datasets!: GetHistogramResponse;
+  datasets!: HistogramDataset[];
 
   constructor(
     private dateService: DateService,
@@ -48,10 +48,6 @@ export class HistogramComponent implements OnChanges {
       maintainAspectRatio: false,
       aspectRatio: .8,
       plugins: {
-        /* tooltip: {
-          mode: "index",
-          intersect: false,
-        }, */
         legend: {
           position: "bottom",
           labels: {
@@ -98,7 +94,9 @@ export class HistogramComponent implements OnChanges {
     if (!this.datasets) {
       return;
     }
+
     const days = this.dateService.getDaysInMonth(this.month, this.year);
+  
     this.data = {
       labels: days.map(day => day.toLocaleDateString("fr-FR")),
       datasets: this.datasets.map((dataset: HistogramDataset, i: number) => ({
