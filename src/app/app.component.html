@@ -42,7 +42,7 @@
       </a>
     </li>
 
-    <li class="drawer__list__item" *ngxPermissionsOnly="['CAN_VISUALIZE_HISTOGRAM_ABSENCE_REQUEST']">
+    <li class="drawer__list__item" *ngxPermissionsOnly="['CAN_READ_HISTOGRAM_REPORT']">
       <a
         [routerLink]="histogramReportRoute"
         routerLinkActive="drawer__list__item__linkActive"
@@ -104,7 +104,7 @@
         </a>
       </li>
 
-      <li class="header__navBar__list__item" *ngxPermissionsOnly="['CAN_VISUALIZE_HISTOGRAM_ABSENCE_REQUEST']">
+      <li class="header__navBar__list__item" *ngxPermissionsOnly="['CAN_READ_HISTOGRAM_REPORT']">
         <a [routerLink]="histogramReportRoute" routerLinkActive="header__navBar__list__item__linkActive" class="header__navBar__list__item__link">
           <i class="pi pi-chart-bar"></i>
 

@@ -10,7 +10,7 @@ import {EmployerWtrCreateComponent} from "./pages/employer-wtr/create/create.com
 import {EmployerWtrAndPublicHolidayReadComponent} from "./pages/employer-wtr-and-public-holiday/read/read.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
-import {PlanningComponent} from "./pages/planning/planning.component";
+import {PlanningReportComponent} from "./pages/report/planning/planning.component";
 import {HistogramReportComponent} from "./pages/report/histogram/histogram.component";
 import {TableDayServiceComponent} from "./pages/table-day-service/table-day-service.component";
 
@@ -49,14 +49,14 @@ export const routes: Routes = [
   },
   {
     path: Route.REPORT_PLANNING,
-    component: PlanningComponent,
+    component: PlanningReportComponent,
     canActivate: [AuthGuard],
   },
   {
     path: Route.REPORT_HISTOGRAM,
     component: HistogramReportComponent,
     canActivate: [AuthGuard],
-    data: { requiredPermission: 'CAN_VISUALIZE_HISTOGRAM_ABSENCE_REQUEST' }
+    data: { requiredPermission: 'CAN_READ_HISTOGRAM_REPORT' }
   },
   {
     path: Route.TABLE_DAY_SERVICE,
