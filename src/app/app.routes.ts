@@ -10,9 +10,9 @@ import {EmployerWtrCreateComponent} from "./pages/employer-wtr/create/create.com
 import {EmployerWtrAndPublicHolidayReadComponent} from "./pages/employer-wtr-and-public-holiday/read/read.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
-import {PlanningReportComponent} from "./pages/report/planning/planning.component";
 import {HistogramReportComponent} from "./pages/report/histogram/histogram.component";
-import {TableDayServiceComponent} from "./pages/table-day-service/table-day-service.component";
+import {PlanningReportComponent} from "./pages/report/planning/planning.component";
+import {TableReportComponent} from "./pages/report/table/table.component";
 
 export const routes: Routes = [
   {
@@ -78,7 +78,7 @@ export const routes: Routes = [
     },
   }, {
     path: Route.REPORT_TABLE,
-    component: TableDayServiceComponent,
+    component: TableReportComponent,
     canActivate: [
       AuthGuard,
     ],

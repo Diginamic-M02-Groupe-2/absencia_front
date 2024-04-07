@@ -11,7 +11,7 @@ import {ApiRoute, ApiService} from "../../../services/api.service";
 import {UserService} from "../../../services/user.service";
 
 @Component({
-  selector: "app-absence-request-planning",
+  selector: "app-planning-report",
   templateUrl: "./planning.component.html",
   styleUrl: "./planning.component.module.scss",
 })

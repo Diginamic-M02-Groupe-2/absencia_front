@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { Option } from '../../models/option';
-import { Service, serviceOptions } from '../../entities/user/service';
+import {Component} from "@angular/core";
+import {Service, serviceOptions} from "../../../entities/user/service";
+import {Option} from "../../../models/option";
 
 interface Conge {
   nom: string;
@@ -9,17 +9,17 @@ interface Conge {
 }
 
 @Component({
-  selector: 'app-table-day-service',
-  templateUrl: './table-day-service.component.html',
-  styleUrls: ['./table-day-service.component.module.scss'],
+  selector: "app-table-report",
+  templateUrl: "./table.component.html",
+  styleUrl: "./table.component.module.scss",
 })
-export class TableDayServiceComponent {
+export class TableReportComponent {
   months: string[] = [
     'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
   ];
-  
+
   years: number[] = Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - i);
-  
+
   selectedService: Service | undefined;
   selectedMonth: string | undefined;
   selectedYear: number | undefined;
@@ -32,7 +32,6 @@ export class TableDayServiceComponent {
   jours: string[] = Array.from({ length: 31 }, (_, i) => (i + 1).toString()); // Jours du mois
 
   serviceOptions: Option[] = serviceOptions;
-
 
   getCongeValue(conge: Conge, jour: string): string {
     return conge[jour] || ''; 
