@@ -2,11 +2,11 @@ import {Component} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {firstValueFrom} from "rxjs";
 import {Service, serviceOptions} from "../../../entities/user/service";
+import {User} from "../../../entities/user/user";
 import {GetHistogramReportResponse, HistogramDataset} from "../../../models/get-histogram-report-response";
 import {Option} from "../../../models/option";
 import {ApiRoute, ApiService, HttpMethod} from "../../../services/api.service";
 import {UserService} from "../../../services/user.service";
-import { User } from "../../../entities/user/user";
 
 @Component({
   selector: "app-histogram-report",

@@ -1,12 +1,12 @@
 import {Component, Input, OnChanges} from "@angular/core";
-import {HistogramDataset} from "../../models/get-histogram-report-response";
-import {DateService} from "../../services/date.service";
+import {HistogramDataset} from "../../../models/get-histogram-report-response";
+import {DateService} from "../../../services/date.service";
 
 @Component({
-  selector: "app-histogram",
+  selector: "app-report-histogram",
   templateUrl: "./histogram.component.html",
 })
-export class HistogramComponent implements OnChanges {
+export class ReportHistogramComponent implements OnChanges {
   private colors: string[] = [
     "#2979ff",
     "#ff8a65",

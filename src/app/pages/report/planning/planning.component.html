@@ -25,11 +25,11 @@
     <tbody>
       <tr *ngFor="let week of calendar">
         <td *ngFor="let day of week">
-          <app-planning-absence-request-cell *ngIf="isAbsenceRequest(day)" [absenceRequest]="getAbsenceRequest(day!)!" [dayOfMonth]="day!" />
-          <app-planning-employer-wtr-cell *ngIf="isEmployerWtr(day)" [employerWtr]="getEmployerWtr(day!)!" [dayOfMonth]="day!" />
-          <app-planning-public-holiday-cell *ngIf="isPublicHoliday(day)" [publicHoliday]="getPublicHoliday(day!)!" [dayOfMonth]="day!" />
-          <app-planning-week-end-cell *ngIf="isWeekEnd(day)" [dayOfMonth]="day!" />
-          <app-planning-cell *ngIf="isNone(day)" [dayOfMonth]="day!" />
+          <app-report-planning-absence-request-cell *ngIf="isAbsenceRequest(day)" [absenceRequest]="getAbsenceRequest(day!)!" [dayOfMonth]="day!" />
+          <app-report-planning-employer-wtr-cell *ngIf="isEmployerWtr(day)" [employerWtr]="getEmployerWtr(day!)!" [dayOfMonth]="day!" />
+          <app-report-planning-public-holiday-cell *ngIf="isPublicHoliday(day)" [publicHoliday]="getPublicHoliday(day!)!" [dayOfMonth]="day!" />
+          <app-report-planning-week-end-cell *ngIf="isWeekEnd(day)" [dayOfMonth]="day!" />
+          <app-report-planning-cell *ngIf="isNone(day)" [dayOfMonth]="day!" />
         </td>
       </tr>
     </tbody>
