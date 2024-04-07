@@ -3,8 +3,6 @@ import {EmployerWtr} from "../../../entities/employer-wtr";
 import {PublicHoliday} from "../../../entities/public-holiday";
 import {TableRow} from "../../../models/get-table-report-response";
 
-type Calendar = (null|number)[][];
-
 @Component({
   selector: "app-report-table",
   templateUrl: "./table.component.html",
@@ -18,10 +16,10 @@ export class ReportTableComponent {
   year!: number;
 
   @Input()
-  calendar!: Calendar;
+  calendar!: number[];
 
   @Input()
-  table!: TableRow[];
+  rows!: TableRow[];
 
   @Input()
   employerWtr!: EmployerWtr[];
@@ -29,11 +27,7 @@ export class ReportTableComponent {
   @Input()
   publicHolidays!: PublicHoliday[];
 
-  getDayLetter(day: null|number, row: TableRow): undefined|string {
-    if (day === null) {
-      return;
-    }
-
+  getDayLetter(day: number, row: TableRow): undefined|string {
     const date = this.getDate(day);
 
     // Search for a public holiday

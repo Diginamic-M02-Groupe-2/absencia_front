@@ -1,0 +1,48 @@
+@import "../../../../variables.scss";
+
+.noResults {
+  padding: 8px;
+  background-color: $white;
+  color: scale-color($tertiary, $alpha: -50%);
+  text-align: center;
+  font-style: italic;
+}
+
+.table {
+  margin: 0;
+
+  th {
+    padding: 8px;
+    background-color: $primary;
+    color: $white;
+    text-align: center;
+
+    &:first-child {
+      text-align: left;
+    }
+  }
+
+  td {
+    padding: 8px;
+    border-right: 1px solid $light;
+    border-top: 1px solid $light;
+    color: $tertiary;
+    text-align: center;
+    font-weight: 900;
+
+    &:first-child {
+      text-align: left;
+      font-weight: 400;
+    }
+
+    &.C, &.R {
+      background-color: $tertiary;
+      color: $white;
+    }
+
+    &.F {
+      background-color: $secondary;
+      color: darken($secondary, 40%);
+    }
+  }
+}

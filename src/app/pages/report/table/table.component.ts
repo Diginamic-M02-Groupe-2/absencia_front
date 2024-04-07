@@ -8,8 +8,6 @@ import {Option} from "../../../models/option";
 import {ApiRoute, ApiService, HttpMethod} from "../../../services/api.service";
 import {UserService} from "../../../services/user.service";
 
-type Calendar = (null|number)[][];
-
 interface Conge {
   nom: string;
   service: Service; // Ajout de la propriété service
@@ -30,7 +28,7 @@ export class TableReportComponent {
 
   services: Option[] = serviceOptions;
 
-  calendar: Calendar = [];
+  calendar: number[] = [];
 
   table?: GetTableReportResponse;
 
@@ -64,47 +62,11 @@ export class TableReportComponent {
     this.calendar = this.getCalendar();
   }
 
-  private getCalendar(): Calendar {
+  private getCalendar(): number[] {
     const month: number = this.formGroup.get("month")!.value.getMonth();
     const year: number = this.formGroup.get("month")!.value.getFullYear();
-    const calendar: Calendar = [];
-
-    const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfMonth = new Date(year, month + 1, 0);
-
-    let currentWeek: (number | null)[] = [];
-
-    const startingDay = firstDayOfMonth.getDay();
-
-    firstDayOfMonth.setDate(firstDayOfMonth.getDate() - startingDay + 1);
-
-    const currentDay = new Date(firstDayOfMonth);
-
-    while (currentDay <= lastDayOfMonth) {
-      if (currentDay.getMonth() === month) {
-        currentWeek.push(currentDay.getDate());
-      } else {
-        currentWeek.push(null);
-      }
-
-      if (
-        currentDay.getDay() === 0 &&
-        currentDay.getDate() !== lastDayOfMonth.getDate()
-      ) {
-        calendar.push(currentWeek);
-        currentWeek = [];
-      }
-
-      currentDay.setDate(currentDay.getDate() + 1);
-    }
-
-    // Ajouter la dernière semaine si elle n'a pas encore été ajoutée
-    if (currentWeek.length > 0) {
-      while (currentWeek.length < 7) {
-        currentWeek.push(null);
-      }
-      calendar.push(currentWeek);
-    }
+    const calendar: number[] = Array.from({length: lastDayOfMonth.getDate() + 1}, (_, i) => i);
 
     return calendar;
   }
