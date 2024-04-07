@@ -16,13 +16,13 @@ import {MessageResponse} from "./models/message-response";
 export class AppComponent {
   absenceRequestReadRoute: string = Route.ABSENCE_REQUEST_LIST;
 
-  tableDayServiceRoute: string = Route.TABLE_DAY_SERVICE;
-
   employerWtrAndPublicHolidayReadRoute: string = Route.EMPLOYER_WTR_AND_PUBLIC_HOLIDAY_READ;
  
   histogramReportRoute: string = Route.REPORT_HISTOGRAM;
 
   planningReportRoute: string = Route.REPORT_PLANNING;
+
+  tableReportRoute: string = Route.REPORT_TABLE;
 
   firstName: string = '';
 

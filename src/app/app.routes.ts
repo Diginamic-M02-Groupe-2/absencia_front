@@ -15,63 +15,91 @@ import {HistogramReportComponent} from "./pages/report/histogram/histogram.compo
 import {TableDayServiceComponent} from "./pages/table-day-service/table-day-service.component";
 
 export const routes: Routes = [
-  { path: '', redirectTo: Route.LOGIN, pathMatch: 'full' },
   {
+    path: "",
+    redirectTo: Route.LOGIN,
+    pathMatch: "full",
+  }, {
     path: Route.LOGIN,
     component: LoginComponent,
-    canActivate: [LoginGuard],
-  },
-  {
+    canActivate: [
+      LoginGuard,
+    ],
+  }, {
     path: Route.COMPONENTS,
     component: ComponentsComponent,
-    canActivate: [AuthGuard],
-  },
-  {
+    canActivate: [
+      AuthGuard,
+    ],
+  }, {
     path: Route.ABSENCE_REQUEST_LIST,
     component: AbsenceRequestListComponent,
-    canActivate: [AuthGuard],
-  },
-  {
+    canActivate: [
+      AuthGuard,
+    ],
+  }, {
     path: Route.ABSENCE_REQUEST_CREATE,
     component: AbsenceRequestNewComponent,
-    canActivate: [AuthGuard],
-    data: { requiredPermission: 'CAN_ROUTE_TO_POST_ABSENCE_REQUEST' }
-  },
-  {
+    canActivate: [
+      AuthGuard,
+    ],
+    data: {
+      requiredPermission: "CAN_ROUTE_TO_POST_ABSENCE_REQUEST",
+    },
+  }, {
     path: Route.EMPLOYER_WTR_AND_PUBLIC_HOLIDAY_READ,
     component: EmployerWtrAndPublicHolidayReadComponent,
-    canActivate: [AuthGuard],
-  },
-  {
+    canActivate: [
+      AuthGuard,
+    ],
+  }, {
     path: Route.EMPLOYER_WTR_CREATE,
     component: EmployerWtrCreateComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: Route.REPORT_PLANNING,
-    component: PlanningReportComponent,
-    canActivate: [AuthGuard],
-  },
-  {
+    canActivate: [
+      AuthGuard,
+    ],
+  }, {
     path: Route.REPORT_HISTOGRAM,
     component: HistogramReportComponent,
-    canActivate: [AuthGuard],
-    data: { requiredPermission: 'CAN_READ_HISTOGRAM_REPORT' }
-  },
-  {
-    path: Route.TABLE_DAY_SERVICE,
+    canActivate: [
+      AuthGuard,
+    ],
+    data: {
+      requiredPermission: "CAN_READ_HISTOGRAM_REPORT",
+    },
+  }, {
+    path: Route.REPORT_PLANNING,
+    component: PlanningReportComponent,
+    canActivate: [
+      AuthGuard,
+    ],
+    data: {
+      requiredPermission: "CAN_READ_PLANNING_REPORT",
+    },
+  }, {
+    path: Route.REPORT_TABLE,
     component: TableDayServiceComponent,
-    canActivate: [AuthGuard],
-  },
-  {
+    canActivate: [
+      AuthGuard,
+    ],
+    data: {
+      requiredPermission: "CAN_READ_TABLE_REPORT",
+    },
+  }, {
     path: "**",
     component: NotFoundComponent,
-    canActivate: [AuthGuard],
+    canActivate: [
+      AuthGuard,
+    ],
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  imports: [
+    RouterModule.forRoot(routes),
+  ],
+  exports: [
+    RouterModule,
+  ],
 })
 export class AppRoutingModule {}
