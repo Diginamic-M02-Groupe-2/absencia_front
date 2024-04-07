@@ -45,7 +45,7 @@
       color: darken($secondary, 40%);
     }
 
-    &.weekEnd {
+    &.weekEnd:not(.C):not(.F):not(.R) {
       border-color: darken($light, 5%);
       background-color: $light;
     }

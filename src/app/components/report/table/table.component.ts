@@ -36,12 +36,13 @@ export class ReportTableComponent {
   getDayLetter(day: number, row: TableRow): undefined|string {
     const date = this.getDate(day);
 
-    // Search for a public holiday
-    for (const publicHoliday of this.publicHolidays) {
-      const publicHolidayDate = new Date(publicHoliday.date);
+    // Search for an absence request
+    for (const absenceRequest of row.absenceRequests) {
+      const absenceRequestStartedAt = new Date(absenceRequest.startedAt);
+      const absenceRequestEndedAt = new Date(absenceRequest.endedAt);
 
-      if (publicHolidayDate.getTime() === date.getTime()) {
-        return "F";
+      if (date.getTime() >= absenceRequestStartedAt.getTime() && date.getTime() <= absenceRequestEndedAt.getTime()) {
+        return "C";
       }
     }
 
@@ -54,13 +55,12 @@ export class ReportTableComponent {
       }
     }
 
-    // Search for an absence request
-    for (const absenceRequest of row.absenceRequests) {
-      const absenceRequestStartedAt = new Date(absenceRequest.startedAt);
-      const absenceRequestEndedAt = new Date(absenceRequest.endedAt);
+    // Search for a public holiday
+    for (const publicHoliday of this.publicHolidays) {
+      const publicHolidayDate = new Date(publicHoliday.date);
 
-      if (date.getTime() >= absenceRequestStartedAt.getTime() && date.getTime() <= absenceRequestEndedAt.getTime()) {
-        return "C";
+      if (publicHolidayDate.getTime() === date.getTime()) {
+        return "F";
       }
     }
 
