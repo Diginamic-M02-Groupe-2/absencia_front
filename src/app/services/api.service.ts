@@ -2,11 +2,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 
-const API_URL = 'http://localhost:8080/api';
-const BASE_URL = API_URL;
-export const AUTH_API = `${API_URL}/login`;
-export const GET_USER_API = `${API_URL}/users/current`;
-export const GET_ABSENCE_REQUESTS = `${API_URL}/absence-requests`;
+export enum HttpMethod {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  PATCH = "PATCH",
+  DELETE = "DELETE",
+}
 
 export enum ApiRoute {
   // Authentication
@@ -21,23 +23,17 @@ export enum ApiRoute {
   GET_EMPLOYER_WTR_AND_PUBLIC_HOLIDAYS = "/employer-wtr-and-public-holidays",
   // Employer WTR
   EMPLOYER_WTR = "/employer-wtr",
-  // Report
-  REPORT_PLANNING = "/reports/planning",
-  REPORT_HISTOGRAM = "/reports/histogram",
   // Public holiday
   PUBLIC_HOLIDAY = "/public-holidays",
   // Report
+  REPORT_HISTOGRAM = "/reports/histogram",
+  REPORT_PLANNING = "/reports/planning",
+  REPORT_TABLE = "/reports/table",
   // User
   GET_CURRENT_USER = "/users/current",
 }
 
-export enum HttpMethod {
-  GET = 'GET',
-  POST = 'POST',
-  PUT = 'PUT',
-  PATCH = 'PATCH',
-  DELETE = 'DELETE',
-}
+const BASE_URL: string = "http://localhost:8080/api";
 
 @Injectable({
   providedIn: 'root',

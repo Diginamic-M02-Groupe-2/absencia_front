@@ -1,13 +1,8 @@
-import { Injectable } from '@angular/core';
-import {
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AUTH_API } from '../services/api.service';
-import { TOKEN } from '../services/authentification.service';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {Injectable} from "@angular/core";
+import {Observable} from "rxjs";
+import {ApiRoute} from "../services/api.service";
+import {TOKEN} from "../services/authentification.service";
 
 @Injectable()
 export class AuthorizationInterceptor implements HttpInterceptor {
@@ -15,7 +10,7 @@ export class AuthorizationInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (request.url.includes(AUTH_API)) {
+    if (request.url.includes(ApiRoute.LOGIN)) {
       return next.handle(request);
     }
 

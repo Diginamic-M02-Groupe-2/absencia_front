@@ -1,9 +1,9 @@
 import {Component, Input, OnChanges } from "@angular/core";
-import {DateService} from "../../../services/date.service";
-import {GetHistogramResponse, HistogramDataset} from "../../../models/get-histogram-response";
+import {DateService} from "../../services/date.service";
+import {GetHistogramResponse, HistogramDataset} from "../../models/get-histogram-response";
 
 @Component({
-  selector: "app-absence-request-histogram",
+  selector: "app-histogram",
   templateUrl: "./histogram.component.html",
 })
 export class HistogramComponent implements OnChanges {

@@ -1,6 +1,10 @@
 import {Component} from "@angular/core";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {Service, serviceOptions} from "../../../entities/user/service";
+import {User} from "../../../entities/user/user";
 import {Option} from "../../../models/option";
+import {ApiRoute, HttpMethod} from "../../../services/api.service";
+import {UserService} from "../../../services/user.service";
 
 interface Conge {
   nom: string;
@@ -14,15 +18,14 @@ interface Conge {
   styleUrl: "./table.component.module.scss",
 })
 export class TableReportComponent {
-  months: string[] = [
-    'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
-  ];
+  formGroup: FormGroup;
 
-  years: number[] = Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - i);
+  formMethod: HttpMethod = HttpMethod.GET;
 
-  selectedService: Service | undefined;
-  selectedMonth: string | undefined;
-  selectedYear: number | undefined;
+  formAction: string = ApiRoute.REPORT_TABLE;
+
+  services: Option[] = serviceOptions;
+
   conges: Conge[] = [
     { nom: 'John Doe', service: Service.MANAGEMENT, '1': 'C', '5': 'R', '10': 'F', '31': 'C', '20': 'R', '25': 'F', '30': 'C' },
     { nom: 'Jane Doe', service: Service.DEVELOPMENT, '24': 'C', '5': 'R', '10': 'F', '8': 'C', '20': 'R', '25': 'F', '22': 'C' },
@@ -31,16 +34,33 @@ export class TableReportComponent {
 
   jours: string[] = Array.from({ length: 31 }, (_, i) => (i + 1).toString()); // Jours du mois
 
-  serviceOptions: Option[] = serviceOptions;
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+  ) {
+    this.formGroup = this.formBuilder.group({
+      service: [null],
+      month: [new Date()],
+    });
+
+    this.formGroup.valueChanges.subscribe(() => this.getTable());
+
+    this.userService.getCurrentUser().subscribe((user: User) => {
+      this.formGroup.patchValue({
+        service: user.service,
+      });
+    });
+  }
+
+  async getTable(): Promise<void> {
+    console.log("get table");
+  }
 
   getCongeValue(conge: Conge, jour: string): string {
     return conge[jour] || ''; 
   }
 
   filterCongesByService(): Conge[] {
-    if (!this.selectedService) {
-      return this.conges;
-    }
-    return this.conges.filter(conge => conge.service === this.selectedService);
+    return this.conges.filter(conge => conge.service === this.formGroup.get("service")?.value);
   }
 }

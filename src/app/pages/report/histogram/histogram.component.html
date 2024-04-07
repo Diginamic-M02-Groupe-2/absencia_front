@@ -4,7 +4,7 @@
 
 <div class="formContainer">
   <app-select
-    *ngIf="defaultService"
+    *ngIf="formGroup.get('service')!.value"
     [formGroup]="formGroup"
     name="service"
     label="Département"
@@ -21,4 +21,4 @@
   />
 </div>
 
-<app-absence-request-histogram [month]="formGroup.get('month')!.value.getMonth()" [year]="formGroup.get('month')!.value.getFullYear()" [datasets]="datasets" />
+<app-histogram [month]="formGroup.get('month')!.value.getMonth()" [year]="formGroup.get('month')!.value.getFullYear()" [datasets]="datasets" />

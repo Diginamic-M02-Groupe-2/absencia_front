@@ -6,6 +6,7 @@ import {GetHistogramResponse, HistogramDataset} from "../../../models/get-histog
 import {Option} from "../../../models/option";
 import {ApiRoute, ApiService, HttpMethod} from "../../../services/api.service";
 import {UserService} from "../../../services/user.service";
+import { User } from "../../../entities/user/user";
 
 @Component({
   selector: "app-histogram-report",
@@ -21,14 +22,12 @@ export class HistogramReportComponent {
 
   services: Option[] = serviceOptions;
 
-  defaultService?: Service;
-
   datasets: HistogramDataset[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
+    private apiService: ApiService,
     private userService: UserService,
-    private apiService: ApiService
   ) {
     this.formGroup = this.formBuilder.group({
       service: [null],
@@ -37,11 +36,9 @@ export class HistogramReportComponent {
 
     this.formGroup.valueChanges.subscribe(() => this.getHistogram());
 
-    this.userService.getCurrentUser().subscribe(async (user) => {
-      this.defaultService = user.service;
-
+    this.userService.getCurrentUser().subscribe((user: User) => {
       this.formGroup.patchValue({
-        service: this.defaultService,
+        service: user.service,
       });
     });
   }
