@@ -20,7 +20,7 @@
           Libellé
         </th>
 
-        <th></th>
+        <th *ngxPermissionsOnly="['CAN_UPDATE_PUBLIC_HOLIDAY', 'CAN_UPDATE_EMPLOYER_WTR', 'CAN_DELETE_EMPLOYER_WTR']"></th>
       </tr>
     </ng-template>
 
@@ -40,7 +40,7 @@
           {{employerWtrOrAbsenceRequest.label}}
         </td>
 
-        <td>
+        <td *ngxPermissionsOnly="['CAN_UPDATE_PUBLIC_HOLIDAY', 'CAN_UPDATE_EMPLOYER_WTR', 'CAN_DELETE_EMPLOYER_WTR']">
           <div class="actions">
             <ng-container *ngIf="isPublicHolidayUpdatable(employerWtrOrAbsenceRequest)">
               <button class="button updateButton" (click)="onClickUpdatePublicHolidayButton(employerWtrOrAbsenceRequest)" *ngxPermissionsOnly="'CAN_UPDATE_PUBLIC_HOLIDAY'">
