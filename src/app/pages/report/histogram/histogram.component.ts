@@ -1,8 +1,8 @@
 import {Component} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {firstValueFrom} from "rxjs";
 import {Service, serviceOptions} from "../../../entities/user/service";
-import {GetHistogramResponse} from "../../../models/get-histogram-response";
+import {GetHistogramResponse, HistogramDataset} from "../../../models/get-histogram-response";
 import {Option} from "../../../models/option";
 import {ApiRoute, ApiService, HttpMethod} from "../../../services/api.service";
 import {UserService} from "../../../services/user.service";
@@ -21,7 +21,9 @@ export class HistogramReportComponent {
 
   services: Option[] = serviceOptions;
 
-  datasets!: GetHistogramResponse;
+  defaultService?: Service;
+
+  datasets: HistogramDataset[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,74 +31,42 @@ export class HistogramReportComponent {
     private apiService: ApiService
   ) {
     this.formGroup = this.formBuilder.group({
-      period: [new Date(), [Validators.required]],
-      service: [null, [Validators.required]],
+      service: [null],
+      month: [new Date()],
     });
+
+    this.formGroup.valueChanges.subscribe(() => this.getHistogram());
 
     this.userService.getCurrentUser().subscribe(async (user) => {
-      const userService = user.service;
-      const selectedOption = serviceOptions.find(
-        (option) =>
-          option.value.toLowerCase() === userService.toLocaleLowerCase()
-      );
+      this.defaultService = user.service;
+
       this.formGroup.patchValue({
-        service: selectedOption!.value,
+        service: this.defaultService,
       });
-      await this.getHistogramDatasets();
     });
   }
 
-  async getHistogramDatasets(): Promise<void> {
-    const serviceNumber = this.getServiceNumberByLabel(
-      this.formGroup.value.service
-    );
-    const date = new Date();
+  async getHistogram(): Promise<void> {
     const queryParams = {
-      month: date.getMonth() + 1,
-      year: date.getFullYear(),
-      service: serviceNumber,
+      month: this.formGroup.get("month")!.value.getMonth() + 1,
+      year: this.formGroup.get("month")!.value.getFullYear(),
+      service: this.getServiceNumberByLabel(this.formGroup.get("service")!.value),
     };
-    const response = await firstValueFrom(
-      this.apiService.get<GetHistogramResponse>(this.formAction, queryParams)
-    );
+
+    const response = await firstValueFrom(this.apiService.get<GetHistogramResponse>(this.formAction, queryParams));
 
     this.datasets = response;
   }
 
-  async onSubmit(): Promise<void> {
-    const formData = this.formGroup.value;
-    const serviceNumber = this.getServiceNumberByLabel(formData.service);
-
-    const queryParams = {
-      month: formData.period.getMonth() + 1,
-      year: formData.period.getFullYear(),
-      service: serviceNumber,
-    };
-
-    const response = await firstValueFrom(
-      this.apiService.get<GetHistogramResponse>(this.formAction, queryParams)
-    );
-
-    this.datasets = response;
-  }
-
-  onDateChanged(newDate: any) {
-    this.formGroup.get("dateControl")?.setValue(newDate);
-    this.onSubmit();
-  }
-
-  onSelectionChanged(newSelection: any) {
-    this.formGroup.get("selectControl")?.setValue(newSelection);
-    this.onSubmit();
-  }
-
-  getServiceNumberByLabel(label: string): number | undefined {
+  private getServiceNumberByLabel(label: string): undefined|number {
     const serviceKeys = Object.keys(Service);
+
     for (let i = 0; i < serviceKeys.length; i++) {
       if (Service[serviceKeys[i] as keyof typeof Service] === label) {
         return i;
       }
     }
+
     return undefined;
   }
 }

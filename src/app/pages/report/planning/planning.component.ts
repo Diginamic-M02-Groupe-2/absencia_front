@@ -1,21 +1,21 @@
 import {Component} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {firstValueFrom} from "rxjs";
-import {PublicHoliday} from "../../entities/public-holiday";
-import {User} from "../../entities/user/user";
-import {Service} from "../../entities/user/service";
-import {GetPlanningReportResponse} from "../../models/get-planning-report-response";
-import {ApiRoute, ApiService} from "../../services/api.service";
-import {UserService} from "../../services/user.service";
-import { AbsenceRequest } from "../../entities/absence-request";
-import { EmployerWtr } from "../../entities/employer-wtr";
+import {AbsenceRequest} from "../../../entities/absence-request";
+import {EmployerWtr} from "../../../entities/employer-wtr";
+import {PublicHoliday} from "../../../entities/public-holiday";
+import {User} from "../../../entities/user/user";
+import {Service} from "../../../entities/user/service";
+import {GetPlanningReportResponse} from "../../../models/get-planning-report-response";
+import {ApiRoute, ApiService} from "../../../services/api.service";
+import {UserService} from "../../../services/user.service";
 
 @Component({
-  selector: "app-absence-request-planning",
+  selector: "app-planning-report",
   templateUrl: "./planning.component.html",
   styleUrl: "./planning.component.module.scss",
 })
-export class PlanningComponent {
+export class PlanningReportComponent {
   weekDays: string[] = [
     "Lundi",
     "Mardi",
