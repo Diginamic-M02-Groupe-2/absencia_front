@@ -24,7 +24,7 @@
           {{row.firstName}} {{row.lastName}}
         </td>
 
-        <td *ngFor="let day of calendar" class="{{getDayLetter(day, row)}}">
+        <td *ngFor="let day of calendar" class="{{getDayLetter(day, row)}}" [class.weekEnd]="isWeekEnd(day)">
           {{getDayLetter(day, row)}}
         </td>
       </tr>

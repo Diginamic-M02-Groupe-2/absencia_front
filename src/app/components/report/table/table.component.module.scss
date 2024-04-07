@@ -44,5 +44,10 @@
       background-color: $secondary;
       color: darken($secondary, 40%);
     }
+
+    &.weekEnd {
+      border-color: darken($light, 5%);
+      background-color: $light;
+    }
   }
 }

@@ -27,6 +27,12 @@ export class ReportTableComponent {
   @Input()
   publicHolidays!: PublicHoliday[];
 
+  isWeekEnd(day: number): boolean {
+    const dayOfWeek = this.getDate(day).getDay();
+
+    return dayOfWeek === 0 || dayOfWeek === 6;
+  }
+
   getDayLetter(day: number, row: TableRow): undefined|string {
     const date = this.getDate(day);
 

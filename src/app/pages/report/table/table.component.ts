@@ -66,7 +66,7 @@ export class TableReportComponent {
     const month: number = this.formGroup.get("month")!.value.getMonth();
     const year: number = this.formGroup.get("month")!.value.getFullYear();
     const lastDayOfMonth = new Date(year, month + 1, 0);
-    const calendar: number[] = Array.from({length: lastDayOfMonth.getDate() + 1}, (_, i) => i);
+    const calendar: number[] = Array.from({length: lastDayOfMonth.getDate()}, (_, i) => i + 1);
 
     return calendar;
   }
