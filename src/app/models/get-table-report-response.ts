@@ -3,7 +3,14 @@ import {EmployerWtr} from "../entities/employer-wtr";
 import {PublicHoliday} from "../entities/public-holiday";
 
 export interface GetTableReportResponse {
-  absenceRequests: AbsenceRequest[];
+  table: TableRow[];
   employerWtr: EmployerWtr[];
   publicHolidays: PublicHoliday[];
+}
+
+export interface TableRow {
+  id: number;
+  firstName: string;
+  lastName: string;
+  absenceRequests: AbsenceRequest[];
 }

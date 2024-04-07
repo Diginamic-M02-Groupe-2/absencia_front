@@ -8,6 +8,8 @@ import {Option} from "../../../models/option";
 import {ApiRoute, ApiService, HttpMethod} from "../../../services/api.service";
 import {UserService} from "../../../services/user.service";
 
+type Calendar = (null|number)[][];
+
 interface Conge {
   nom: string;
   service: Service; // Ajout de la propriété service
@@ -28,13 +30,7 @@ export class TableReportComponent {
 
   services: Option[] = serviceOptions;
 
-  conges: Conge[] = [
-    { nom: 'John Doe', service: Service.MANAGEMENT, '1': 'C', '5': 'R', '10': 'F', '31': 'C', '20': 'R', '25': 'F', '30': 'C' },
-    { nom: 'Jane Doe', service: Service.DEVELOPMENT, '24': 'C', '5': 'R', '10': 'F', '8': 'C', '20': 'R', '25': 'F', '22': 'C' },
-    { nom: 'Johnny Doe', service: Service.DESIGN, '15': 'C', '5': 'R', '10': 'F', '19': 'C', '20': 'R', '25': 'F', '16': 'C' }
-  ];
-
-  jours: string[] = Array.from({ length: 31 }, (_, i) => (i + 1).toString()); // Jours du mois
+  calendar: Calendar = [];
 
   table?: GetTableReportResponse;
 
@@ -65,14 +61,52 @@ export class TableReportComponent {
     };
 
     this.table = await firstValueFrom(this.apiService.get<GetTableReportResponse>(this.formAction, queryParameters));
+    this.calendar = this.getCalendar();
   }
 
-  getCongeValue(conge: Conge, jour: string): string {
-    return conge[jour] || ''; 
-  }
+  private getCalendar(): Calendar {
+    const month: number = this.formGroup.get("month")!.value.getMonth();
+    const year: number = this.formGroup.get("month")!.value.getFullYear();
+    const calendar: Calendar = [];
 
-  filterCongesByService(): Conge[] {
-    return this.conges.filter(conge => conge.service === this.formGroup.get("service")?.value);
+    const firstDayOfMonth = new Date(year, month, 1);
+    const lastDayOfMonth = new Date(year, month + 1, 0);
+
+    let currentWeek: (number | null)[] = [];
+
+    const startingDay = firstDayOfMonth.getDay();
+
+    firstDayOfMonth.setDate(firstDayOfMonth.getDate() - startingDay + 1);
+
+    const currentDay = new Date(firstDayOfMonth);
+
+    while (currentDay <= lastDayOfMonth) {
+      if (currentDay.getMonth() === month) {
+        currentWeek.push(currentDay.getDate());
+      } else {
+        currentWeek.push(null);
+      }
+
+      if (
+        currentDay.getDay() === 0 &&
+        currentDay.getDate() !== lastDayOfMonth.getDate()
+      ) {
+        calendar.push(currentWeek);
+        currentWeek = [];
+      }
+
+      currentDay.setDate(currentDay.getDate() + 1);
+    }
+
+    // Ajouter la dernière semaine si elle n'a pas encore été ajoutée
+    if (currentWeek.length > 0) {
+      while (currentWeek.length < 7) {
+        currentWeek.push(null);
+      }
+      calendar.push(currentWeek);
+    }
+
+    return calendar;
   }
 
   private getServiceNumberByLabel(label: string): undefined|number {

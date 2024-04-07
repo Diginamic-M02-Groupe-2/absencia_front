@@ -1,1 +1,31 @@
-Todo: Report Table
+<p-table [value]="table" [tableStyle]="{'min-width': '50rem'}">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>
+        Nom
+      </th>
+
+      <ng-container *ngFor="let week of calendar">
+        <th *ngFor="let day of week">
+          {{day}}
+        </th>
+      </ng-container>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-row>
+    <tr>
+      <td>
+        {{row.firstName}} {{row.lastName}}
+      </td>
+
+      <ng-container *ngFor="let week of calendar">
+        <th *ngFor="let day of week">
+          <span>
+            {{getDayLetter(day, row)}}
+          </span>
+        </th>
+      </ng-container>
+    </tr>
+  </ng-template>
+</p-table>
