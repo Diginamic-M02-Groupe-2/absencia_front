@@ -31,8 +31,12 @@ export class EmployerWtrAndPublicHolidayTableComponent {
     private messageService: MessageService,
   ) {}
 
-  getWeekDay(date: Date): string {
-    return new Date(date).toLocaleDateString("fr-FR", {weekday: "long"});
+  formatDate(date: Date): string {
+    return new Date(date).toLocaleDateString("fr-FR", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+    });
   }
 
   getType(employerWtrOrPublicHoliday: EmployerWtr|PublicHoliday): string {

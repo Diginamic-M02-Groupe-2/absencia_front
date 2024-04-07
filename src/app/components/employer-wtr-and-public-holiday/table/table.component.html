@@ -27,7 +27,7 @@
     <ng-template pTemplate="body" let-employerWtrOrAbsenceRequest>
       <tr>
         <td>
-          {{employerWtrOrAbsenceRequest.date}} ({{getWeekDay(employerWtrOrAbsenceRequest.date)}})
+          {{formatDate(employerWtrOrAbsenceRequest.date)}}
         </td>
 
         <td>
